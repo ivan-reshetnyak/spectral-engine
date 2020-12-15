@@ -33,6 +33,9 @@
     <ClCompile Include="win\window.cpp">
       <Filter>Source Files\Win</Filter>
     </ClCompile>
+    <ClCompile Include="win\window_animation.cpp">
+      <Filter>Source Files\Win\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -43,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="win\window.h">
       <Filter>Source Files\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\window_animation.h">
+      <Filter>Source Files\Win\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

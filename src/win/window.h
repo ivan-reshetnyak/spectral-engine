@@ -12,6 +12,7 @@
 
 namespace spectral {
 
+
 class window {
 public:
   using callback = std::function<void( void )>;
@@ -77,5 +78,6 @@ protected:
   bool isActive, isFullScreen;
   std::vector<std::pair<UINT, callback>> menuCallbacks;  // WinAPI menu custom callbacks
 };
+
 
 } // End of 'spectral' namespace
