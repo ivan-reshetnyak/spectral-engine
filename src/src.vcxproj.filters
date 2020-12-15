@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{179f9e39-36c6-4e51-89f8-4fe3821bc50f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Win">
+      <UniqueIdentifier>{f123f17c-6cb3-4fd0-be6d-64089b9f301f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,6 +27,9 @@
     <ClCompile Include="pch.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>Source Files\Win</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -31,6 +37,9 @@
     </ClInclude>
     <ClInclude Include="util\memhooks.h">
       <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="win\window.h">
+      <Filter>Source Files\Win</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,3 +1,7 @@
+/***************************************************************
+ * Copyright (C) 2020
+ *    Reshetnyak Ivan
+ ***************************************************************/
 #pragma once
 
 #ifdef _DEBUG
@@ -15,6 +19,6 @@ public:
   }
 } __HookSingleton;
 
-}
+} // End of '__memhooks' namespace
 
 #endif /* _DEBUG */

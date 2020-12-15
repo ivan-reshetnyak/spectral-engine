@@ -5,4 +5,10 @@
 
 #pragma once
 
+/*****
+ * STL
+ *****/
+#include <functional>
+#include <vector>
+
 #include <windows.h>
