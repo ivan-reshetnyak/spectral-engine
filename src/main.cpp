@@ -7,6 +7,8 @@
 
 #include <windows.h>
 
+#include "util/memhooks.h"
+
 INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     CHAR *CmdLine, INT CmdShow ) {
   return 0;
