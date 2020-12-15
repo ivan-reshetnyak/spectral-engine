@@ -13,26 +13,26 @@ namespace spectral {
 class timer {
 public:
   timer();
-  void update();
-  void incrFrameCount( void );  // TODO: Do I even need this now?
-  bool isPaused();
-  void pause();
-  void unpause();
-  void togglePause();
+  void Update();
+  void IncrFrameCount( void );  // NOTE: Do I even need this now?
+  bool IsPaused();
+  void Pause();
+  void Unpause();
+  void TogglePause();
 
 private:
   UINT64
-    startTime,       // Time from program start
-    oldTime,         // Time of last frame
-    lastTime,        // Time of last FPS measure
-    pauseTime,       // Total pause time
-    timesPerSecond,  // Timer sensitivity
-    frameCount;
+    StartTime,       // Time from program start
+    OldTime,         // Time of last frame
+    LastTime,        // Time of last FPS measure
+    PauseTime,       // Total pause time
+    TimesPerSecond,  // Timer sensitivity
+    FrameCount;
   double
-    globalTime,      // Time from program start
-    globalDeltaTime, // Delta time from last frame
-    time,            // Time from prgram start (with pause)
-    deltaTime,       // Delta time from last frame (with pause)
+    GlobalTime,      // Time from program start
+    GlobalDeltaTime, // Delta time from last frame
+    Time,            // Time from prgram start (with pause)
+    DeltaTime,       // Delta time from last frame (with pause)
     FPS;
   bool paused;
 };

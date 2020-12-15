@@ -12,66 +12,65 @@
 namespace spectral {
 
 
-timer::timer() : frameCount(0), globalTime(0), globalDeltaTime(0),
-                 time(0), deltaTime(0), pauseTime(0), paused(false), FPS(0) {
+timer::timer() : FrameCount(0), GlobalTime(0), GlobalDeltaTime(0),
+                 Time(0), DeltaTime(0), PauseTime(0), paused(false), FPS(0) {
   LARGE_INTEGER CurrentTime;
   QueryPerformanceCounter(&CurrentTime);
-  startTime = oldTime = lastTime = CurrentTime.QuadPart;
+  StartTime = OldTime = LastTime = CurrentTime.QuadPart;
   QueryPerformanceFrequency(&CurrentTime);
-  timesPerSecond = CurrentTime.QuadPart;
+  TimesPerSecond = CurrentTime.QuadPart;
 }
 
 
-void timer::update() {
+void timer::Update() {
   LARGE_INTEGER CurrentTime;
   QueryPerformanceCounter(&CurrentTime);
 
   /* Update global time */
-  globalTime =
-    (double)(CurrentTime.QuadPart - startTime) / timesPerSecond;
-  globalDeltaTime =
-    (double)(CurrentTime.QuadPart - oldTime) / timesPerSecond;
+  GlobalTime =
+    (double)(CurrentTime.QuadPart - StartTime) / TimesPerSecond;
+  GlobalDeltaTime =
+    (double)(CurrentTime.QuadPart - OldTime) / TimesPerSecond;
 
   /* Update FPS */
-  if (CurrentTime.QuadPart - lastTime > timesPerSecond) {
-    FPS = (double)frameCount / (CurrentTime.QuadPart - lastTime) * timesPerSecond;
-    lastTime = CurrentTime.QuadPart;
-    frameCount = 0;
+  if (CurrentTime.QuadPart - LastTime > TimesPerSecond) {
+    FPS = (double)FrameCount / (CurrentTime.QuadPart - LastTime) * TimesPerSecond;
+    LastTime = CurrentTime.QuadPart;
+    FrameCount = 0;
   }
 
   /* Update local time */
-  time = (double)(CurrentTime.QuadPart - startTime - pauseTime) / timesPerSecond;
-  if (isPaused())
-    deltaTime = 0, pauseTime += CurrentTime.QuadPart - oldTime;
+  Time = (double)(CurrentTime.QuadPart - StartTime - PauseTime) / TimesPerSecond;
+  if (IsPaused())
+    DeltaTime = 0, PauseTime += CurrentTime.QuadPart - OldTime;
   else
-    deltaTime = globalDeltaTime;
+    DeltaTime = GlobalDeltaTime;
 
-  oldTime = CurrentTime.QuadPart;
+  OldTime = CurrentTime.QuadPart;
 }
 
 
-// NOTE: Do I even need this now?
-void timer::incrFrameCount( void ) {
-  frameCount++;
+void timer::IncrFrameCount( void ) {
+  FrameCount++;
 }
 
 
-bool timer::isPaused() {
+bool timer::IsPaused() {
   return paused;
 }
 
 
-void timer::pause() {
+void timer::Pause() {
   paused = true;
 }
 
 
-void timer::unpause() {
+void timer::Unpause() {
   paused = false;
 }
 
 
-void timer::togglePause() {
+void timer::TogglePause() {
   paused = !paused;
 }
 

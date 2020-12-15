@@ -10,16 +10,16 @@
 namespace spectral {
 
 
-int window::initializationTimer = 303030;
+int window::InitializationTimer = 303030;
 
 
 window::window( HINSTANCE hInst,
                 const char *className, const char *caption,
                 bool control, UINT menu, bool show,
                 int width, int height ) :
-    isInitialized(false), hWnd(NULL), hInstance(hInst),
-    width(0), height(0), isActive(show), isFullScreen(false),
-    mouseWheel(0) {
+    IsInitialized(false), hWnd(NULL), hInstance(hInst),
+    Width(0), Height(0), IsActive(show), IsFullScreen(false),
+    MouseWheel(0) {
   /* Fill and register window class */
   WNDCLASSEX wc;
   wc.cbSize = sizeof(WNDCLASSEX);
@@ -34,7 +34,7 @@ window::window( HINSTANCE hInst,
     GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON), 0);
   wc.lpszMenuName = (CHAR *)menu;
   wc.hInstance = hInstance;
-  wc.lpfnWndProc = winFunc;
+  wc.lpfnWndProc = WinFunc;
   wc.lpszClassName = className;
   if (!RegisterClassEx(&wc)) {
     MessageBox(NULL, "Error registering window class", "ERROR",
@@ -59,11 +59,11 @@ window::window( HINSTANCE hInst,
   UpdateWindow(hWnd);
 
   /* Send initialization timer message */
-  PostMessage(hWnd, WM_TIMER, (WPARAM)initializationTimer++, 0);
+  PostMessage(hWnd, WM_TIMER, (WPARAM)InitializationTimer++, 0);
 }
 
 
-int window::run() {
+int window::Run() {
   MSG msg;
   /* Message loop */
   while (true) {
@@ -74,14 +74,14 @@ int window::run() {
       DispatchMessage(&msg);
     }
     else
-      if (isInitialized)
-        idle();
+      if (IsInitialized)
+        Idle();
   }
   return msg.wParam;
 }
 
 
-LRESULT CALLBACK window::winFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam ) {
+LRESULT CALLBACK window::WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam ) {
   window *win;
 
   switch (Msg) {
@@ -94,45 +94,45 @@ LRESULT CALLBACK window::winFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
       switch (Msg)
       {
       case WM_CREATE:
-        return win->onCreate((CREATESTRUCT *)lParam) ? 0 : -1;
+        return win->OnCreate((CREATESTRUCT *)lParam) ? 0 : -1;
       case WM_CLOSE:
       case WM_DESTROY:
-        win->onDestroy();
+        win->OnCreate();
         return 0;
       case WM_SIZE:
-        win->onSize((UINT)wParam, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam));
+        win->OnSize((UINT)wParam, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam));
         return 0;
       case WM_ACTIVATE:
-        win->onActivate((UINT)LOWORD(wParam), (HWND)(lParam), (BOOL)HIWORD(wParam));
+        win->OnActivate((UINT)LOWORD(wParam), (HWND)(lParam), (BOOL)HIWORD(wParam));
         return 0;
       case WM_ERASEBKGND:
-        return (LRESULT)win->onEraseBackground((HDC)wParam);
+        return (LRESULT)win->OnEraseBackground((HDC)wParam);
       case WM_PAINT:
       case WM_TIMER:
-        win->onPaint();
-        win->onTimer((UINT)wParam);
+        win->OnPaint();
+        win->OnTimer((UINT)wParam);
         return 0;
       case WM_LBUTTONDOWN:
       case WM_RBUTTONDOWN:
       case WM_MBUTTONDOWN:
-        win->onButtonDown(FALSE, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (UINT)(SHORT)LOWORD(wParam));
+        win->OnButtonDown(FALSE, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (UINT)(SHORT)LOWORD(wParam));
         return 0;
       case WM_KEYDOWN:
-        win->onKeyDown(wParam);
+        win->OnKeyDown(wParam);
         return 0;
       case WM_LBUTTONUP:
       case WM_RBUTTONUP:
       case WM_MBUTTONUP:
-        win->onButtonUp((INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (UINT)(SHORT)LOWORD(wParam));
+        win->OnButtonUp((INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (UINT)(SHORT)LOWORD(wParam));
         return 0;
       case WM_MOUSEWHEEL:
-        win->onMouseWheel((INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (INT)(SHORT)HIWORD(wParam), (UINT)(SHORT)LOWORD(wParam));
+        win->OnMouseWheel((INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (INT)(SHORT)HIWORD(wParam), (UINT)(SHORT)LOWORD(wParam));
         return 0;
       case WM_COMMAND:
         // TODO: Create menu resource
         /* UINT m = LOWORD(wParam);
         if (m == ID_FILE_EXIT)
-          win->OnDestroy();
+          win->OnCreate();
         else
           for (auto &i : win->MenuCallbacks)
             if (i.first == m)
@@ -146,19 +146,19 @@ LRESULT CALLBACK window::winFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
 } /* End of 'tcg::window::WinFunc' function */
 
 
-void window::doExit() {
+void window::DoExit() {
   PostMessage(hWnd, WM_CLOSE, 0, 0);
 }
 
 
-void window::setFullScreen( bool turnOn )
+void window::SetFullScreen( bool turnOn )
 {
-  if (!isFullScreen) {
+  if (!IsFullScreen) {
     RECT rc;
     HMONITOR hmon;
     MONITORINFOEX moninfo;
 
-    GetWindowRect(hWnd, &savedRect);                           // Save old window size
+    GetWindowRect(hWnd, &SavedRect);                           // Save old window size
     hmon = MonitorFromWindow(hWnd, MONITOR_DEFAULTTONEAREST);  // Determine active monitor
     moninfo.cbSize = sizeof(moninfo);
     GetMonitorInfo(hmon, (MONITORINFO *)&moninfo);
@@ -168,132 +168,132 @@ void window::setFullScreen( bool turnOn )
       rc.left, rc.top,
       rc.right - rc.left, rc.bottom - rc.top,
       SWP_NOOWNERZORDER);
-    isFullScreen = TRUE;
+    IsFullScreen = TRUE;
   } else {
     /* Restore window size */
     SetWindowPos(hWnd, HWND_TOPMOST,
-      savedRect.left, savedRect.top,
-      savedRect.right - savedRect.left, savedRect.bottom - savedRect.top,
+      SavedRect.left, SavedRect.top,
+      SavedRect.right - SavedRect.left, SavedRect.bottom - SavedRect.top,
       SWP_NOOWNERZORDER);
-    isFullScreen = FALSE;
+    IsFullScreen = FALSE;
   }
 }
 
 
 window & window::operator<<( const std::pair<UINT, callback> &callback ) {
-  menuCallbacks.push_back(callback);
+  MenuCallbacks.push_back(callback);
   return *this;
 }
 
 
-bool window::onCreate( CREATESTRUCT *CS ) {
-  init();
+bool window::OnCreate( CREATESTRUCT *CS ) {
+  Init();
   return true;
 }
 
 
-void window::onDestroy() {
-  close();
+void window::OnCreate() {
+  Close();
 }
 
 
-void window::onSize( UINT state, INT width, INT height ) {
-  resize();
+void window::OnSize( UINT state, INT width, INT height ) {
+  Resize();
 }
 
 
-bool window::onEraseBackground( HDC hDC ) {
-  erase(hDC);
+bool window::OnEraseBackground( HDC hDC ) {
+  Erase(hDC);
   return true;
 }
 
 
-void window::onPaint() {
-  // TODO: Where is hDC?? paint();
+void window::OnPaint() {
+  // NOTE: Where is hDC?? paint();
 }
 
 
-void window::onActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized ) {
-  activate(isActive);
+void window::OnActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized ) {
+  Activate(IsActive);
 }
 
 
-void window::onTimer( INT Id ) {
-  timer();
+void window::OnTimer( INT Id ) {
+  Timer();
 }
 
 
-void window::onButtonDown( BOOL IsDoubleClick, INT X, INT Y, UINT Keys ) {
+void window::OnButtonDown( BOOL IsDoubleClick, INT X, INT Y, UINT Keys ) {
 }
 
 
-void window::onKeyDown( UINT Keys ) {
+void window::OnKeyDown( UINT Keys ) {
 }
 
 
-void window::onButtonUp( INT X, INT Y, UINT Keys ) {
+void window::OnButtonUp( INT X, INT Y, UINT Keys ) {
 }
 
 
-void window::onMouseWheel( INT X, INT Y, INT Z, UINT Keys ) {
+void window::OnMouseWheel( INT X, INT Y, INT Z, UINT Keys ) {
 }
 
 
-void window::init() {
+void window::Init() {
 }
 
 
-void window::close() {
+void window::Close() {
 }
 
 
-void window::resize() {
+void window::Resize() {
 }
 
 
-void window::erase( HDC hDC ) {
+void window::Erase( HDC hDC ) {
   HPEN hOldPen = (HPEN)SelectObject(hDC, GetStockObject(NULL_PEN));
   HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(WHITE_BRUSH));
 
   /* Default action - draw white rectangle */
-  Rectangle(hDC, 0, 0, width, height);
+  Rectangle(hDC, 0, 0, Width, Height);
   SelectObject(hDC, hOldPen);
   SelectObject(hDC, hOldBrush);
 }
 
 
-void window::paint( HDC hDC ) {
+void window::Paint( HDC hDC ) {
 }
 
 
-void window::activate( BOOL IsActive ) {
+void window::Activate( BOOL IsActive ) {
 }
 
 
-void window::timer() {
+void window::Timer() {
 }
 
 
-void window::idle() {
+void window::Idle() {
 }
 
 
-int window::getW() {
-  return width;
+int window::GetW() {
+  return Width;
 }
 
 
-int window::getH() {
-  return height;
+int window::GetH() {
+  return Height;
 }
 
 
-void window::show( void ) {
+void window::Show( void ) {
   ShowWindow(hWnd, SW_SHOW);
 }
 
 
-void window::hide( void ) {
+void window::Hide( void ) {
   ShowWindow(hWnd, SW_HIDE);
 }
 
