@@ -5,7 +5,7 @@
 
 #include "pch.h"
 
-#include "win/window.h"
+#include "window.h"
 
 namespace spectral {
 

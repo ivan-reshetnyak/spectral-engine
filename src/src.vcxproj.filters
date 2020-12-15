@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Win">
       <UniqueIdentifier>{f123f17c-6cb3-4fd0-be6d-64089b9f301f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Win\Windows">
+      <UniqueIdentifier>{4bcbd8ea-652e-4f26-b39d-f8f61156d7e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,7 +30,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
-    <ClCompile Include="window.cpp">
+    <ClCompile Include="win\window.cpp">
       <Filter>Source Files\Win</Filter>
     </ClCompile>
   </ItemGroup>
