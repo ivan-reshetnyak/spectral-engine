@@ -5,8 +5,6 @@
 
 #pragma once
 
-#include "pch.h"
-
 #include <functional>
 #include <vector>
 

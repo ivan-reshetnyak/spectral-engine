@@ -10,8 +10,7 @@
 namespace spectral {
 
 
-class window_animation : public window
-{
+class window_animation : public window {
 public:
   window_animation( HINSTANCE hInst = GetModuleHandle(NULL) );
   void onDestroy() override;

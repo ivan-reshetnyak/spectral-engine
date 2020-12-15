@@ -11,4 +11,8 @@
 #include <functional>
 #include <vector>
 
+/*****
+ * Platform-specific
+ *****/
+// TODO: Maybe include platform check?
 #include <windows.h>
