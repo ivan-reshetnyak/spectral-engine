@@ -14,11 +14,11 @@ int window::InitializationTimer = 303030;
 
 
 window::window( HINSTANCE hInst,
-                const char *className, const char *caption,
-                bool control, UINT menu, bool show,
-                int width, int height ) :
+                const char *ClassName, const char *Caption,
+                bool Control, UINT Menu, bool Show,
+                int Width, int Height ) :
     IsInitialized(false), hWnd(NULL), hInstance(hInst),
-    Width(0), Height(0), IsActive(show), IsFullScreen(false),
+    Width(0), Height(0), IsActive(Show), IsFullScreen(false),
     MouseWheel(0) {
   /* Fill and register window class */
   WNDCLASSEX wc;
@@ -32,10 +32,10 @@ window::window( HINSTANCE hInst,
     GetSystemMetrics(SM_CXSMICON), GetSystemMetrics(SM_CYSMICON), 0);
   wc.hIcon = (HICON)LoadImage(NULL, IDI_APPLICATION, IMAGE_ICON,
     GetSystemMetrics(SM_CXICON), GetSystemMetrics(SM_CYICON), 0);
-  wc.lpszMenuName = (CHAR *)menu;
+  wc.lpszMenuName = (CHAR *)Menu;
   wc.hInstance = hInstance;
   wc.lpfnWndProc = WinFunc;
-  wc.lpszClassName = className;
+  wc.lpszClassName = ClassName;
   if (!RegisterClassEx(&wc)) {
     MessageBox(NULL, "Error registering window class", "ERROR",
       MB_OK | MB_ICONSTOP);
@@ -43,10 +43,10 @@ window::window( HINSTANCE hInst,
   }
 
   /* Window creation */
-  hWnd = CreateWindow(className,
-                      caption,
-                      control ? WS_OVERLAPPEDWINDOW : WS_OVERLAPPED,
-                      CW_USEDEFAULT, CW_USEDEFAULT, width, height,
+  hWnd = CreateWindow(ClassName,
+                      Caption,
+                      Control ? WS_OVERLAPPEDWINDOW : WS_OVERLAPPED,
+                      CW_USEDEFAULT, CW_USEDEFAULT, Width, Height,
                       NULL, NULL, hInstance, (VOID *)this);
   if (hWnd == NULL) {
     MessageBox(NULL, "Error creating window", "ERROR",
@@ -54,7 +54,7 @@ window::window( HINSTANCE hInst,
     exit(0);
   }
   /* Show and update window */
-  if (show)
+  if (Show)
     ShowWindow(hWnd, SW_SHOWNORMAL);
   UpdateWindow(hWnd);
 
@@ -151,7 +151,7 @@ void window::DoExit() {
 }
 
 
-void window::SetFullScreen( bool turnOn )
+void window::SetFullScreen( bool TurnOn )
 {
   if (!IsFullScreen) {
     RECT rc;
@@ -180,8 +180,8 @@ void window::SetFullScreen( bool turnOn )
 }
 
 
-window & window::operator<<( const std::pair<UINT, callback> &callback ) {
-  MenuCallbacks.push_back(callback);
+window & window::operator<<( const std::pair<UINT, callback> &Callback ) {
+  MenuCallbacks.push_back(Callback);
   return *this;
 }
 
@@ -197,7 +197,7 @@ void window::OnCreate() {
 }
 
 
-void window::OnSize( UINT state, INT width, INT height ) {
+void window::OnSize( UINT State, INT Width, INT Height ) {
   Resize();
 }
 

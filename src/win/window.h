@@ -16,27 +16,27 @@ public:
   using callback = std::function<void( void )>;
 
   window( HINSTANCE hInst = GetModuleHandle(NULL),
-          const char *className = "MyWindowClass",
-          const char *caption = "Window",
-          bool control = true,
-          UINT menu = 0,
-          bool show = false,
-          int width = CW_USEDEFAULT, int height = CW_USEDEFAULT );
+          const char *ClassName = "MyWindowClass",
+          const char *Caption = "Window",
+          bool Control = true,
+          UINT Menu = 0,
+          bool Show = false,
+          int Width = CW_USEDEFAULT, int Height = CW_USEDEFAULT );
 
   // New menu callback add function
-  window & operator<<( const std::pair<UINT, callback> &callback );
+  window & operator<<( const std::pair<UINT, callback> &Callback );
 
   int Run();
   static LRESULT CALLBACK WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam );
   void DoExit();
-  void SetFullScreen( bool turnOn );
+  void SetFullScreen( bool TurnOn );
 
   /***
    * Cracked message handle functions
    ***/
   virtual bool OnCreate( CREATESTRUCT *CS );
   virtual void OnCreate();
-  virtual void OnSize( UINT state, INT width, INT height );
+  virtual void OnSize( UINT State, INT Width, INT Height );
   virtual bool OnEraseBackground( HDC hDC );
   virtual void OnPaint();
   virtual void OnActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized );
