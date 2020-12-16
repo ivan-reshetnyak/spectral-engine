@@ -10,9 +10,11 @@
 namespace spectral {
 
 
-// TODO: Add 'render' as parent (or field)
 animation::animation( HINSTANCE hInstance ) :
-    window_animation(hInstance) {
+    window_animation(hInstance),
+    Render(window_animation::hWnd,
+           window_animation::Width,
+           window_animation::Height) {
 }
 
 
@@ -20,7 +22,7 @@ animation::~animation() {
 }
 
 
-void animation::Render() {
+void animation::RenderFrame() {
   AnimTimer.Update();
   AnimTimer.IncrFrameCount();
 
@@ -32,14 +34,12 @@ void animation::Render() {
 
   UnitManager.Update();
 
-  // TODO: render::StartFrame();
+  Render.StartFrame();
 
   UnitManager.Render();
 
-  /*
-  TODO: render::EndFrame();
-  TODO: render::CopyFrame();
-  */
+  Render.EndFrame();
+  Render.CopyFrame();
 }
 
 
@@ -60,17 +60,17 @@ void animation::Init() {
 
 
 void animation::Resize() {
-  // TODO: render::Resize();
+  Render.Resize();
 }
 
 
 void animation::Paint( HDC hDC ) {
-  Render();
+  RenderFrame();
 }
 
 
 void animation::Timer() {
-  Render();
+  RenderFrame();
 }
 
 

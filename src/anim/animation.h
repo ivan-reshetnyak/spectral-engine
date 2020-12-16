@@ -7,9 +7,10 @@
 
 #include <windows.h>
 
+#include "../win/window_animation.h"
 #include "timer.h"
 #include "unit.h"
-#include "../win/window_animation.h"
+#include "render/render.h"
 
 namespace spectral {
 
@@ -18,7 +19,7 @@ class animation : public window_animation {
 public:
   animation( HINSTANCE hInstance = GetModuleHandle(NULL) );
   ~animation();
-  void Render();
+  void RenderFrame();
   animation & operator<<( unit *Unit );
   animation & operator<<( const std::pair<UINT, window::callback> &Callback );
   void Init() override;
@@ -30,6 +31,7 @@ public:
 private:
   unit_manager UnitManager;
   timer AnimTimer;
+  render Render;
 };
 
 

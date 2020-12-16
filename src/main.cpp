@@ -8,9 +8,15 @@
 #include <windows.h>
 
 #include "util/memhooks.h"
-#include "win/window.h"
+#include "anim/animation.h"
+
+using namespace spectral;
 
 INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     CHAR *CmdLine, INT CmdShow ) {
+  animation Anim;
+
+  Anim.Run();
+
   return 0;
 }
