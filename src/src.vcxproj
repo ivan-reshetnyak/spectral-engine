@@ -191,6 +191,7 @@
     <ClInclude Include="anim\render\render.h" />
     <ClInclude Include="anim\timer.h" />
     <ClInclude Include="anim\unit.h" />
+    <ClInclude Include="math\color.h" />
     <ClInclude Include="math\vec.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="util\memhooks.h" />

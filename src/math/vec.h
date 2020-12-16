@@ -10,15 +10,15 @@
 namespace spectral {
 
 template<class type>
-class vec {
+class vec_t {
 public:
   type X, Y, Z;
 
-  explicit vec( const type &Value ) : X(Value), Y(Value), Z(Value) {
+  explicit vec_t( const type &Value ) : X(Value), Y(Value), Z(Value) {
   }
 
 
-  vec( const type &X, const type &Y, const type &Z) : X(X), Y(Y), Z(Z) {
+  vec_t( const type &X, const type &Y, const type &Z) : X(X), Y(Y), Z(Z) {
   }
 
 
@@ -38,63 +38,63 @@ public:
 
 
   // Dot product
-  type operator&( const vec &V ) const {
+  type operator&( const vec_t &V ) const {
     return X * V.X + Y * V.Y + Z * V.Z;
   }
 
 
   // Cross product
-  vec operator%( const vec &V ) const {
-    return vec(Y * V.Z - V.Y * Z, V.X * Z - X * V.Z, X * V.Y - V.X * Y);
+  vec_t operator%( const vec_t &V ) const {
+    return vec_t(Y * V.Z - V.Y * Z, V.X * Z - X * V.Z, X * V.Y - V.X * Y);
   }
 
   // TODO: Compare with threshold
-  bool operator==( const vec &V ) const {
+  bool operator==( const vec_t &V ) const {
     return (X == V.X) && (Y == V.Y) && (Z == V.Z);
   }
 
 
-  bool operator!=( const vec &V ) const {
+  bool operator!=( const vec_t &V ) const {
     return (X != V.X) || (Y != V.Y) || (Z != V.Z);
   }
 
 
-  vec operator+( const vec &V ) const {
-    return vec(X + V.X, Y + V.Y, Z + V.Z);
+  vec_t operator+( const vec_t &V ) const {
+    return vec_t(X + V.X, Y + V.Y, Z + V.Z);
   }
 
 
-  vec operator-( const vec &V ) const {
-    return vec(X - V.X, Y - V.Y, Z - V.Z);
+  vec_t operator-( const vec_t &V ) const {
+    return vec_t(X - V.X, Y - V.Y, Z - V.Z);
   }
 
 
-  vec operator*( const vec &V ) const {
-    return vec(X * V.X, Y * V.Y, Z * V.Z);
+  vec_t operator*( const vec_t &V ) const {
+    return vec_t(X * V.X, Y * V.Y, Z * V.Z);
   }
 
 
-  vec operator/( const vec &V ) const {
-    return vec(X / V.X, Y / V.Y, Z / V.Z);
+  vec_t operator/( const vec_t &V ) const {
+    return vec_t(X / V.X, Y / V.Y, Z / V.Z);
   }
 
 
-  vec operator*( type A ) const {
-    return vec(A * X, A * Y, A * Z);
+  vec_t operator*( const type &A ) const {
+    return vec_t(A * X, A * Y, A * Z);
   }
 
 
-  vec operator/( type A ) const {
-    return vec(X / A, Y / A, Z / A);
+  vec_t operator/( const type &A ) const {
+    return vec_t(X / A, Y / A, Z / A);
   }
 
 
-  vec operator-() const {
-    return vec(-X, -Y, -Z);
+  vec_t operator-() const {
+    return vec_t(-X, -Y, -Z);
   }
 
 
-  vec & Negate() {
+  vec_t & Negate() {
     X = -X;
     Y = -Y;
     Z = -Z;
@@ -103,7 +103,7 @@ public:
   }
 
 
-  vec & operator+=( const vec &V ) {
+  vec_t & operator+=( const vec_t &V ) {
     X += V.X;
     Y += V.Y;
     Z += V.Z;
@@ -112,7 +112,7 @@ public:
   }
 
 
-  vec & operator-=( const vec &V ) {
+  vec_t & operator-=( const vec_t &V ) {
     X -= V.X;
     Y -= V.Y;
     Z -= V.Z;
@@ -121,7 +121,7 @@ public:
   }
 
 
-  vec & operator*=( type A )  {
+  vec_t & operator*=( const type &A )  {
     X *= A;
     Y *= A;
     Z *= A;
@@ -130,7 +130,7 @@ public:
   }
 
 
-  vec & operator*=( const vec &V ) {
+  vec_t & operator*=( const vec_t &V ) {
     X *= V.X;
     Y *= V.Y;
     Z *= V.Z;
@@ -139,7 +139,7 @@ public:
   }
 
 
-  vec & operator%=( const vec &V ) {
+  vec_t & operator%=( const vec_t &V ) {
     type a, b;
 
     a = Y * V.Z - V.Y * Z;
@@ -152,7 +152,7 @@ public:
   }
 
 
-  vec & operator/=( type A ) {
+  vec_t & operator/=( const type &A ) {
     X /= A;
     Y /= A;
     Z /= A;
@@ -191,7 +191,7 @@ public:
   }
   */
 
-  vec & Normalize() {
+  vec_t & Normalize() {
     type len = X * X + Y * Y + Z * Z;
 
     if (len > 0) {
@@ -207,13 +207,13 @@ public:
     return *this;
   }
 
-  vec Normalized() const {
+  vec_t Normalized() const {
     type len = X * X + Y * Y + Z * Z;
 
     if (len > 0) {
       if (len != 1) {
         len = sqrt(len);
-        return vec(X / len, Y / len, Z / len);
+        return vec_t(X / len, Y / len, Z / len);
       }
       return *this;
     }
@@ -222,8 +222,8 @@ public:
 };
 
 
-using vecf = vec<float>;
-using vecd = vec<double>;
+using vecf = vec_t<float>;
+using vecd = vec_t<double>;
 
 
 } // End of 'spectral' namespace
