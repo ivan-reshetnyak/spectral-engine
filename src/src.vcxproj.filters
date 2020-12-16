@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{179f9e39-36c6-4e51-89f8-4fe3821bc50f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win">
+      <UniqueIdentifier>{f123f17c-6cb3-4fd0-be6d-64089b9f301f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win\Windows">
+      <UniqueIdentifier>{4bcbd8ea-652e-4f26-b39d-f8f61156d7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim">
+      <UniqueIdentifier>{2851425a-dbc2-4109-bd86-97a72e252248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render">
+      <UniqueIdentifier>{ca32bbf0-e6a4-4a5e-86e1-8d6cdf568a1c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win\window.cpp">
+      <Filter>Source Files\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="win\window_animation.cpp">
+      <Filter>Source Files\Win\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\timer.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\unit.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\animation.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\render.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\memhooks.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="win\window.h">
+      <Filter>Source Files\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="win\window_animation.h">
+      <Filter>Source Files\Win\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\timer.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\unit.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\animation.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\render.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
