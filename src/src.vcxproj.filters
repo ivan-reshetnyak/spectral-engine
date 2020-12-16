@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Anim">
       <UniqueIdentifier>{2851425a-dbc2-4109-bd86-97a72e252248}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Anim\Render">
+      <UniqueIdentifier>{ca32bbf0-e6a4-4a5e-86e1-8d6cdf568a1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -48,6 +51,9 @@
     <ClCompile Include="anim\animation.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
+    <ClCompile Include="anim\render\render.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="anim\animation.h">
       <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\render.h">
+      <Filter>Source Files\Anim\Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
