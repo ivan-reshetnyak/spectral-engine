@@ -266,7 +266,7 @@ void window::Paint( HDC hDC ) {
 }
 
 
-void window::Activate( BOOL IsActive ) {
+void window::Activate( bool IsActive ) {
 }
 
 

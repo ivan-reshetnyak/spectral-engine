@@ -45,6 +45,9 @@
     <ClCompile Include="anim\unit.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
+    <ClCompile Include="anim\animation.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -63,6 +66,9 @@
       <Filter>Source Files\Anim</Filter>
     </ClInclude>
     <ClInclude Include="anim\unit.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\animation.h">
       <Filter>Source Files\Anim</Filter>
     </ClInclude>
   </ItemGroup>

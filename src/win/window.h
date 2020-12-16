@@ -54,7 +54,7 @@ public:
   virtual void Resize();
   virtual void Erase( HDC hDC );
   virtual void Paint( HDC hDC );
-  virtual void Activate( BOOL IsActive );
+  virtual void Activate( bool IsActive );
   virtual void Timer();
   virtual void Idle();
 

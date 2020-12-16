@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="anim\animation.cpp" />
     <ClCompile Include="anim\timer.cpp" />
     <ClCompile Include="anim\unit.cpp" />
     <ClCompile Include="main.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="win\window_animation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="anim\animation.h" />
     <ClInclude Include="anim\timer.h" />
     <ClInclude Include="anim\unit.h" />
     <ClInclude Include="pch.h" />
