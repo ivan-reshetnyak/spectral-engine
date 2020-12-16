@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Anim\Render">
       <UniqueIdentifier>{ca32bbf0-e6a4-4a5e-86e1-8d6cdf568a1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{2d924174-b95d-44b9-af0d-1df1b6ab6cd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,6 +55,9 @@
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
     <ClCompile Include="anim\render\render.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\primitive.cpp">
       <Filter>Source Files\Anim\Render</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="anim\render\render.h">
       <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\primitive.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vec.h">
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
