@@ -10,7 +10,9 @@
 /*****
  * STL
  *****/
+#include <array>
 #include <functional>
+#include <string>
 #include <vector>
 
 /*****

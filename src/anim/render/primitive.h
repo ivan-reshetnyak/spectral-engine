@@ -56,6 +56,7 @@ protected:
 private:
   primitive( const primitive &P ) = delete;
   primitive & operator=( const primitive &P ) = delete;
-}; /* End of 'prim' class */
+};
+
 
 } // End of 'spectral' namespace
