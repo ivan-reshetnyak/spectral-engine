@@ -95,5 +95,8 @@
     <ClInclude Include="math\color.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

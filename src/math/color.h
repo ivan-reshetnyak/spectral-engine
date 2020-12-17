@@ -5,13 +5,13 @@
 
 #pragma once
 
-#include <windows.h>
-
 namespace spectral {
 
 
 template<class type>
 class color_t {
+public:
+  using dword = unsigned long;
   type R, G, B, A;
 
   explicit color_t() : R(0), G(0), B(0), A(1) {
@@ -26,7 +26,7 @@ class color_t {
   explicit color_t( const type &Value ) : R(Value), G(Value), B(Value), A(1) {
   }
 
-  explicit color_t( DWORD Value ) :
+  explicit color_t( dword Value ) :
       R(((Value >> 16) & 0xFF) / 255.0), G(((Value >> 8) & 0xFF) / 255.0),
       B((Value & 0xFF) / 255.0), A(((Value >> 24) & 0xFF) / 255.0) {
   }

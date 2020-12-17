@@ -26,3 +26,8 @@
 #  define GLEW_STATIC
 #endif /* GLEW_STATIC */
 #include <gl/glew.h>
+
+/*******
+ * Stable code
+ *******/
+#include "def.h"

@@ -14,6 +14,9 @@ class vec_t {
 public:
   type X, Y, Z;
 
+  explicit vec_t() = default;
+
+
   explicit vec_t( const type &Value ) : X(Value), Y(Value), Z(Value) {
   }
 
@@ -220,10 +223,6 @@ public:
     return *this;
   }
 };
-
-
-using vecf = vec_t<float>;
-using vecd = vec_t<double>;
 
 
 } // End of 'spectral' namespace
