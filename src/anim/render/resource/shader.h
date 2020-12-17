@@ -6,6 +6,7 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
 
 #include "def.h"
 
@@ -14,6 +15,7 @@ namespace spectral {
 
 class shader {
 private:
+  friend class shader_manager;
   int Program;
   std::string Name;
 
@@ -30,6 +32,18 @@ public:
   ~shader();
   void Enable();
   void Disable();
+};
+
+
+class shader_manager
+{
+public:
+  shader_manager();
+  ~shader_manager();
+  shader * GetShader( const std::string &Name );
+
+private:
+  std::unordered_map<std::string, shader *> Shaders;
 };
 
 

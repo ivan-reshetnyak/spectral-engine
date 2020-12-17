@@ -152,4 +152,23 @@ void shader::SetUniform( const std::string &Name, int Val )
 }
 
 
+shader_manager::shader_manager() {
+}
+
+
+shader_manager::~shader_manager() {
+  for (auto &Pair : Shaders)
+    delete Pair.second;
+}
+
+
+shader * shader_manager::GetShader( const std::string &Name ) {
+  auto Iterator = Shaders.find(Name);
+  if (Iterator == Shaders.end())
+    // Shader not found
+    return Shaders.insert({Name, new shader(Name)}).first->second;
+  return Iterator->second;
+}
+
+
 } // End of 'spectral' namespace
