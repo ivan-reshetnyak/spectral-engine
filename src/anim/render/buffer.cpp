@@ -5,6 +5,7 @@
 
 #include "pch.h"
 
+#include "resource/shader.h"
 #include "buffer.h"
 
 namespace spectral {
@@ -32,8 +33,7 @@ void buffer::Generate( const geometry &Geometry ) {
   glGenVertexArrays(1, &VertexArray);
   glBindVertexArray(VertexArray);
 
-  /* Set shader layout */
-  
+  shader::SetLayout();
 
   glBindVertexArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);
