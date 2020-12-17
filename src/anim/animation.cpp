@@ -78,4 +78,9 @@ void animation::Idle() {
 }
 
 
+const timer & animation::GetTimer() const {
+  return AnimTimer;
+}
+
+
 } // End of 'spectral' namespace

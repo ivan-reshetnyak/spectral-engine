@@ -15,10 +15,15 @@ public:
   timer();
   void Update();
   void IncrFrameCount( void );  // NOTE: Do I even need this now?
-  bool IsPaused();
+  bool IsPaused() const;
   void Pause();
   void Unpause();
   void TogglePause();
+  double GetTime() const;
+  double GetDeltaTime() const;
+  double GetGlobalTime() const;
+  double GetGlobalDeltaTime() const;
+  double GetFPS() const;
 
 private:
   UINT64

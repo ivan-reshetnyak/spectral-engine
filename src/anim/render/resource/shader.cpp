@@ -23,7 +23,7 @@ shader::shader() {
 
 
 shader::shader( const std::string &FileNamePrefix ) {
-  std::string Path = "shaders/" + FileNamePrefix + "/";
+  std::string Path = "assets/shaders/" + FileNamePrefix + "/";
   Load(Path);
 }
 
@@ -96,7 +96,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
 }
 
 
-/* cstdio is faster than streams, right? */
+// cstdio is faster than streams, right?
 void shader::SaveLog( const std::string &Text ) {
   FILE *F;
 
@@ -149,6 +149,11 @@ void shader::SetUniform( const std::string &Name, int Val )
   int loc = glGetUniformLocation(Program, Name.c_str());
   if (loc != -1)
     glUniform1i(loc, Val);
+}
+
+
+int shader::GetProgram() {
+  return Program;
 }
 
 

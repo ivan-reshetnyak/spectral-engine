@@ -27,6 +27,7 @@ public:
   void Paint( HDC hDC ) override;
   void Timer() override;
   void Idle() override;
+  const timer & GetTimer() const;
 
 private:
   unit_manager UnitManager;

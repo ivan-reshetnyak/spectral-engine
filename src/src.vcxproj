@@ -177,6 +177,7 @@
     <ClCompile Include="anim\animation.cpp" />
     <ClCompile Include="anim\render\primitive.cpp" />
     <ClCompile Include="anim\render\render.cpp" />
+    <ClCompile Include="anim\render\resource\material.cpp" />
     <ClCompile Include="anim\render\resource\shader.cpp" />
     <ClCompile Include="anim\timer.cpp" />
     <ClCompile Include="anim\unit.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="anim\animation.h" />
     <ClInclude Include="anim\render\primitive.h" />
     <ClInclude Include="anim\render\render.h" />
+    <ClInclude Include="anim\render\resource\material.h" />
     <ClInclude Include="anim\render\resource\shader.h" />
     <ClInclude Include="anim\timer.h" />
     <ClInclude Include="anim\unit.h" />
