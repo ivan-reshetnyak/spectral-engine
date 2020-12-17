@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Anim\Render\Resource">
       <UniqueIdentifier>{6422d9c3-344a-4704-b220-ab6ef62cd030}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Anim\Render\Prim">
+      <UniqueIdentifier>{4e77aa4c-0e06-49b5-a4d4-a35f8d1ca637}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="anim\render\resource\material.cpp">
       <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\prim\trimesh.cpp">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="util\resource_manager.h">
       <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\prim\trimesh.h">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
