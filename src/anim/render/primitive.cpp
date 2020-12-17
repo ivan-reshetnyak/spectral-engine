@@ -3,24 +3,13 @@
  *    Reshetnyak Ivan
  ***************************************************************/
 
+
 #include "pch.h"
 
 #include "def.h"
 #include "primitive.h"
 
 namespace spectral {
-
-
-tex_coord::tex_coord( const float &U, const float &V ) : U(U), V(V) {
-}
-
-
-vertex::vertex() {
-}
-
-
-vertex::vertex( const vec &Pos ) : Pos(Pos) {
-}
 
 
 primitive::primitive( animation *Anim ) : Anim(Anim), VBuf(-1), IBuf(-1), VABuf(-1) {

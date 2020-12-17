@@ -34,7 +34,10 @@
     <Filter Include="Source Files\Anim\Render\Resource">
       <UniqueIdentifier>{6422d9c3-344a-4704-b220-ab6ef62cd030}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Anim\Render\Prim">
+    <Filter Include="Source Files\Anim\Units">
+      <UniqueIdentifier>{ceb0b1e0-541a-43ce-a2bf-eb4c2004a0ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Geom">
       <UniqueIdentifier>{4e77aa4c-0e06-49b5-a4d4-a35f8d1ca637}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -72,8 +75,14 @@
     <ClCompile Include="anim\render\resource\material.cpp">
       <Filter>Source Files\Anim\Render\Resource</Filter>
     </ClCompile>
-    <ClCompile Include="anim\render\prim\trimesh.cpp">
-      <Filter>Source Files\Anim\Render\Prim</Filter>
+    <ClCompile Include="anim\render\geometry.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\vertex.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\geom\trimesh.cpp">
+      <Filter>Source Files\Anim\Render\Geom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,8 +131,14 @@
     <ClInclude Include="util\resource_manager.h">
       <Filter>Source Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="anim\render\prim\trimesh.h">
-      <Filter>Source Files\Anim\Render\Prim</Filter>
+    <ClInclude Include="anim\render\geometry.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\vertex.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\geom\trimesh.h">
+      <Filter>Source Files\Anim\Render\Geom</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
