@@ -5,12 +5,17 @@
 
 #pragma once
 
+#include <memory>
+
 #include <windows.h>
 
-#include <gl/glew.h>
+#include "gl/glew.h"
 
 #include "def.h"
-#include "anim/animation.h"
+#include "../animation.h"
+#include "buffer.h"
+#include "geometry.h"
+#include "resource/material.h"
 
 namespace spectral {
 
@@ -18,22 +23,20 @@ namespace spectral {
 class primitive {
 public:
   primitive( animation *Anim );
+  primitive( animation *Anim, const geometry &Geometry, std::shared_ptr<material> Material );
   ~primitive();
-  virtual void Render();
-  // NOTE: Do I need it? virtual void UpdateShaderContext();
-  // virtual void SetBuffers( vertex *V, INT *I, INT NoofV, INT NoofI );
-  virtual void DeleteBuffers();
+  void Set( const geometry &Geometry, std::shared_ptr<material> Material );
+  void SetMaterial( std::shared_ptr<material> Material );
+  void Draw();
 
 protected:
-  UINT
-    VABuf, VBuf, IBuf,
-    NoofV, NoofI;
+  buffer Buffer;
+  std::shared_ptr<material> Material;
   animation *Anim;
-  // TODO: Add material *Material;
 
-private:
   primitive( const primitive &P ) = delete;
   primitive & operator=( const primitive &P ) = delete;
+  virtual void Render() = 0;
 };
 
 

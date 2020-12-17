@@ -13,10 +13,20 @@
 
 namespace spectral {
 
-
 class shader {
 private:
-  friend class resource_manager<shader>;
+  friend resource_manager_named<shader>;
+  class manager : public resource_manager_named<shader> {
+  public:
+    ptr Get( const std::string &Name ) override {
+      auto Iterator = Storage.find(Name);
+      if (Iterator == Storage.end())
+        // Resource not found
+        return Storage.insert({Name, ptr(new shader(Name))}).first->second;
+      return Iterator->second;
+    }
+  };
+
   int Program;
   std::string Name;
 
@@ -30,14 +40,14 @@ private:
 public:
   ~shader();
   void Enable();
-  void Disable();
+  static void Disable();
   int GetProgram();
   void SetUniform( const std::string &Name, float Val );
   void SetUniform( const std::string &Name, int Val );
+  static void SetLayout();
+
+  static manager Manager;
 };
-
-
-using shader_manager = resource_manager<shader>;
 
 
 } // End of 'spectral' namespace

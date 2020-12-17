@@ -175,9 +175,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="anim\animation.cpp" />
+    <ClCompile Include="anim\render\buffer.cpp" />
     <ClCompile Include="anim\render\geometry.cpp" />
-    <ClCompile Include="anim\render\geom\trimesh.cpp" />
     <ClCompile Include="anim\render\primitive.cpp" />
+    <ClCompile Include="anim\render\prim\trimesh.cpp" />
     <ClCompile Include="anim\render\render.cpp" />
     <ClCompile Include="anim\render\resource\material.cpp" />
     <ClCompile Include="anim\render\resource\shader.cpp" />
@@ -196,15 +197,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anim\animation.h" />
+    <ClInclude Include="anim\render\buffer.h" />
     <ClInclude Include="anim\render\geometry.h" />
-    <ClInclude Include="anim\render\geom\trimesh.h" />
     <ClInclude Include="anim\render\primitive.h" />
+    <ClInclude Include="anim\render\prim\trimesh.h" />
     <ClInclude Include="anim\render\render.h" />
     <ClInclude Include="anim\render\resource\material.h" />
     <ClInclude Include="anim\render\resource\shader.h" />
     <ClInclude Include="anim\render\vertex.h" />
     <ClInclude Include="anim\timer.h" />
     <ClInclude Include="anim\unit.h" />
+    <ClInclude Include="anim\units\triangle.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="math\color.h" />
     <ClInclude Include="math\vec.h" />

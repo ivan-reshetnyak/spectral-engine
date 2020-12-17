@@ -14,12 +14,13 @@
 namespace spectral {
 
 
-material::material( const std::string &Name, shader *Shader,
-                    const color &Ka,
-                    const color &Kd,
-                    const color &Ks,
+material::manager material::Manager;
+
+
+material::material( std::shared_ptr<shader> Shader,
+                    const color &Ka, const color &Kd, const color &Ks,
                     float Shininess ) :
-    Ka(Ka), Kd(Kd), Ks(Ks), Shininess(Shininess), Shader(Shader), Name(Name) {
+    Ka(Ka), Kd(Kd), Ks(Ks), Shininess(Shininess), Shader(Shader) {
 }
 
 

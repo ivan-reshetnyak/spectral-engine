@@ -13,12 +13,14 @@ namespace spectral {
 namespace prim {
 
 
-class trimesh : public primitive
-{
+class trimesh : public primitive {
 public:
   trimesh( animation *Anim );
+  trimesh( animation *Anim, const geometry &Geometry, std::shared_ptr<material> Material );
   ~trimesh();
-  void CreateQuad( const vec &P0, const vec &P1, const vec &P2, const vec &P3 );
+
+protected:
+  virtual void Render() override;
 };
 
 } // End of 'prim' namespace

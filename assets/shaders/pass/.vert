@@ -18,5 +18,5 @@ void main( void ) {
   Col = InCol;
   Tex = InTex;
 
-  gl_Position = Pos; 
+  gl_Position = vec4(Pos, 1); 
 }

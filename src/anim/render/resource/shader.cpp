@@ -7,15 +7,20 @@
 
 #include "pch.h"
 
-#include "cstdio"
+#include <cstdio>
 
 #include <array>
 
 #include "gl/glew.h"
 
+#include "def.h"
+#include "../vertex.h"
 #include "shader.h"
 
 namespace spectral {
+
+
+shader::manager shader::Manager;
 
 
 shader::shader() {
@@ -23,7 +28,7 @@ shader::shader() {
 
 
 shader::shader( const std::string &FileNamePrefix ) {
-  std::string Path = "assets/shaders/" + FileNamePrefix + "/";
+  std::string Path = "../assets/shaders/" + FileNamePrefix + "/";
   Load(Path);
 }
 
@@ -100,7 +105,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
 void shader::SaveLog( const std::string &Text ) {
   FILE *F;
 
-  if ((F = fopen("logs/shader.log", "a")) != nullptr) {
+  if ((F = fopen("../logs/shader.log", "a")) != nullptr) {
     fprintf(F, "%s\n", Text.c_str());
     fclose(F);
   }
@@ -154,6 +159,27 @@ void shader::SetUniform( const std::string &Name, int Val )
 
 int shader::GetProgram() {
   return Program;
+}
+
+
+void shader::SetLayout() {
+  struct {
+    int
+      Index,
+      Size,
+      Type;
+    bool IsNormalised;
+    int Stride;
+    const void *Pointer;
+  } VertexAttribArraysF[] = {
+      { 0, 3, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Position) },
+      { 1, 3, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Normal)   },
+      { 2, 4, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Color)    },
+      { 3, 2, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Tex)      } };
+  for (const auto &it : VertexAttribArraysF) {
+    glVertexAttribPointer(it.Index, it.Size, it.Type, it.IsNormalised, it.Stride, it.Pointer);
+    glEnableVertexAttribArray(it.Index);
+  }
 }
 
 

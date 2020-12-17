@@ -14,5 +14,6 @@ uniform vec4 Ks;
 uniform float Time;
 
 void main( void ) {
-  gl_FragColor = Ka * Col;
+  gl_FragColor = vec4(1, 1, 1, 1);
+  // gl_FragColor = Ka * Col;
 }

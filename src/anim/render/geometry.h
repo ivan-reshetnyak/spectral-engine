@@ -5,19 +5,21 @@
 
 #pragma once
 
+#include "util/resource_manager.h"
 #include "vertex.h"
 
 namespace spectral {
 
-
 class geometry {
 public:
-  virtual void Render() = 0;
-  vertex *VertexArray;
+  int
+    NumOfV, NumOfI,
+    *Indices;
+  vertex *Vertices;
 
-protected:
   geometry( void );
-  virtual ~geometry( void );
+  geometry( int NumOfV, vertex *Vertices, int NumOfI, int *Indices );
+  ~geometry( void );
 };
 
 

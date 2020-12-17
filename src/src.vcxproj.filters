@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Anim\Render\Geom">
       <UniqueIdentifier>{4e77aa4c-0e06-49b5-a4d4-a35f8d1ca637}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Anim\Render\Prim">
+      <UniqueIdentifier>{6057b3ef-b59e-45d5-a1fe-4032115ffa7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,8 +84,11 @@
     <ClCompile Include="anim\render\vertex.cpp">
       <Filter>Source Files\Anim\Render</Filter>
     </ClCompile>
-    <ClCompile Include="anim\render\geom\trimesh.cpp">
-      <Filter>Source Files\Anim\Render\Geom</Filter>
+    <ClCompile Include="anim\render\buffer.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\prim\trimesh.cpp">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,8 +143,14 @@
     <ClInclude Include="anim\render\vertex.h">
       <Filter>Source Files\Anim\Render</Filter>
     </ClInclude>
-    <ClInclude Include="anim\render\geom\trimesh.h">
-      <Filter>Source Files\Anim\Render\Geom</Filter>
+    <ClInclude Include="anim\render\buffer.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\prim\trimesh.h">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\triangle.h">
+      <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
