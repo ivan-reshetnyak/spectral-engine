@@ -204,6 +204,7 @@
     <ClInclude Include="math\vec.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="util\memhooks.h" />
+    <ClInclude Include="util\resource_manager.h" />
     <ClInclude Include="win\window.h" />
     <ClInclude Include="win\window_animation.h" />
   </ItemGroup>

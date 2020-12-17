@@ -9,13 +9,14 @@
 #include <unordered_map>
 
 #include "def.h"
+#include "util/resource_manager.h"
 
 namespace spectral {
 
 
 class shader {
 private:
-  friend class shader_manager;
+  friend class resource_manager<shader>;
   int Program;
   std::string Name;
 
@@ -36,16 +37,7 @@ public:
 };
 
 
-class shader_manager
-{
-public:
-  shader_manager();
-  ~shader_manager();
-  shader * GetShader( const std::string &Name );
-
-private:
-  std::unordered_map<std::string, shader *> Shaders;
-};
+using shader_manager = resource_manager<shader>;
 
 
 } // End of 'spectral' namespace

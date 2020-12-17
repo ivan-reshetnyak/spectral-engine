@@ -10,6 +10,7 @@
 
 #include "def.h"
 #include "anim/animation.h"
+#include "util/resource_manager.h"
 #include "shader.h"
 
 namespace spectral {
@@ -17,7 +18,7 @@ namespace spectral {
 
 class material {
 private:
-  friend class material_manager;
+  friend class resource_manager<material>;
   std::string Name;
   color
     Ka,  // Ambient
@@ -44,6 +45,9 @@ public:
   void SetUniform( const std::string &Name, int Val );
   // TODO: void SetUniform( const std::string &Name, const matr &Val );
 };
+
+
+using material_manager = resource_manager<material>;
 
 
 } // End of 'spectral' namespace

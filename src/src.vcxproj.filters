@@ -113,5 +113,8 @@
     <ClInclude Include="anim\render\resource\material.h">
       <Filter>Source Files\Anim\Render\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="util\resource_manager.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
