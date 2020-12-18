@@ -10,6 +10,7 @@
 /*****
  * STL
  *****/
+#include <algorithm>
 #include <array>
 #include <functional>
 #include <memory>
@@ -34,4 +35,4 @@
 /*******
  * Stable code
  *******/
-#include "def.h"
+// #include "def.h"

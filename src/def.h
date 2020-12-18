@@ -6,12 +6,14 @@
 #pragma once
 
 #include "math/color.h"
+#include "math/matrix.h"
 #include "math/vec.h"
 
 namespace spectral {
 
 
 using color = color_t<float>;
+using matrix = matrix_t<float>;
 using vec = vec_t<float>;
 
 
