@@ -74,7 +74,7 @@ void material::Apply( animation *Anim ) {
   */
 
   /* TODO: Pass textures
-  for (INT i = 0; i < Textures.size(); i++) {
+  for (INT i = 0; i < Textures.size(); ++i) {
     glActiveTexture(GL_TEXTURE0 + i);
     glBindTexture(GL_TEXTURE_2D, Textures[i]->GetNo());
     loc = glGetUniformLocation(Shader->GetProgram(), Textures[i]->Name);

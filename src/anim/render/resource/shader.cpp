@@ -48,7 +48,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
   static char Buf[1000];  // Needs to be char *
 
   int NumOfShaders = Shaders.size();
-  for (i = 0; i < NumOfShaders; i++) {
+  for (i = 0; i < NumOfShaders; ++i) {
     sprintf(Buf, "%s.%s", FileNamePrefix.c_str(), Suff[i].c_str());
     if ((ShaderSource = LoadText(Buf)) == nullptr)
       continue;
@@ -74,7 +74,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
     if ((Program = glCreateProgram()) == 0)
       IsOk = FALSE;
     else {
-      for (i = 0; i < NumOfShaders; i++)
+      for (i = 0; i < NumOfShaders; ++i)
         if (Shaders[i] != 0)
           glAttachShader(Program, Shaders[i]);
       glLinkProgram(Program);
@@ -86,7 +86,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
       }
     }
   if (!IsOk) {
-    for (i = 0; i < NumOfShaders; i++)
+    for (i = 0; i < NumOfShaders; ++i)
       if (Shaders[i] != 0) {
         if (Program != 0)
           glDetachShader(Program, Shaders[i]);

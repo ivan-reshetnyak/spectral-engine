@@ -8,7 +8,7 @@
 #include <cmath>
 
 #include <algorithm>
-#include <array>
+#include <cstring>
 
 #include "math.h"
 #include "vec.h"
@@ -18,9 +18,10 @@ namespace spectral {
 
 template<class type>
 class matrix_t {
+private:
+  using vec = vec_t<type>;
 public:
   static const int Size = 4;
-  using row = std::array<type, Size>;
 
 
   ~matrix_t() {
@@ -54,11 +55,7 @@ public:
 
 
   matrix_t( const matrix_t &Other ) {
-    Data = Other.Data;
-  }
-
-
-  matrix_t( matrix_t &&Other ) : Data(std::move(Other.Data)) {
+    std::memcpy(Data, Other.Data, sizeof(type) * Size * Size);
   }
 
 
@@ -66,37 +63,41 @@ public:
    * Operators
    *************/
   bool operator==( const matrix_t &Other ) const {
-    return Data == Other.Data;
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
+        if (Data[i][j] != Other[i][j])
+          return false;
+    return true;
   }
 
   matrix_t & operator=( const matrix_t &Other ) {
-    Data = Other.Data;
+    std::memcpy(Data, Other.Data, sizeof(type) * Size * Size);
     return *this;
   }
 
 
-  row & operator[]( int Index ) {
+  type * operator[]( int Index ) {
     return Data[Index];
   }
 
 
-  const row & operator[]( int Index ) const {
+  const type * operator[]( int Index ) const {
     return Data[Index];
   }
 
 
   matrix_t operator+( const matrix_t &Other ) const {
     matrix_t res = *this;
-    for (int i = 0; i < Size; i++)
-      for (int j = 0; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
         res[i][j] += Other[i][j];
     return res;
   }
 
 
   matrix_t & operator+=( const matrix_t &Other ) {
-    for (int i = 0; i < Size; i++)
-      for (int j = 0; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
         Data[i][j] += Other[i][j];
     return *this;
   }
@@ -104,22 +105,22 @@ public:
 
   matrix_t operator-( const matrix_t &Other ) const {
     matrix_t res = *this;
-    for (int i = 0; i < Size; i++)
-      for (int j = 0; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
         res[i][j] -= Other[i][j];
     return res;
   }
 
 
   matrix_t & operator-=( const matrix_t &Other ) {
-    for (int i = 0; i < Size; i++)
-      for (int j = 0; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
         Data[i][j] -= Other[i][j];
     return *this;
   }
 
 
-  matrix_t operator*( type &Multiplicator ) const {
+  matrix_t operator*( const type &Multiplicator ) const {
     matrix_t Res(*this);
     for (auto &Row : Res.Data)
       for (auto &Cell : Row)
@@ -128,7 +129,7 @@ public:
   }
 
 
-  matrix_t & operator*=( type &Multiplicator ) {
+  matrix_t & operator*=( const type &Multiplicator ) {
     for (auto &Row : Data)
       for (auto &Cell : Row)
         Cell *= Multiplicator;
@@ -136,7 +137,7 @@ public:
   }
 
 
-  matrix_t operator/( type &Divisor ) const {
+  matrix_t operator/( const type &Divisor ) const {
     matrix_t Res(*this);
     for (auto &Row : Res.Data)
       for (auto &Cell : Row)
@@ -145,7 +146,7 @@ public:
   }
 
 
-  matrix_t & operator/=( type &Multiplicator ) {
+  matrix_t & operator/=( const type &Multiplicator ) {
     for (auto &Row : Data)
       for (auto &Cell : Row)
         Cell /= Multiplicator;
@@ -155,8 +156,8 @@ public:
 
   matrix_t operator*( const matrix_t &Other ) const {
     matrix_t Res(matrix_t::Zero());
-    for (int i = 0; i < Size; i++)
-      for (int j = 0; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
         for (int k = 0; k < Size; k++)
           Res[i][j] += Data[i][k] * Other[k][j];
     return Res;
@@ -165,8 +166,8 @@ public:
 
   matrix_t & operator*=( const matrix_t &Other ) {
     matrix_t Res(matrix_t::Zero());
-    for (int i = 0; i < Size; i++)
-      for (int j = 0; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = 0; j < Size; ++j)
         for (int k = 0; k < Size; k++)
           Res[i][j] += Data[i][k] * Other[k][j];
     *this = std::move(Res);
@@ -174,12 +175,95 @@ public:
   }
 
 
+  vec operator*( const vec &Vec) const {
+    return vec(
+      (Vec.X * Data[0][0] + Vec.Y * Data[1][0] + Vec.Z * Data[2][0] + Data[3][0]),
+      (Vec.X * Data[0][1] + Vec.Y * Data[1][1] + Vec.Z * Data[2][1] + Data[3][1]),
+      (Vec.X * Data[0][2] + Vec.Y * Data[1][2] + Vec.Z * Data[2][2] + Data[3][2]));
+  }
+
+
+  /*************
+   * Transformations
+   *************/
   matrix_t & Transpose( void ) {
-    for (int i = 0; i < Size; i++)
-      for (int j = i + 1; j < Size; j++)
+    for (int i = 0; i < Size; ++i)
+      for (int j = i + 1; j < Size; ++j)
         std::swap(Data[i][j], Data[j][i]);
     return *this;
   }
+
+
+  matrix_t Transposed( void ) const {
+    return matrix_t(Data[0][0], Data[1][0], Data[2][0], Data[3][0],
+                    Data[0][1], Data[1][1], Data[2][1], Data[3][1],
+                    Data[0][2], Data[1][2], Data[2][2], Data[3][2],
+                    Data[0][3], Data[1][3], Data[2][3], Data[3][3]);
+  }
+
+
+  type Determinator( void ) const {
+    return type(0) +
+      Data[0][0] * Data[1][1] * Data[2][2] * Data[3][3] * ( 1) +
+      Data[0][0] * Data[1][1] * Data[2][3] * Data[3][2] * (-1) +
+
+      Data[0][0] * Data[1][2] * Data[2][3] * Data[3][1] * ( 1) +
+      Data[0][0] * Data[1][2] * Data[2][1] * Data[3][3] * (-1) +
+
+      Data[0][0] * Data[1][3] * Data[2][1] * Data[3][2] * ( 1) +
+      Data[0][0] * Data[1][3] * Data[2][2] * Data[3][1] * (-1) +
+
+      //////////////////////////////////////////
+      Data[0][1] * Data[1][0] * Data[2][2] * Data[3][3] * (-1) +
+      Data[0][1] * Data[1][0] * Data[2][3] * Data[3][2] * ( 1) +
+
+      Data[0][1] * Data[1][2] * Data[2][3] * Data[3][0] * (-1) +
+      Data[0][1] * Data[1][2] * Data[2][0] * Data[3][3] * ( 1) +
+
+      Data[0][1] * Data[1][3] * Data[2][0] * Data[3][2] * (-1) +
+      Data[0][1] * Data[1][3] * Data[2][2] * Data[3][0] * ( 1) +
+
+      //////////////////////////////////////////
+      Data[0][2] * Data[1][0] * Data[2][1] * Data[3][3] * ( 1) +
+      Data[0][2] * Data[1][0] * Data[2][3] * Data[3][1] * (-1) +
+
+      Data[0][2] * Data[1][1] * Data[2][3] * Data[3][0] * ( 1) +
+      Data[0][2] * Data[1][1] * Data[2][0] * Data[3][3] * (-1) +
+
+      Data[0][2] * Data[1][3] * Data[2][0] * Data[3][1] * ( 1) +
+      Data[0][2] * Data[1][3] * Data[2][0] * Data[3][1] * (-1) +
+
+      //////////////////////////////////////////
+      Data[0][3] * Data[1][0] * Data[2][1] * Data[3][2] * (-1) +
+      Data[0][3] * Data[1][0] * Data[2][2] * Data[3][1] * ( 1) +
+
+      Data[0][3] * Data[1][1] * Data[2][2] * Data[3][0] * (-1) +
+      Data[0][3] * Data[1][1] * Data[2][0] * Data[3][2] * (-1) +
+
+      Data[0][3] * Data[1][2] * Data[2][0] * Data[3][1] * (-1) +
+      Data[0][3] * Data[1][2] * Data[2][1] * Data[3][0] * ( 1);
+  }
+
+
+  type Conjugate( int X, int Y ) const {
+    matrix_t M = *this;
+    for (int i = 0; i < 4; i++)
+      M[i][X] = 0;
+    for (int i = 0; i < 4; i++)
+      M[Y][i] = 1;
+    M[Y][X] = 1;
+    return M.Determinator();
+  }
+
+
+  matrix_t Inverse( void ) const {
+    matrix_t Adjoint(Conjugate(0, 0), Conjugate(1, 0), Conjugate(2, 0), Conjugate(3, 0),
+                     Conjugate(0, 1), Conjugate(1, 1), Conjugate(2, 1), Conjugate(3, 1),
+                     Conjugate(0, 2), Conjugate(1, 2), Conjugate(2, 2), Conjugate(3, 2),
+                     Conjugate(0, 3), Conjugate(1, 3), Conjugate(2, 3), Conjugate(3, 3));
+    return (Adjoint * (type)1.0 / Determinator()).Transposed();
+  }
+
 
   /*********
    * Preset matrices
@@ -243,7 +327,7 @@ public:
   }
 
 
-  static matrix_t Rotation( const vec_t<type> &Axis, double Angle ) {
+  static matrix_t Rotation( const vec &Axis, double Angle ) {
     Angle = DegreesToRadians(Angle);
     matrix_t Res;
     double sine = sin(Angle), cosine = cos(Angle);
@@ -262,8 +346,30 @@ public:
     return Res;
   }
 
+
+  static matrix_t View( const vec &Loc, const vec &Dir, const vec &Up, const vec &Right ) {
+    return matrix_t(Right.X,      Up.X,      Dir.X, 0,
+                    Right.Y,      Up.Y,      Dir.Y, 0,
+                    Right.Z,      Up.Z,      Dir.Z, 0,
+               -Loc & Right, -Loc & Up, -Loc & Dir, 1);
+  }
+
+
+  static matrix_t Projection( type Left, type Right, type Top, type Bottom, type Near, type Far ) {
+    type
+      Width = Right - Left,
+      Height = Top - Bottom,
+      Depth = Far - Near;
+
+    return
+      matrix_t((type)2 * Near / Width,                      (type)0,        (Right + Left) / Width,                       (type)0,
+                                    0,      (type)2 * Near / Height,       (Top + Bottom) / Height,                       (type)0,
+                              (type)0,                      (type)0,  -(Far + Near) / (Far - Near), (type)2 * Far * Near / -Depth,
+                              (type)0,                      (type)0,                      (type)-1,                       (type)0);
+  }
+
 private:
-  std::array<row, Size> Data;
+  type Data[Size][Size];
 };
 
 

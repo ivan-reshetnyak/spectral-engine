@@ -17,9 +17,6 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     CHAR *CmdLine, INT CmdShow ) {
   animation Anim;
   Anim << new units::triangle(&Anim, { 0,  1, 0}, { 1, -1, 0}, {-1, -1, 0});
-  matrix M1, M2(matrix::Translation(5, 5, 5));
-
-  M1 *= M2;
 
   Anim.Run();
 

@@ -41,6 +41,25 @@ public:
     matrix M1T(M1);
     Assert::IsTrue(M1T.Transpose() == M2);
   }
+
+
+  TEST_METHOD(TestTransposed) {
+    matrix M1T(M1);
+    Assert::IsTrue(M1T.Transposed() == M2);
+  }
+
+
+  TEST_METHOD(TestInverse) {
+    matrix M = matrix(1, 0, 2, 4,
+                      0, 1, 2, 3,
+                      0, 0, 1, 0,
+                      0, 0, 0, 1).Inverse();
+    matrix MI = matrix(1, 0, -2, -4,
+                       0, 1, -2, -3,
+                       0, 0,  1,  0,
+                       0, 0,  0,  1);
+    Assert::IsTrue(M == MI);
+  }
 };
 
 } // End of 'test' namespace
