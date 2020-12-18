@@ -36,7 +36,7 @@ private:
   double
     GlobalTime,      // Time from program start
     GlobalDeltaTime, // Delta time from last frame
-    Time,            // Time from prgram start (with pause)
+    Time,            // Time from program start (with pause)
     DeltaTime,       // Delta time from last frame (with pause)
     FPS;
   bool paused;

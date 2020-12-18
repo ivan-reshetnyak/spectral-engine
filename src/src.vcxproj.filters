@@ -96,6 +96,9 @@
     <ClCompile Include="anim\camera.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
+    <ClCompile Include="anim\particle.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -165,6 +168,9 @@
       <Filter>Source Files\Math</Filter>
     </ClInclude>
     <ClInclude Include="anim\camera.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particle.h">
       <Filter>Source Files\Anim</Filter>
     </ClInclude>
   </ItemGroup>
