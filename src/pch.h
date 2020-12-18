@@ -5,10 +5,16 @@
 
 #pragma once
 
+#include <cmath>
+
 /*****
  * STL
  *****/
+#include <array>
 #include <functional>
+#include <memory>
+#include <string>
+#include <unordered_map>
 #include <vector>
 
 /*****
@@ -24,3 +30,8 @@
 #  define GLEW_STATIC
 #endif /* GLEW_STATIC */
 #include <gl/glew.h>
+
+/*******
+ * Stable code
+ *******/
+#include "def.h"

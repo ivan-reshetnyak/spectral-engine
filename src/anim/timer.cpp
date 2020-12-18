@@ -55,7 +55,7 @@ void timer::IncrFrameCount( void ) {
 }
 
 
-bool timer::IsPaused() {
+bool timer::IsPaused() const {
   return paused;
 }
 
@@ -72,6 +72,31 @@ void timer::Unpause() {
 
 void timer::TogglePause() {
   paused = !paused;
+}
+
+
+double timer::GetTime() const {
+  return Time;
+}
+
+
+double timer::GetDeltaTime() const {
+  return DeltaTime;
+}
+
+
+double timer::GetGlobalTime() const {
+  return GlobalTime;
+}
+
+
+double timer::GetGlobalDeltaTime() const {
+  return GlobalDeltaTime;
+}
+
+
+double timer::GetFPS() const {
+  return FPS;
 }
 
 
