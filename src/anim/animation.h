@@ -8,6 +8,7 @@
 #include <windows.h>
 
 #include "../win/window_animation.h"
+#include "camera.h"
 #include "timer.h"
 #include "unit.h"
 #include "render/render.h"
@@ -17,6 +18,9 @@ namespace spectral {
 
 class animation : public window_animation {
 public:
+  camera Camera;
+  matrix World;
+
   animation( HINSTANCE hInstance = GetModuleHandle(NULL) );
   ~animation();
   void RenderFrame();

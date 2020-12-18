@@ -142,18 +142,24 @@ void shader::Disable() {
 }
 
 
-void shader::SetUniform( const std::string &Name, float Val ) {
+void shader::SetUniform( const std::string &Name, float Val ) const {
   int loc = glGetUniformLocation(Program, Name.c_str());
   if (loc != -1)
     glUniform1f(loc, Val);
 }
 
 
-void shader::SetUniform( const std::string &Name, int Val )
-{
+void shader::SetUniform( const std::string &Name, int Val ) const {
   int loc = glGetUniformLocation(Program, Name.c_str());
   if (loc != -1)
     glUniform1i(loc, Val);
+}
+
+
+void shader::SetUniform( const std::string &Name, matrix &Val ) const {
+  int loc = glGetUniformLocation(Program, Name.c_str());
+  if (loc != -1)
+    glUniformMatrix4fv(loc, 1, false, Val.GetData());
 }
 
 

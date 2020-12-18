@@ -35,15 +35,15 @@ private:
   void Load( const std::string &FileNamePrefix );
   static void SaveLog( const std::string &Text );
   static char * LoadText( const std::string &FileName );
-  // TODO: VOID SetUniform( const char *Name, const matr &Val );
 
 public:
   ~shader();
   void Enable();
   static void Disable();
   int GetProgram();
-  void SetUniform( const std::string &Name, float Val );
-  void SetUniform( const std::string &Name, int Val );
+  void SetUniform( const std::string &Name, float Val ) const;
+  void SetUniform( const std::string &Name, int Val ) const;
+  void SetUniform( const std::string &Name, matrix &Val ) const;
   static void SetLayout();
 
   static manager Manager;

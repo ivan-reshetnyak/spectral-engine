@@ -29,49 +29,17 @@ material::~material() {
 
 
 void material::Apply( animation *Anim ) {
-  int loc;
-  // matr MatrWVP = Ani->World * Ani->Camera.Matr.M * Ani->Camera.Proj.M;
-  // matr MatrNW = Ani->World.Inversing();
-
   Shader->Enable();
 
-  /* TODO: Pass MVP matrices
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrWVP");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)MatrWVP);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrWorld");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)Ani->World);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrView");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)Ani->Camera.Matr.M);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrProj");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)Ani->Camera.Proj.M);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrNWorld");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)MatrNW);
-  */
+  Shader->SetUniform("Time", (float)Anim->GetTimer().GetTime());
+  Shader->SetUniform("World", Anim->World);
+  Shader->SetUniform("VP", Anim->Camera.VP);
 
-  loc = glGetUniformLocation(Shader->GetProgram(), "Time");
-  if (loc != -1)
-    glUniform1f(loc, (float)Anim->GetTimer().GetTime());
-
-  /* TODO: Pass camera
-  loc = glGetUniformLocation(Shader->GetProgram(), "CameraPos");
-  if (loc != -1)
-    glUniform3fv(loc, 1, &Ani->Camera.Loc.X);
-  */
-
-  /* Setup general uniforms */
+  /* Pass generic uniforms */
   for (auto &i : UnifFloat)
     Shader->SetUniform(i.first.c_str(), i.second);
   for (auto &i : UnifInt)
     Shader->SetUniform(i.first.c_str(), i.second);
-  /* TODO: Pass matrix uniforms
-  for (auto &i : UnifMatr)
-    Shader->SetUniform(i.first.c_str(), i.second);
-  */
 
   /* TODO: Pass textures
   for (INT i = 0; i < Textures.size(); ++i) {

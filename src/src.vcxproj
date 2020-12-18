@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="anim\animation.cpp" />
+    <ClCompile Include="anim\camera.cpp" />
     <ClCompile Include="anim\render\buffer.cpp" />
     <ClCompile Include="anim\render\geometry.cpp" />
     <ClCompile Include="anim\render\primitive.cpp" />
@@ -198,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="anim\animation.h" />
+    <ClInclude Include="anim\camera.h" />
     <ClInclude Include="anim\render\buffer.h" />
     <ClInclude Include="anim\render\geometry.h" />
     <ClInclude Include="anim\render\primitive.h" />

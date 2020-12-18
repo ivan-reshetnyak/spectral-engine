@@ -16,7 +16,8 @@ using namespace spectral;
 INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     CHAR *CmdLine, INT CmdShow ) {
   animation Anim;
-  Anim << new units::triangle(&Anim, { 0,  1, 0}, { 1, -1, 0}, {-1, -1, 0});
+  float Scale = 1;
+  Anim << new units::triangle(&Anim, vec(0, 1, 0) * Scale, vec(1, -1, 0) * Scale, vec(-1, -1, 0 * Scale));
 
   Anim.Run();
 

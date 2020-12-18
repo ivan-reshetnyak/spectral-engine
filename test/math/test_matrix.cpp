@@ -37,6 +37,26 @@ public:
   }
 
 
+  TEST_METHOD(TestMatrixMultiplication1) {
+    Assert::IsTrue(M1 * M2 == matrix(14, 38, 62, 86,
+                                     38, 126, 214, 302,
+                                     62, 214, 366, 518,
+                                     86, 302, 518, 734));
+  }
+
+
+  TEST_METHOD(TestMatrixMultiplication2) {
+    matrix M(1, 2, 3, 4,
+             5, 6, 7, 8,
+             9, 10, 11, 12,
+             13, 14, 15, 16);
+    Assert::IsTrue(M1 * M == matrix(62, 68, 74, 80,
+                                    174, 196, 218, 240,
+                                    286, 324, 362, 400,
+                                    398, 452, 506, 560));
+  }
+
+
   TEST_METHOD(TestTranspose) {
     matrix M1T(M1);
     Assert::IsTrue(M1T.Transpose() == M2);

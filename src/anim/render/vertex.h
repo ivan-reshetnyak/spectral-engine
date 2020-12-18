@@ -22,8 +22,8 @@ struct vertex {
   vec
     Position,
     Normal;
-  tex_coord Tex;
   color Color;
+  tex_coord Tex;
 
   vertex();
   vertex( const vertex &Other );

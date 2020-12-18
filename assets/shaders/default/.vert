@@ -1,3 +1,5 @@
+#version 420
+
 layout (location = 0) in vec3 InPos;
 layout (location = 1) in vec3 InNorm;
 layout (location = 2) in vec4 InCol;
@@ -9,6 +11,8 @@ out vec4 Col;
 out vec2 Tex;
 
 uniform float Time;
+uniform mat4 VP;
+uniform mat4 World;
 
 void main( void ) {
   Pos = InPos;
@@ -16,5 +20,5 @@ void main( void ) {
   Col = InCol;
   Tex = InTex;
 
-  gl_Position = vec4(Pos, 1); 
+  gl_Position = (World * VP) * vec4(Pos, 1); 
 }

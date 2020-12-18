@@ -14,7 +14,8 @@ animation::animation( HINSTANCE hInstance ) :
     window_animation(hInstance),
     Render(window_animation::hWnd,
            window_animation::Width,
-           window_animation::Height) {
+           window_animation::Height),
+    Camera(0.001f, 500, -1, 1, -1, 1, vec(0.0, 0.0, 5.0), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
 }
 
 

@@ -6,9 +6,9 @@
 #pragma once
 
 #include <cmath>
+#include <cstring>
 
 #include <algorithm>
-#include <cstring>
 
 #include "math.h"
 #include "vec.h"
@@ -56,6 +56,11 @@ public:
 
   matrix_t( const matrix_t &Other ) {
     std::memcpy(Data, Other.Data, sizeof(type) * Size * Size);
+  }
+
+
+  type * GetData() {
+    return (type *)Data;
   }
 
 
@@ -348,10 +353,10 @@ public:
 
 
   static matrix_t View( const vec &Loc, const vec &Dir, const vec &Up, const vec &Right ) {
-    return matrix_t(Right.X,      Up.X,      Dir.X, 0,
-                    Right.Y,      Up.Y,      Dir.Y, 0,
-                    Right.Z,      Up.Z,      Dir.Z, 0,
-               -Loc & Right, -Loc & Up, -Loc & Dir, 1);
+    return matrix_t(Right.X, Right.Y, Right.Z, -Loc & Right,
+                       Up.X,    Up.Y,    Up.Z, -Loc & Up,
+                      Dir.X,   Dir.Y,   Dir.Z, -Loc & Dir,
+                          0,       0,       0,          1);
   }
 
 
@@ -362,10 +367,10 @@ public:
       Depth = Far - Near;
 
     return
-      matrix_t((type)2 * Near / Width,                      (type)0,        (Right + Left) / Width,                       (type)0,
-                                    0,      (type)2 * Near / Height,       (Top + Bottom) / Height,                       (type)0,
-                              (type)0,                      (type)0,  -(Far + Near) / (Far - Near), (type)2 * Far * Near / -Depth,
-                              (type)0,                      (type)0,                      (type)-1,                       (type)0);
+      matrix_t((type)2 * Near / Width,                 (type)0,                       (type)0,  (type)0,
+                              (type)0, (type)2 * Near / Height,                       (type)0,  (type)0,
+               (Right + Left) / Width, (Top + Bottom) / Height,  -(Far + Near) / (Far - Near), (type)-1,
+                              (type)0,                 (type)0, (type)2 * Far * Near / -Depth,  (type)0);
   }
 
 private:
