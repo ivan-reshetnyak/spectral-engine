@@ -17,8 +17,9 @@ primitive::primitive( animation *Anim ) : Anim(Anim) {
 }
 
 
-primitive::primitive( animation *Anim, const geometry &Geometry, std::shared_ptr<material> Material ) :
-    Buffer(Geometry), Anim(Anim) {
+primitive::primitive( animation *Anim, std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material ) :
+    primitive(Anim) {
+  Set(Geometry, Material);
 }
 
 
@@ -27,7 +28,7 @@ primitive::~primitive() {
 
 
 void primitive::Draw() {
-  shader::SetLayout();
+  shader::SetLayout(Geometry->Vertices);
   Material->Apply(Anim);
 
   Render();
@@ -37,8 +38,9 @@ void primitive::Draw() {
 }
 
 
-void primitive::Set( const geometry &Geometry, std::shared_ptr<material> Material ) {
-  Buffer.Generate(Geometry);
+void primitive::Set( std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material ) {
+  this->Geometry = Geometry;
+  Buffer.Generate(*Geometry);
   SetMaterial(Material);
 }
 

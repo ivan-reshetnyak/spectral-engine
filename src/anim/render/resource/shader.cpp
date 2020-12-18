@@ -168,21 +168,9 @@ int shader::GetProgram() {
 }
 
 
-void shader::SetLayout() {
-  struct {
-    int
-      Index,
-      Size,
-      Type;
-    bool IsNormalised;
-    int Stride;
-    const void *Pointer;
-  } VertexAttribArraysF[] = {
-      { 0, 3, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Position) },
-      { 1, 3, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Normal)   },
-      { 2, 4, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Color)    },
-      { 3, 2, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Tex)      } };
-  for (const auto &it : VertexAttribArraysF) {
+void shader::SetLayout( vertex * Vertices ) {
+  auto Layout = Vertices->GetLayout();
+  for (const auto &it : Layout ) {
     glVertexAttribPointer(it.Index, it.Size, it.Type, it.IsNormalised, it.Stride, it.Pointer);
     glEnableVertexAttribArray(it.Index);
   }

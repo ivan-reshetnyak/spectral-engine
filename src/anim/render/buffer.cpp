@@ -19,8 +19,8 @@ void buffer::Generate( const geometry &Geometry ) {
   glGenBuffers(1, &Vert);                            // Generate free buffer name
   glBindBuffer(GL_ARRAY_BUFFER, Vert);               // Bind buffer
   glBufferData(GL_ARRAY_BUFFER,
-              sizeof(vertex) * Geometry.NumOfV,
-              Geometry.Vertices, GL_STATIC_DRAW);  // Set data
+              Geometry.Vertices->GetSize() * Geometry.NumOfV,
+              &*Geometry.Vertices, GL_STATIC_DRAW);  // Set data
 
   /* Index buffer */
   glGenBuffers(1, &Ind);
@@ -33,7 +33,7 @@ void buffer::Generate( const geometry &Geometry ) {
   glGenVertexArrays(1, &VertexArray);
   glBindVertexArray(VertexArray);
 
-  shader::SetLayout();
+  shader::SetLayout(Geometry.Vertices);
 
   glBindVertexArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, 0);

@@ -14,16 +14,14 @@ namespace units {
 
 
 triangle::triangle( animation *Anim, const vec &V1, const vec &V2, const vec &V3 ) : unit(Anim), TrianglePrimitive(Anim) {
-  vertex TriangleVertices[] = {
-    vertex(V1, {0, 0, -1}, {V1.X, V1.Y}, color(1, 1, 1, 1)),
-    vertex(V2, {0, 0, -1}, {V2.X, V2.Y}, color(1, 1, 1, 1)),
-    vertex(V3, {0, 0, -1}, {V3.X, V3.Y}, color(1, 1, 1, 1))
-  };
+  vertices::simple * TriangleVertices = new vertices::simple[3];
+  TriangleVertices[0] = vertices::simple(V1, {0, 0, -1}, {V1.X, V1.Y}, color(1, 1, 1, 1));
+  TriangleVertices[1] = vertices::simple(V2, {0, 0, -1}, {V2.X, V2.Y}, color(1, 1, 1, 1));
+  TriangleVertices[2] = vertices::simple(V3, {0, 0, -1}, {V3.X, V3.Y}, color(1, 1, 1, 1));
   int Indices[] = {0, 1, 2};
-  geometry Geom(3, TriangleVertices, 3, Indices);
   auto Shader = shader::Manager.Get("default");
   auto Material = material::Manager.Add("default", Shader);
-  TrianglePrimitive.Set(Geom, Material);
+  TrianglePrimitive.Set(std::shared_ptr<geometry>(new geometry(3, TriangleVertices, 3, Indices)), Material);
 }
 
 

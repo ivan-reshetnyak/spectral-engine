@@ -23,14 +23,15 @@ namespace spectral {
 class primitive {
 public:
   primitive( animation *Anim );
-  primitive( animation *Anim, const geometry &Geometry, std::shared_ptr<material> Material );
+  primitive( animation *Anim, std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material );
   ~primitive();
-  void Set( const geometry &Geometry, std::shared_ptr<material> Material );
+  void Set( std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material );
   void SetMaterial( std::shared_ptr<material> Material );
   void Draw();
 
 protected:
   buffer Buffer;
+  std::shared_ptr<geometry> Geometry;
   std::shared_ptr<material> Material;
   animation *Anim;
 

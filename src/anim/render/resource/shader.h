@@ -10,6 +10,7 @@
 
 #include "def.h"
 #include "util/resource_manager.h"
+#include "../vertex.h"
 
 namespace spectral {
 
@@ -44,7 +45,7 @@ public:
   void SetUniform( const std::string &Name, float Val ) const;
   void SetUniform( const std::string &Name, int Val ) const;
   void SetUniform( const std::string &Name, matrix &Val ) const;
-  static void SetLayout();
+  static void SetLayout( vertex * Vertices );
 
   static manager Manager;
 };

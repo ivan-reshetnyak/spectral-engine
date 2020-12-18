@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "def.h"
 
 namespace spectral {
@@ -18,20 +20,42 @@ struct tex_coord {
 };
 
 
-struct vertex {
+class vertex {
+public:
+  struct location {
+    int
+      Index,
+      Size,
+      Type;
+    bool IsNormalised;
+    int Stride;
+    const void *Pointer;
+  };
+
+  virtual std::vector<location> GetLayout() = 0;
+  virtual int GetSize() = 0;
+};
+
+
+namespace vertices {
+
+
+class simple : public vertex {
+public:
   vec
     Position,
     Normal;
   color Color;
   tex_coord Tex;
 
-  vertex();
-  vertex( const vertex &Other );
-  vertex( const vec &Position,
-          const vec &Normal = { 0, 1, 0 },
-          const tex_coord &Tex = { 0, 0 },
-          const color &Color = color(1, 1, 1, 1) );
+  simple();
+  simple( const vec &Position, const vec &Normal,
+          const tex_coord &Tex, const color &Color );
+  simple( const simple &Other );
+  virtual std::vector<location> GetLayout() override;
+  virtual int GetSize() override;
 };
 
 
+} // End of 'vertices' namespace
 } // End of 'spectral' namespace
