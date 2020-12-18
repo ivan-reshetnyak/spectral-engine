@@ -45,6 +45,7 @@ public:
   void SetUniform( const std::string &Name, float Val ) const;
   void SetUniform( const std::string &Name, int Val ) const;
   void SetUniform( const std::string &Name, matrix &Val ) const;
+  void SetUniform( const std::string &Name, vec &Val ) const;
   static void SetLayout( vertex * Vertices );
 
   static manager Manager;

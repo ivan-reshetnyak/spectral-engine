@@ -34,6 +34,10 @@ void material::Apply( animation *Anim ) {
   Shader->SetUniform("Time", (float)Anim->GetTimer().GetTime());
   Shader->SetUniform("World", Anim->World);
   Shader->SetUniform("VP", Anim->Camera.VP);
+  Shader->SetUniform("CameraPosition", Anim->Camera.Position);
+  Shader->SetUniform("CameraLookAt", Anim->Camera.LookAt);
+  Shader->SetUniform("CameraRight", Anim->Camera.Right);
+  Shader->SetUniform("CameraUp", Anim->Camera.Up);
 
   /* Pass generic uniforms */
   for (auto &i : UnifFloat)

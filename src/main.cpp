@@ -9,7 +9,8 @@
 
 #include "util/memhooks.h"
 #include "anim/animation.h"
-#include "anim/units/triangle.h"
+#include "anim/units/unit_triangle.h"
+#include "anim/units/unit_signal.h"
 
 using namespace spectral;
 
@@ -17,7 +18,8 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     CHAR *CmdLine, INT CmdShow ) {
   animation Anim;
   float Scale = 1;
-  Anim << new units::triangle(&Anim, vec(0, 1, 0) * Scale, vec(1, -1, 0) * Scale, vec(-1, -1, 0 * Scale));
+  // Anim << new units::triangle(&Anim, vec(0, 1, 0) * Scale, vec(1, -1, 0) * Scale, vec(-1, -1, 0 * Scale));
+  Anim << new units::signal(&Anim, vec(0, 0, 0) * Scale, vec(0, 0.3f, 0) * Scale);
 
   Anim.Run();
 

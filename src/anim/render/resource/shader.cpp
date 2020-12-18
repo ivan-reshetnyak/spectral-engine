@@ -38,12 +38,13 @@ shader::~shader() {
 
 
 void shader::Load( const std::string &FileNamePrefix ) {
+  static const int MaxNumOfShaders = 5;
   int Result, i;
   char *ShaderSource;
-  std::array<UINT, 4>
+  std::array<UINT, MaxNumOfShaders>
     Shaders = { 0 },
-    ShTypes = { GL_VERTEX_SHADER, GL_TESS_CONTROL_SHADER, GL_TESS_EVALUATION_SHADER, GL_FRAGMENT_SHADER };
-  std::array<std::string, 4> Suff = { "vert", "tctrl", "teval", "frag" };
+    ShTypes = { GL_VERTEX_SHADER, GL_GEOMETRY_SHADER, GL_TESS_CONTROL_SHADER, GL_TESS_EVALUATION_SHADER, GL_FRAGMENT_SHADER };
+  std::array<std::string, MaxNumOfShaders> Suff = { "vert", "geom", "tctrl", "teval", "frag" };
   bool IsOk = true;
   static char Buf[1000];  // Needs to be char *
 
@@ -160,6 +161,13 @@ void shader::SetUniform( const std::string &Name, matrix &Val ) const {
   int loc = glGetUniformLocation(Program, Name.c_str());
   if (loc != -1)
     glUniformMatrix4fv(loc, 1, false, Val.GetData());
+}
+
+
+void shader::SetUniform( const std::string &Name, vec &Val ) const {
+  int loc = glGetUniformLocation(Program, Name.c_str());
+  if (loc != -1)
+    glUniform3f(loc, Val.X, Val.Y, Val.Z);
 }
 
 

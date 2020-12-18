@@ -37,11 +37,11 @@
     <Filter Include="Source Files\Anim\Units">
       <UniqueIdentifier>{ceb0b1e0-541a-43ce-a2bf-eb4c2004a0ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Anim\Render\Geom">
-      <UniqueIdentifier>{4e77aa4c-0e06-49b5-a4d4-a35f8d1ca637}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Anim\Render\Prim">
       <UniqueIdentifier>{6057b3ef-b59e-45d5-a1fe-4032115ffa7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Particles">
+      <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,14 +90,23 @@
     <ClCompile Include="anim\render\prim\trimesh.cpp">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
-    <ClCompile Include="anim\units\triangle.cpp">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClCompile>
     <ClCompile Include="anim\camera.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
     <ClCompile Include="anim\particle.cpp">
       <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\timed.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_triangle.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_signal.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\prim\points.cpp">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +167,6 @@
     <ClInclude Include="anim\render\prim\trimesh.h">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClInclude>
-    <ClInclude Include="anim\units\triangle.h">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClInclude>
     <ClInclude Include="math\matrix.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
@@ -172,6 +178,18 @@
     </ClInclude>
     <ClInclude Include="anim\particle.h">
       <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\timed.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_triangle.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_signal.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\prim\points.h">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

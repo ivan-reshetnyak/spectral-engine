@@ -13,7 +13,7 @@
 namespace spectral {
 
 
-class particle {
+class particle_t {
 public:
   virtual bool IsDead() const = 0;
   virtual void Update( const timer &Timer );
@@ -24,7 +24,7 @@ public:
 class emitter {
 public:
   virtual bool IsDead() const = 0;
-  virtual void Emit( const timer &Timer, std::forward_list<std::shared_ptr<particle>> &Where ) = 0;
+  virtual void Emit( const timer &Timer, std::forward_list<std::shared_ptr<particle_t>> &Where ) = 0;
 };
 
 
@@ -32,9 +32,11 @@ class particle_manager {
 public:
   void Update( const timer &Timer );
   void Render();
+  particle_manager & operator<<( std::shared_ptr<emitter> Emitter );
+
 private:
   std::forward_list<std::shared_ptr<emitter>> Emitters;
-  std::forward_list<std::shared_ptr<particle>> Particles;
+  std::forward_list<std::shared_ptr<particle_t>> Particles;
 };
 
 

@@ -7,7 +7,7 @@
 
 #include "pch.h"
 
-#include "triangle.h"
+#include "unit_triangle.h"
 
 namespace spectral {
 namespace units {
