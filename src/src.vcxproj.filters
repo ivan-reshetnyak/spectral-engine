@@ -90,6 +90,9 @@
     <ClCompile Include="anim\render\prim\trimesh.cpp">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
+    <ClCompile Include="anim\units\triangle.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">

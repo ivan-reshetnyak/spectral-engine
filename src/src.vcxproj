@@ -185,6 +185,7 @@
     <ClCompile Include="anim\render\vertex.cpp" />
     <ClCompile Include="anim\timer.cpp" />
     <ClCompile Include="anim\unit.cpp" />
+    <ClCompile Include="anim\units\triangle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
