@@ -8,6 +8,7 @@
 #include "pch.h"
 
 #include "../particle.h"
+#include "../render/resource/tex/tex_raw.h"
 #include "unit_signal.h"
 
 namespace spectral {
@@ -47,14 +48,18 @@ public:
       bb_vertex * Vertices = new bb_vertex[1];
     Vertices[0] = bb_vertex(Start, 0.3f);
     auto Shader = shader::Manager.Get("default_particle");
+    std::shared_ptr<texture> Texture(new tex::raw("Texture", 0, 2, 2,
+                                                  std::shared_ptr<float>(new float[4]{1, 0,
+                                                                                      0, 1})));
     auto Material = material::Manager.Add("unit_signal_billboard", Shader);
-    Material->SetUniform("Time", &Anim->Timer.Time);
-    Material->SetUniform("World", &Anim->World);
-    Material->SetUniform("VP", &Anim->Camera.VP);
-    Material->SetUniform("CameraPosition", &Anim->Camera.Position);
-    Material->SetUniform("CameraLookAt", &Anim->Camera.LookAt);
-    Material->SetUniform("CameraRight", &Anim->Camera.Right);
-    Material->SetUniform("CameraUp", &Anim->Camera.Up);
+    Material->
+      Add(Texture)->
+      SetUniform("Time", &Anim->Timer.Time)->
+      SetUniform("World", &Anim->World)->SetUniform("VP", &Anim->Camera.VP)->
+      SetUniform("CameraPosition", &Anim->Camera.Position)->
+      SetUniform("CameraLookAt", &Anim->Camera.LookAt)->
+      SetUniform("CameraRight", &Anim->Camera.Right)->
+      SetUniform("CameraUp", &Anim->Camera.Up);
     Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
   }
 
@@ -66,9 +71,11 @@ public:
 
 
   void Render() override {
+    glDisable(GL_DEPTH_TEST);
     Anim->World = matrix::Translation(Position.X, Position.Y, Position.Z);
     Primitive.Draw();
     Anim->World = matrix();
+    glEnable(GL_DEPTH_TEST);
   }
 
 private:
@@ -107,7 +114,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.05f, 3.0f, vec(0, 0, 0), vec(0, 1, 0)));
+  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.05f, 3.0f, vec(0, 0, 0), vec(0, 0.1f, 0)));
 }
 
 

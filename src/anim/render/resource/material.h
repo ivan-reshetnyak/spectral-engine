@@ -5,13 +5,16 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 #include "def.h"
 #include "anim/animation.h"
 #include "util/resource_manager.h"
 #include "shader.h"
+#include "texture.h"
 
 namespace spectral {
 
@@ -35,7 +38,7 @@ private:
   };
 
   std::shared_ptr<shader> Shader;
-  // TODO: std::vector<texture *> Textures;
+  std::vector<std::shared_ptr<texture>> Textures;
   std::unordered_map<std::string, float> UnifConstFloat;
   std::unordered_map<std::string, float *> UnifDynFloat;
   std::unordered_map<std::string, int> UnifConstInt;
@@ -51,16 +54,16 @@ private:
 public:
   static manager Manager;
   ~material();
-  // TODO: void AddTexture( texture *Texture );
   void Apply( animation *Anim );
-  void SetUniform( const std::string &Name, float Val );
-  void SetUniform( const std::string &Name, float *Ptr );
-  void SetUniform( const std::string &Name, int Val );
-  void SetUniform( const std::string &Name, int *Ptr );
-  void SetUniform( const std::string &Name, const vec &Val );
-  void SetUniform( const std::string &Name, vec *Ptr);
-  void SetUniform( const std::string &Name, const matrix &Val );
-  void SetUniform( const std::string &Name, matrix *Ptr);
+  material * SetUniform( const std::string &Name, float Val );
+  material * SetUniform( const std::string &Name, float *Ptr );
+  material * SetUniform( const std::string &Name, int Val );
+  material * SetUniform( const std::string &Name, int *Ptr );
+  material * SetUniform( const std::string &Name, const vec &Val );
+  material * SetUniform( const std::string &Name, vec *Ptr);
+  material * SetUniform( const std::string &Name, const matrix &Val );
+  material * SetUniform( const std::string &Name, matrix *Ptr);
+  material * Add( std::shared_ptr<texture> Texture );
 };
 
 

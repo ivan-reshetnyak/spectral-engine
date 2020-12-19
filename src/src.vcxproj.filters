@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Anim\Render\Particles">
       <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Anim\Render\Textures">
+      <UniqueIdentifier>{be5b79f4-9603-470a-bc58-61274995c3c2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="anim\render\resource\texture.cpp">
       <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\tex\tex_raw.cpp">
+      <Filter>Source Files\Anim\Render\Textures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="anim\render\resource\texture.h">
       <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\tex\tex_raw.h">
+      <Filter>Source Files\Anim\Render\Textures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
