@@ -3,8 +3,6 @@
  *    Reshetnyak Ivan
  ***************************************************************/
 
-#pragma once
-
 #include "pch.h"
 
 #include <cstdio>

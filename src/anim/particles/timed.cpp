@@ -14,7 +14,7 @@ namespace particle {
 
 
 timed::timed( const timer &Timer, float LifeTime ) :
-    BirthTime((float)Timer.GetTime()), LifeTime(LifeTime) {
+    BirthTime(Timer.Time), LifeTime(LifeTime) {
 }
 
 
@@ -24,7 +24,7 @@ bool timed::IsDead() const {
 
 
 void timed::Update( const timer &Timer ) {
-  Age = (float)Timer.GetTime() - BirthTime;
+  Age = Timer.Time - BirthTime;
 }
 
 

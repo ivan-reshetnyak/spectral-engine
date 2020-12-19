@@ -20,6 +20,7 @@ class animation : public window_animation {
 public:
   camera Camera;
   matrix World;
+  timer AnimTimer;
 
   animation( HINSTANCE hInstance = GetModuleHandle(NULL) );
   ~animation();
@@ -35,7 +36,6 @@ public:
 
 private:
   unit_manager UnitManager;
-  timer AnimTimer;
   render Render;
 };
 

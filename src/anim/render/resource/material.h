@@ -29,31 +29,24 @@ private:
       return Iterator->second;
     }
 
-    ptr Add( const std::string &Name, std::shared_ptr<shader> Shader,
-             const color &Ka = color(0.6f, 0.6f, 0.6f, 1.0f),
-             const color &Kd = color(0.9f, 0.9f, 0.9f, 1.0f),
-             const color &Ks = color(1.0f, 1.0f, 1.0f, 1.0f),
-             float Shininess = 1 ) {
-      return Storage.insert({Name, ptr(new material(Shader, Ka, Kd, Ks, Shininess))}).first->second;
+    ptr Add( const std::string &Name, std::shared_ptr<shader> Shader ) {
+      return Storage.insert({Name, ptr(new material(Shader))}).first->second;
     }
   };
 
-  color
-    Ka,  // Ambient
-    Kd,  // Diffuse
-    Ks;  // Specular
-  float Shininess;
   std::shared_ptr<shader> Shader;
   // TODO: std::vector<texture *> Textures;
-  std::unordered_map<std::string, float> UnifFloat;
-  std::unordered_map<std::string, int> UnifInt;
-  // TODO: std::unordered_map<std::string, matr> UnifMatr;
+  std::unordered_map<std::string, float> UnifConstFloat;
+  std::unordered_map<std::string, float *> UnifDynFloat;
+  std::unordered_map<std::string, int> UnifConstInt;
+  std::unordered_map<std::string, int *> UnifDynInt;
+  std::unordered_map<std::string, vec> UnifConstVec;
+  std::unordered_map<std::string, vec *> UnifDynVec;
+  std::unordered_map<std::string, matrix> UnifConstMatrix;
+  std::unordered_map<std::string, matrix *> UnifDynMatrix;
 
-  material( std::shared_ptr<shader> Shader = nullptr,
-            const color &Ka = color(0.6f, 0.6f, 0.6f, 1.0f),
-            const color &Kd = color(0.9f, 0.9f, 0.9f, 1.0f),
-            const color &Ks = color(1.0f, 1.0f, 1.0f, 1.0f),
-            float Shininess = 1 );
+  material( std::shared_ptr<shader> Shader = nullptr );
+  void SetUniforms( void );
 
 public:
   static manager Manager;
@@ -61,8 +54,13 @@ public:
   // TODO: void AddTexture( texture *Texture );
   void Apply( animation *Anim );
   void SetUniform( const std::string &Name, float Val );
+  void SetUniform( const std::string &Name, float *Ptr );
   void SetUniform( const std::string &Name, int Val );
-  // TODO: void SetUniform( const std::string &Name, const matr &Val );
+  void SetUniform( const std::string &Name, int *Ptr );
+  void SetUniform( const std::string &Name, const vec &Val );
+  void SetUniform( const std::string &Name, vec *Ptr);
+  void SetUniform( const std::string &Name, const matrix &Val );
+  void SetUniform( const std::string &Name, matrix *Ptr);
 };
 
 

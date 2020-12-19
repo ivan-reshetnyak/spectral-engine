@@ -21,6 +21,9 @@ triangle::triangle( animation *Anim, const vec &V1, const vec &V2, const vec &V3
   int Indices[] = {0, 1, 2};
   auto Shader = shader::Manager.Get("default");
   auto Material = material::Manager.Add("default", Shader);
+  Material->SetUniform("Time", &Anim->AnimTimer.Time);
+  Material->SetUniform("World", &Anim->World);
+  Material->SetUniform("VP", &Anim->Camera.VP);
   TrianglePrimitive.Set(std::shared_ptr<geometry>(new geometry(3, TriangleVertices, 3, Indices)), Material);
 }
 
@@ -31,10 +34,10 @@ void triangle::Render() {
 
 
 void triangle::Update() {
-  Anim->World = matrix::Translation((float)(sin(Anim->GetTimer().GetTime()) * 1),
-                                    (float)(cos(Anim->GetTimer().GetTime()) * 1),
-                                    (float)(cos(Anim->GetTimer().GetTime()) * sin(Anim->GetTimer().GetTime()) * 1)) *
-    matrix::RotationY(Anim->GetTimer().GetTime() * 90);;
+  Anim->World = matrix::Translation((sin(Anim->AnimTimer.Time) * 1),
+                                    (cos(Anim->AnimTimer.Time) * 1),
+                                    (cos(Anim->AnimTimer.Time) * sin(Anim->AnimTimer.Time) * 1)) *
+    matrix::RotationY(Anim->AnimTimer.Time * 90);;
 }
 
 

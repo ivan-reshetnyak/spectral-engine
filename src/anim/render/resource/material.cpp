@@ -17,10 +17,7 @@ namespace spectral {
 material::manager material::Manager;
 
 
-material::material( std::shared_ptr<shader> Shader,
-                    const color &Ka, const color &Kd, const color &Ks,
-                    float Shininess ) :
-    Ka(Ka), Kd(Kd), Ks(Ks), Shininess(Shininess), Shader(Shader) {
+material::material( std::shared_ptr<shader> Shader ) : Shader(Shader) {
 }
 
 
@@ -28,22 +25,29 @@ material::~material() {
 }
 
 
+void material::SetUniforms( void ) {
+  for (auto &i : UnifConstFloat)
+    Shader->SetUniform(i.first.c_str(), i.second);
+  for (auto &i : UnifDynFloat)
+    Shader->SetUniform(i.first.c_str(), *i.second);
+  for (auto &i : UnifConstInt)
+    Shader->SetUniform(i.first.c_str(), i.second);
+  for (auto &i : UnifDynInt)
+    Shader->SetUniform(i.first.c_str(), *i.second);
+  for (auto &i : UnifConstMatrix)
+    Shader->SetUniform(i.first.c_str(), i.second);
+  for (auto &i : UnifDynMatrix)
+    Shader->SetUniform(i.first.c_str(), *i.second);
+  for (auto &i : UnifConstVec)
+    Shader->SetUniform(i.first.c_str(), i.second);
+  for (auto &i : UnifDynVec)
+    Shader->SetUniform(i.first.c_str(), *i.second);
+}
+
+
 void material::Apply( animation *Anim ) {
   Shader->Enable();
-
-  Shader->SetUniform("Time", (float)Anim->GetTimer().GetTime());
-  Shader->SetUniform("World", Anim->World);
-  Shader->SetUniform("VP", Anim->Camera.VP);
-  Shader->SetUniform("CameraPosition", Anim->Camera.Position);
-  Shader->SetUniform("CameraLookAt", Anim->Camera.LookAt);
-  Shader->SetUniform("CameraRight", Anim->Camera.Right);
-  Shader->SetUniform("CameraUp", Anim->Camera.Up);
-
-  /* Pass generic uniforms */
-  for (auto &i : UnifFloat)
-    Shader->SetUniform(i.first.c_str(), i.second);
-  for (auto &i : UnifInt)
-    Shader->SetUniform(i.first.c_str(), i.second);
+  SetUniforms();
 
   /* TODO: Pass textures
   for (INT i = 0; i < Textures.size(); ++i) {
@@ -58,12 +62,42 @@ void material::Apply( animation *Anim ) {
 
 
 void material::SetUniform( const std::string &Name, float Val ) {
-  UnifFloat[std::string(Name)] = Val;
+  UnifConstFloat[std::string(Name)] = Val;
+}
+
+
+void material::SetUniform( const std::string &Name, float *Ptr ) {
+  UnifDynFloat[std::string(Name)] = Ptr;
 }
 
 
 void material::SetUniform( const std::string &Name, int Val ) {
-  UnifInt[std::string(Name)] = Val;
+  UnifConstInt[std::string(Name)] = Val;
+}
+
+
+void material::SetUniform( const std::string &Name, int *Ptr ) {
+  UnifDynInt[std::string(Name)] = Ptr;
+}
+
+
+void material::SetUniform( const std::string &Name, const vec &Val ) {
+  UnifConstVec[std::string(Name)] = Val;
+}
+
+
+void material::SetUniform( const std::string &Name, vec *Ptr ) {
+  UnifDynVec[std::string(Name)] = Ptr;
+}
+
+
+void material::SetUniform( const std::string &Name, const matrix &Val ) {
+  UnifConstMatrix[std::string(Name)] = Val;
+}
+
+
+void material::SetUniform( const std::string &Name, matrix *Ptr ) {
+  UnifDynMatrix[std::string(Name)] = Ptr;
 }
 
 

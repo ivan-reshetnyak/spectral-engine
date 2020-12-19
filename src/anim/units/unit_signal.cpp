@@ -48,13 +48,20 @@ public:
     Vertices[0] = bb_vertex(Start, 0.3f);
     auto Shader = shader::Manager.Get("default_particle");
     auto Material = material::Manager.Add("unit_signal_billboard", Shader);
+    Material->SetUniform("Time", &Anim->AnimTimer.Time);
+    Material->SetUniform("World", &Anim->World);
+    Material->SetUniform("VP", &Anim->Camera.VP);
+    Material->SetUniform("CameraPosition", &Anim->Camera.Position);
+    Material->SetUniform("CameraLookAt", &Anim->Camera.LookAt);
+    Material->SetUniform("CameraRight", &Anim->Camera.Right);
+    Material->SetUniform("CameraUp", &Anim->Camera.Up);
     Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
   }
 
 
   void Update( const timer &Timer ) override {
     timed::Update(Timer);
-    Position += Speed * (float)Timer.GetDeltaTime();
+    Position += Speed * Timer.DeltaTime;
   }
 
 
@@ -73,7 +80,7 @@ private:
 class bb_emitter : public emitter {
 public:
   bb_emitter( animation *Anim, float Period, float LifeTime, const vec &Position, const vec &Speed ) :
-      LastEmission((float)Anim->GetTimer().GetTime()), Anim(Anim),
+      LastEmission(Anim->AnimTimer.Time), Anim(Anim),
       Period(Period), LifeTime(LifeTime),
       Position(Position), Speed(Speed) {
   }
@@ -85,9 +92,9 @@ public:
 
 
   virtual void Emit( const timer &Timer, std::forward_list<std::shared_ptr<particle_t>> &Where ) {
-    if (Timer.GetTime() - LastEmission < Period)
+    if (Timer.Time - LastEmission < Period)
       return;
-    LastEmission = (float)Timer.GetTime();
+    LastEmission = Timer.Time;
     vec SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.3f;
     Where.push_front(std::shared_ptr<particle_t>(new billboard(Anim, LifeTime, Position, SpeedShifted)));
   }

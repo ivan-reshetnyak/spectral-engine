@@ -13,7 +13,7 @@ namespace spectral {
 
 
 timer::timer() : FrameCount(0), GlobalTime(0), GlobalDeltaTime(0),
-                 Time(0), DeltaTime(0), PauseTime(0), paused(false), FPS(0) {
+                 Time(0), DeltaTime(0), PauseTime(0), Paused(false), FPS(0) {
   LARGE_INTEGER CurrentTime;
   QueryPerformanceCounter(&CurrentTime);
   StartTime = OldTime = LastTime = CurrentTime.QuadPart;
@@ -56,47 +56,22 @@ void timer::IncrFrameCount( void ) {
 
 
 bool timer::IsPaused() const {
-  return paused;
+  return Paused;
 }
 
 
 void timer::Pause() {
-  paused = true;
+  Paused = true;
 }
 
 
 void timer::Unpause() {
-  paused = false;
+  Paused = false;
 }
 
 
 void timer::TogglePause() {
-  paused = !paused;
-}
-
-
-double timer::GetTime() const {
-  return Time;
-}
-
-
-double timer::GetDeltaTime() const {
-  return DeltaTime;
-}
-
-
-double timer::GetGlobalTime() const {
-  return GlobalTime;
-}
-
-
-double timer::GetGlobalDeltaTime() const {
-  return GlobalDeltaTime;
-}
-
-
-double timer::GetFPS() const {
-  return FPS;
+  Paused = !Paused;
 }
 
 

@@ -108,6 +108,9 @@
     <ClCompile Include="anim\render\prim\points.cpp">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
+    <ClCompile Include="anim\render\resource\texture.cpp">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="anim\render\prim\points.h">
       <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\texture.h">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
