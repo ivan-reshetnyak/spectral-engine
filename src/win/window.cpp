@@ -97,7 +97,7 @@ LRESULT CALLBACK window::WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
         return win->OnCreate((CREATESTRUCT *)lParam) ? 0 : -1;
       case WM_CLOSE:
       case WM_DESTROY:
-        win->OnCreate();
+        win->OnDestroy();
         return 0;
       case WM_SIZE:
         win->OnSize((UINT)wParam, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam));
@@ -187,23 +187,30 @@ window & window::operator<<( const std::pair<UINT, callback> &Callback ) {
 
 
 bool window::OnCreate( CREATESTRUCT *CS ) {
-  Init();
   return true;
 }
 
 
-void window::OnCreate() {
-  Close();
+void window::OnDestroy() {
+  IsInitialized = false;
+  PostMessage(hWnd, WM_QUIT, 0, 0);
 }
 
 
-void window::OnSize( UINT State, INT Width, INT Height ) {
-  Resize(Width, Height);
+void window::OnSize( unsigned State, int NewWidth, int NewHeight ) {
+  Width = NewWidth;
+  Height = NewHeight;
 }
 
 
 bool window::OnEraseBackground( HDC hDC ) {
-  Erase(hDC);
+  HPEN hOldPen = (HPEN)SelectObject(hDC, GetStockObject(NULL_PEN));
+  HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(WHITE_BRUSH));
+
+  /* Default action - draw white rectangle */
+  Rectangle(hDC, 0, 0, Width, Height);
+  SelectObject(hDC, hOldPen);
+  SelectObject(hDC, hOldBrush);
   return true;
 }
 
@@ -236,35 +243,6 @@ void window::OnButtonUp( INT X, INT Y, UINT Keys ) {
 
 
 void window::OnMouseWheel( INT X, INT Y, INT Z, UINT Keys ) {
-}
-
-
-void window::Init() {
-}
-
-
-void window::Close() {
-}
-
-
-void window::Resize( int NewWidth, int NewHeight ) {
-  Width = NewWidth;
-  Height = NewHeight;
-}
-
-
-void window::Erase( HDC hDC ) {
-  HPEN hOldPen = (HPEN)SelectObject(hDC, GetStockObject(NULL_PEN));
-  HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(WHITE_BRUSH));
-
-  /* Default action - draw white rectangle */
-  Rectangle(hDC, 0, 0, Width, Height);
-  SelectObject(hDC, hOldPen);
-  SelectObject(hDC, hOldBrush);
-}
-
-
-void window::Paint( HDC hDC ) {
 }
 
 

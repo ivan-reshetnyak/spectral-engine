@@ -7,7 +7,7 @@
 
 #include <windows.h>
 
-#include "../win/window_animation.h"
+#include "../win/window.h"
 #include "camera.h"
 #include "timer.h"
 #include "unit.h"
@@ -16,7 +16,7 @@
 namespace spectral {
 
 
-class animation : public window_animation {
+class animation : public window {
 public:
   camera Camera;
   matrix World;
@@ -27,11 +27,9 @@ public:
   void RenderFrame();
   animation & operator<<( unit *Unit );
   animation & operator<<( const std::pair<UINT, window::callback> &Callback );
-  void Init() override;
-  void Resize( int NewWidth, int NewHeight ) override;
-  void Paint( HDC hDC ) override;
-  void Timer() override;
-  void Idle() override;
+  void OnSize( unsigned, int NewWidth, int NewHeight ) override;
+  void OnPaint() override;
+  // void OnTimer( int ID ) override;
   const timer & GetTimer() const;
 
 private:
