@@ -12,6 +12,13 @@ namespace spectral {
 
 class timer {
 public:
+  float
+    GlobalTime,      // Time from program start
+    GlobalDeltaTime, // Delta time from last frame
+    Time,            // Time from program start (with pause)
+    DeltaTime,       // Delta time from last frame (with pause)
+    FPS;
+
   timer();
   void Update();
   void IncrFrameCount( void );  // NOTE: Do I even need this now?
@@ -19,11 +26,6 @@ public:
   void Pause();
   void Unpause();
   void TogglePause();
-  double GetTime() const;
-  double GetDeltaTime() const;
-  double GetGlobalTime() const;
-  double GetGlobalDeltaTime() const;
-  double GetFPS() const;
 
 private:
   UINT64
@@ -33,13 +35,7 @@ private:
     PauseTime,       // Total pause time
     TimesPerSecond,  // Timer sensitivity
     FrameCount;
-  double
-    GlobalTime,      // Time from program start
-    GlobalDeltaTime, // Delta time from last frame
-    Time,            // Time from prgram start (with pause)
-    DeltaTime,       // Delta time from last frame (with pause)
-    FPS;
-  bool paused;
+  bool Paused;
 };
 
 

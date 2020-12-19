@@ -3,8 +3,6 @@
  *    Reshetnyak Ivan
  ***************************************************************/
 
-#pragma once
-
 #include "pch.h"
 
 #include <cstdio>
@@ -38,17 +36,18 @@ shader::~shader() {
 
 
 void shader::Load( const std::string &FileNamePrefix ) {
+  static const int MaxNumOfShaders = 5;
   int Result, i;
   char *ShaderSource;
-  std::array<UINT, 4>
+  std::array<UINT, MaxNumOfShaders>
     Shaders = { 0 },
-    ShTypes = { GL_VERTEX_SHADER, GL_TESS_CONTROL_SHADER, GL_TESS_EVALUATION_SHADER, GL_FRAGMENT_SHADER };
-  std::array<std::string, 4> Suff = { "vert", "tctrl", "teval", "frag" };
+    ShTypes = { GL_VERTEX_SHADER, GL_GEOMETRY_SHADER, GL_TESS_CONTROL_SHADER, GL_TESS_EVALUATION_SHADER, GL_FRAGMENT_SHADER };
+  std::array<std::string, MaxNumOfShaders> Suff = { "vert", "geom", "tctrl", "teval", "frag" };
   bool IsOk = true;
   static char Buf[1000];  // Needs to be char *
 
   int NumOfShaders = Shaders.size();
-  for (i = 0; i < NumOfShaders; i++) {
+  for (i = 0; i < NumOfShaders; ++i) {
     sprintf(Buf, "%s.%s", FileNamePrefix.c_str(), Suff[i].c_str());
     if ((ShaderSource = LoadText(Buf)) == nullptr)
       continue;
@@ -74,7 +73,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
     if ((Program = glCreateProgram()) == 0)
       IsOk = FALSE;
     else {
-      for (i = 0; i < NumOfShaders; i++)
+      for (i = 0; i < NumOfShaders; ++i)
         if (Shaders[i] != 0)
           glAttachShader(Program, Shaders[i]);
       glLinkProgram(Program);
@@ -86,7 +85,7 @@ void shader::Load( const std::string &FileNamePrefix ) {
       }
     }
   if (!IsOk) {
-    for (i = 0; i < NumOfShaders; i++)
+    for (i = 0; i < NumOfShaders; ++i)
       if (Shaders[i] != 0) {
         if (Program != 0)
           glDetachShader(Program, Shaders[i]);
@@ -142,18 +141,31 @@ void shader::Disable() {
 }
 
 
-void shader::SetUniform( const std::string &Name, float Val ) {
+void shader::SetUniform( const std::string &Name, float Val ) const {
   int loc = glGetUniformLocation(Program, Name.c_str());
   if (loc != -1)
     glUniform1f(loc, Val);
 }
 
 
-void shader::SetUniform( const std::string &Name, int Val )
-{
+void shader::SetUniform( const std::string &Name, int Val ) const {
   int loc = glGetUniformLocation(Program, Name.c_str());
   if (loc != -1)
     glUniform1i(loc, Val);
+}
+
+
+void shader::SetUniform( const std::string &Name, matrix &Val ) const {
+  int loc = glGetUniformLocation(Program, Name.c_str());
+  if (loc != -1)
+    glUniformMatrix4fv(loc, 1, false, Val.GetData());
+}
+
+
+void shader::SetUniform( const std::string &Name, vec &Val ) const {
+  int loc = glGetUniformLocation(Program, Name.c_str());
+  if (loc != -1)
+    glUniform3f(loc, Val.X, Val.Y, Val.Z);
 }
 
 
@@ -162,21 +174,9 @@ int shader::GetProgram() {
 }
 
 
-void shader::SetLayout() {
-  struct {
-    int
-      Index,
-      Size,
-      Type;
-    bool IsNormalised;
-    int Stride;
-    const void *Pointer;
-  } VertexAttribArraysF[] = {
-      { 0, 3, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Position) },
-      { 1, 3, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Normal)   },
-      { 2, 4, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Color)    },
-      { 3, 2, GL_FLOAT, false, sizeof(vertex), OFFSET(vertex, Tex)      } };
-  for (const auto &it : VertexAttribArraysF) {
+void shader::SetLayout( vertex * Vertices ) {
+  auto Layout = Vertices->GetLayout();
+  for (const auto &it : Layout) {
     glVertexAttribPointer(it.Index, it.Size, it.Type, it.IsNormalised, it.Stride, it.Pointer);
     glEnableVertexAttribArray(it.Index);
   }

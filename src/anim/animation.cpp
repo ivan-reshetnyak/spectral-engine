@@ -11,10 +11,14 @@ namespace spectral {
 
 
 animation::animation( HINSTANCE hInstance ) :
-    window_animation(hInstance),
-    Render(window_animation::hWnd,
-           window_animation::Width,
-           window_animation::Height) {
+    window(hInstance, "AnimationWindowClass", "Animation window",
+           true, 0 /* TODO: Add menu IDR_MENU1 */, true),
+    Render(window::hWnd,
+           window::Width,
+           window::Height),
+    Camera(0.5f, 10,
+           window::Width, window::Height,
+           vec(0.0, 1.0, -5.0), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
 }
 
 
@@ -23,8 +27,8 @@ animation::~animation() {
 
 
 void animation::RenderFrame() {
-  AnimTimer.Update();
-  AnimTimer.IncrFrameCount();
+  Timer.Update();
+  Timer.IncrFrameCount();
 
   // TODO: Add input update when it's done
   /*
@@ -50,36 +54,20 @@ animation & animation::operator<<( unit *Unit ) {
 
 
 animation & animation::operator<<( const std::pair<UINT, window::callback> &Callback ) {
-  window_animation::operator<<(Callback);
+  window::operator<<(Callback);
   return *this;
 }
 
 
-void animation::Init() {
-}
-
-
-void animation::Resize() {
+void animation::OnSize( unsigned, int NewWidth, int NewHeight ) {
+  window::OnSize(0, NewWidth, NewHeight);
   Render.Resize();
+  Camera.Set(Width, Height);
 }
 
 
-void animation::Paint( HDC hDC ) {
+void animation::OnPaint() {
   RenderFrame();
-}
-
-
-void animation::Timer() {
-  RenderFrame();
-}
-
-
-void animation::Idle() {
-}
-
-
-const timer & animation::GetTimer() const {
-  return AnimTimer;
 }
 
 

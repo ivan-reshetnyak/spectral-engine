@@ -5,16 +5,18 @@
 
 #pragma once
 
-#include "window.h"
+#include <array>
 
 namespace spectral {
 
 
-class window_animation : public window {
-public:
-  window_animation( HINSTANCE hInst = GetModuleHandle(NULL) );
-  void OnCreate() override;
-};
+const double Pi = 3.14159265358979323846;
+const double Pi2 = 6.28318530717958647692;
+
+
+inline double DegreesToRadians( double Angle ) {
+  return Angle * 0.01745329251994329576922222222222;
+}
 
 
 } // End of 'spectral' namespace

@@ -1,5 +1,3 @@
-#version 420
-
 layout (location = 0) in vec3 InPos;
 layout (location = 1) in vec3 InNorm;
 layout (location = 2) in vec4 InCol;

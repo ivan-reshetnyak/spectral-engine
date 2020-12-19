@@ -1,5 +1,3 @@
-#version 420
-
 in vec3 Pos;
 in vec3 Norm;
 in vec4 Col;
@@ -9,5 +7,4 @@ out vec4 OutCol;
 
 void main( void ) {
   OutCol = Col;
-  // gl_FragColor = Col;
 }

@@ -35,8 +35,8 @@ public:
    * Cracked message handle functions
    ***/
   virtual bool OnCreate( CREATESTRUCT *CS );
-  virtual void OnCreate();
-  virtual void OnSize( UINT State, INT Width, INT Height );
+  virtual void OnDestroy();
+  virtual void OnSize( unsigned State, int Width, int Height );
   virtual bool OnEraseBackground( HDC hDC );
   virtual void OnPaint();
   virtual void OnActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized );
@@ -45,22 +45,9 @@ public:
   virtual void OnKeyDown( UINT Keys );
   virtual void OnButtonUp( INT X, INT Y, UINT Keys );
   virtual void OnMouseWheel( INT X, INT Y, INT Z, UINT Keys );
-
-  /***
-   * Virtual functions for window customization
-   ***/
-  virtual void Init();
-  virtual void Close();
-  virtual void Resize();
-  virtual void Erase( HDC hDC );
-  virtual void Paint( HDC hDC );
-  virtual void Activate( bool IsActive );
-  virtual void Timer();
   virtual void Idle();
-
   int GetW();
   int GetH();
-
   void Show( void );
   void Hide( void );
 

@@ -14,11 +14,14 @@ tex_coord::tex_coord( const float &U, const float &V ) : U(U), V(V) {
 }
 
 
-vertex::vertex() {
+namespace vertices {
+
+
+simple::simple() {
 }
 
 
-vertex::vertex( const vec &Position,
+simple::simple( const vec &Position,
                 const vec &Normal,
                 const tex_coord &Tex,
                 const color &Color ) :
@@ -27,7 +30,7 @@ vertex::vertex( const vec &Position,
 }
 
 
-vertex::vertex( const vertex &Other ) {
+simple::simple( const simple &Other ) {
   Position = Other.Position;
   Normal   = Other.Normal;
   Tex      = Other.Tex;
@@ -35,4 +38,20 @@ vertex::vertex( const vertex &Other ) {
 }
 
 
+std::vector<simple::location> simple::GetLayout() {
+  std::vector<simple::location> Layout;
+  Layout.push_back(location({ 0, 3, GL_FLOAT, false, sizeof(simple), OFFSET(simple, Position) }));
+  Layout.push_back(location({ 1, 3, GL_FLOAT, false, sizeof(simple), OFFSET(simple, Normal) }));
+  Layout.push_back(location({ 2, 4, GL_FLOAT, false, sizeof(simple), OFFSET(simple, Color) }));
+  Layout.push_back(location({ 3, 2, GL_FLOAT, false, sizeof(simple), OFFSET(simple, Tex) }));
+  return Layout;
+}
+
+
+int simple::GetSize() {
+  return sizeof(simple);
+}
+
+
+} // End of 'vertices' namespace
 } // End of 'spectral' namespace

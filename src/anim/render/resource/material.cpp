@@ -17,10 +17,7 @@ namespace spectral {
 material::manager material::Manager;
 
 
-material::material( std::shared_ptr<shader> Shader,
-                    const color &Ka, const color &Kd, const color &Ks,
-                    float Shininess ) :
-    Ka(Ka), Kd(Kd), Ks(Ks), Shininess(Shininess), Shader(Shader) {
+material::material( std::shared_ptr<shader> Shader ) : Shader(Shader) {
 }
 
 
@@ -28,70 +25,88 @@ material::~material() {
 }
 
 
+void material::SetUniforms( void ) {
+  for (auto &i : UnifConstFloat)
+    Shader->SetUniform(i.first, i.second);
+  for (auto &i : UnifDynFloat)
+    Shader->SetUniform(i.first, *i.second);
+  for (auto &i : UnifConstInt)
+    Shader->SetUniform(i.first, i.second);
+  for (auto &i : UnifDynInt)
+    Shader->SetUniform(i.first, *i.second);
+  for (auto &i : UnifConstMatrix)
+    Shader->SetUniform(i.first, i.second);
+  for (auto &i : UnifDynMatrix)
+    Shader->SetUniform(i.first, *i.second);
+  for (auto &i : UnifConstVec)
+    Shader->SetUniform(i.first, i.second);
+  for (auto &i : UnifDynVec)
+    Shader->SetUniform(i.first, *i.second);
+}
+
+
 void material::Apply( animation *Anim ) {
-  int loc;
-  // matr MatrWVP = Ani->World * Ani->Camera.Matr.M * Ani->Camera.Proj.M;
-  // matr MatrNW = Ani->World.Inversing();
-
   Shader->Enable();
+  SetUniforms();
 
-  /* TODO: Pass MVP matrices
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrWVP");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)MatrWVP);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrWorld");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)Ani->World);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrView");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)Ani->Camera.Matr.M);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrProj");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)Ani->Camera.Proj.M);
-  loc = glGetUniformLocation(Shader->GetProgram(), "MatrNWorld");
-  if (loc != -1)
-    glUniformMatrix4fv(loc, 1, FALSE, (FLT *)MatrNW);
-  */
-
-  loc = glGetUniformLocation(Shader->GetProgram(), "Time");
-  if (loc != -1)
-    glUniform1f(loc, (float)Anim->GetTimer().GetTime());
-
-  /* TODO: Pass camera
-  loc = glGetUniformLocation(Shader->GetProgram(), "CameraPos");
-  if (loc != -1)
-    glUniform3fv(loc, 1, &Ani->Camera.Loc.X);
-  */
-
-  /* Setup general uniforms */
-  for (auto &i : UnifFloat)
-    Shader->SetUniform(i.first.c_str(), i.second);
-  for (auto &i : UnifInt)
-    Shader->SetUniform(i.first.c_str(), i.second);
-  /* TODO: Pass matrix uniforms
-  for (auto &i : UnifMatr)
-    Shader->SetUniform(i.first.c_str(), i.second);
-  */
-
-  /* TODO: Pass textures
-  for (INT i = 0; i < Textures.size(); i++) {
-    glActiveTexture(GL_TEXTURE0 + i);
-    glBindTexture(GL_TEXTURE_2D, Textures[i]->GetNo());
-    loc = glGetUniformLocation(Shader->GetProgram(), Textures[i]->Name);
-    if (loc != -1)
-      glUniform1i(loc, i);
+  for (const auto &Texture : Textures) {
+    Texture->Apply();
+    Shader->SetUniform(Texture->GetName(), (int)Texture->GetSamplerNumber());
   }
-  */
 }
 
 
-void material::SetUniform( const std::string &Name, float Val ) {
-  UnifFloat[std::string(Name)] = Val;
+material * material::SetUniform( const std::string &Name, float Val ) {
+  UnifConstFloat[std::string(Name)] = Val;
+  return this;
 }
 
 
-void material::SetUniform( const std::string &Name, int Val ) {
-  UnifInt[std::string(Name)] = Val;
+material * material::SetUniform( const std::string &Name, float *Ptr ) {
+  UnifDynFloat[std::string(Name)] = Ptr;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, int Val ) {
+  UnifConstInt[std::string(Name)] = Val;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, int *Ptr ) {
+  UnifDynInt[std::string(Name)] = Ptr;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, const vec &Val ) {
+  UnifConstVec[std::string(Name)] = Val;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, vec *Ptr ) {
+  UnifDynVec[std::string(Name)] = Ptr;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, const matrix &Val ) {
+  UnifConstMatrix[std::string(Name)] = Val;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, matrix *Ptr ) {
+  UnifDynMatrix[std::string(Name)] = Ptr;
+  return this;
+}
+
+
+material * material::Add( std::shared_ptr<texture> Texture ) {
+  Textures.push_back(Texture);
+  return this;
 }
 
 

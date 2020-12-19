@@ -19,7 +19,7 @@ trimesh::trimesh( animation *Anim ) : primitive(Anim) {
 }
 
 
-trimesh::trimesh( animation *Anim, const geometry &Geometry,
+trimesh::trimesh( animation *Anim, std::shared_ptr<geometry> Geometry,
                   std::shared_ptr<material> Material ) : primitive(Anim, Geometry, Material) {
 }
 

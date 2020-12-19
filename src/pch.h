@@ -6,11 +6,15 @@
 #pragma once
 
 #include <cmath>
+#include <cstring>
 
 /*****
  * STL
  *****/
+#include <algorithm>
 #include <array>
+#include <deque>
+#include <forward_list>
 #include <functional>
 #include <memory>
 #include <string>
@@ -34,4 +38,4 @@
 /*******
  * Stable code
  *******/
-#include "def.h"
+// #include "def.h"

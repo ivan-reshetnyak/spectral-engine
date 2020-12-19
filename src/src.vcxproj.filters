@@ -19,9 +19,6 @@
     <Filter Include="Source Files\Win">
       <UniqueIdentifier>{f123f17c-6cb3-4fd0-be6d-64089b9f301f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Win\Windows">
-      <UniqueIdentifier>{4bcbd8ea-652e-4f26-b39d-f8f61156d7e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Anim">
       <UniqueIdentifier>{2851425a-dbc2-4109-bd86-97a72e252248}</UniqueIdentifier>
     </Filter>
@@ -37,11 +34,17 @@
     <Filter Include="Source Files\Anim\Units">
       <UniqueIdentifier>{ceb0b1e0-541a-43ce-a2bf-eb4c2004a0ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Anim\Render\Geom">
-      <UniqueIdentifier>{4e77aa4c-0e06-49b5-a4d4-a35f8d1ca637}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Anim\Render\Prim">
       <UniqueIdentifier>{6057b3ef-b59e-45d5-a1fe-4032115ffa7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Particles">
+      <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Resource\Textures">
+      <UniqueIdentifier>{be5b79f4-9603-470a-bc58-61274995c3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Logs">
+      <UniqueIdentifier>{935da222-dd3f-4be9-9e29-a33c4db56821}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +56,6 @@
     </ClCompile>
     <ClCompile Include="win\window.cpp">
       <Filter>Source Files\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="win\window_animation.cpp">
-      <Filter>Source Files\Win\Windows</Filter>
     </ClCompile>
     <ClCompile Include="anim\timer.cpp">
       <Filter>Source Files\Anim</Filter>
@@ -90,8 +90,32 @@
     <ClCompile Include="anim\render\prim\trimesh.cpp">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
-    <ClCompile Include="anim\units\triangle.cpp">
+    <ClCompile Include="anim\camera.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particle.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\timed.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_triangle.cpp">
       <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_signal.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\prim\points.cpp">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\texture.cpp">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\tex\tex_raw.cpp">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\tex\tex_png.cpp">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -103,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="win\window.h">
       <Filter>Source Files\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="win\window_animation.h">
-      <Filter>Source Files\Win\Windows</Filter>
     </ClInclude>
     <ClInclude Include="anim\timer.h">
       <Filter>Source Files\Anim</Filter>
@@ -152,8 +173,43 @@
     <ClInclude Include="anim\render\prim\trimesh.h">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClInclude>
-    <ClInclude Include="anim\units\triangle.h">
+    <ClInclude Include="math\matrix.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\camera.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particle.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\timed.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_triangle.h">
       <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
+    <ClInclude Include="anim\units\unit_signal.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\prim\points.h">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\texture.h">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\tex\tex_raw.h">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\tex\tex_png.h">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\logs\shader.log">
+      <Filter>Resource Files\Logs</Filter>
+    </Text>
   </ItemGroup>
 </Project>

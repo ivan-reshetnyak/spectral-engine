@@ -16,7 +16,7 @@ namespace prim {
 class trimesh : public primitive {
 public:
   trimesh( animation *Anim );
-  trimesh( animation *Anim, const geometry &Geometry, std::shared_ptr<material> Material );
+  trimesh( animation *Anim, std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material );
   ~trimesh();
 
 protected:

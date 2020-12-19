@@ -97,7 +97,7 @@ LRESULT CALLBACK window::WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
         return win->OnCreate((CREATESTRUCT *)lParam) ? 0 : -1;
       case WM_CLOSE:
       case WM_DESTROY:
-        win->OnCreate();
+        win->OnDestroy();
         return 0;
       case WM_SIZE:
         win->OnSize((UINT)wParam, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam));
@@ -143,7 +143,7 @@ LRESULT CALLBACK window::WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
     }
   }
   return DefWindowProc(hWnd, Msg, wParam, lParam);
-} /* End of 'tcg::window::WinFunc' function */
+}
 
 
 void window::DoExit() {
@@ -187,23 +187,30 @@ window & window::operator<<( const std::pair<UINT, callback> &Callback ) {
 
 
 bool window::OnCreate( CREATESTRUCT *CS ) {
-  Init();
   return true;
 }
 
 
-void window::OnCreate() {
-  Close();
+void window::OnDestroy() {
+  IsInitialized = false;
+  PostMessage(hWnd, WM_QUIT, 0, 0);
 }
 
 
-void window::OnSize( UINT State, INT Width, INT Height ) {
-  Resize();
+void window::OnSize( unsigned State, int NewWidth, int NewHeight ) {
+  Width = NewWidth;
+  Height = NewHeight;
 }
 
 
 bool window::OnEraseBackground( HDC hDC ) {
-  Erase(hDC);
+  HPEN hOldPen = (HPEN)SelectObject(hDC, GetStockObject(NULL_PEN));
+  HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(WHITE_BRUSH));
+
+  /* Default action - draw white rectangle */
+  Rectangle(hDC, 0, 0, Width, Height);
+  SelectObject(hDC, hOldPen);
+  SelectObject(hDC, hOldBrush);
   return true;
 }
 
@@ -214,12 +221,10 @@ void window::OnPaint() {
 
 
 void window::OnActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized ) {
-  Activate(IsActive);
 }
 
 
 void window::OnTimer( INT Id ) {
-  Timer();
 }
 
 
@@ -236,41 +241,6 @@ void window::OnButtonUp( INT X, INT Y, UINT Keys ) {
 
 
 void window::OnMouseWheel( INT X, INT Y, INT Z, UINT Keys ) {
-}
-
-
-void window::Init() {
-}
-
-
-void window::Close() {
-}
-
-
-void window::Resize() {
-}
-
-
-void window::Erase( HDC hDC ) {
-  HPEN hOldPen = (HPEN)SelectObject(hDC, GetStockObject(NULL_PEN));
-  HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(WHITE_BRUSH));
-
-  /* Default action - draw white rectangle */
-  Rectangle(hDC, 0, 0, Width, Height);
-  SelectObject(hDC, hOldPen);
-  SelectObject(hDC, hOldBrush);
-}
-
-
-void window::Paint( HDC hDC ) {
-}
-
-
-void window::Activate( bool IsActive ) {
-}
-
-
-void window::Timer() {
 }
 
 
