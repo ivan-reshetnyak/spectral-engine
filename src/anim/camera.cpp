@@ -14,15 +14,19 @@ camera::camera( float Near, float Far, float Bottom,
                 float Top, float LeftP, float RightP,
                 const vec &Position, const vec &LookAt,
                 const vec &Up0 ) :
-    Position(Position), LookAt(LookAt),
-    Near(Near), Far(Far), LeftP(LeftP), RightP(RightP),
-    Up(Up0), Bottom(Bottom), Top(Top),
     Mode(mode::DIRECTED) {
-  Direction = (Position - LookAt).Normalized();
-  Right = (Direction % Up).Normalized();
-  Up = (Right % Direction).Normalized();
+  Set(Near, Far, Bottom, Top, LeftP, RightP, false);
+  Set(Position, LookAt, Up0);
+}
 
-  UpdateMatrices();
+
+camera::camera( float Near, float Far,
+                int WinW, int WinH,
+                const vec &Position, const vec &LookAt,
+                const vec &Up0 ) :
+    Mode(mode::DIRECTED) {
+  Set(Near, Far, WinW, WinH, false);
+  Set(Position, LookAt, Up0);
 }
 
 
@@ -33,19 +37,55 @@ void camera::UpdateMatrices( void ) {
 }
 
 
-void camera::Set( float Near, float Far, float Bottom,
-                  float Top, float LeftP, float RightP ) {
+void camera::Set( float Near, float Far,
+                  bool Update ) {
   this->Near = Near;
   this->Far = Far;
+
+  if (Update)
+    UpdateMatrices();
+}
+
+
+void camera::Set( float Near, float Far, float Bottom,
+                  float Top, float LeftP, float RightP,
+                  bool Update ) {
+  Set(Near, Far, false);
+  Set(Bottom, Top, LeftP, RightP, Update);
+}
+
+
+void camera::Set( float Bottom, float Top,
+                  float LeftP, float RightP,
+                  bool Update ) {
   this->Bottom = Bottom;
   this->Top = Top;
   this->LeftP = LeftP;
   this->RightP = RightP;
-  UpdateMatrices();
+
+  if (Update)
+    UpdateMatrices();
 }
 
 
-void camera::Set( const vec &Pos, const vec &At, const vec &Up ) {
+void camera::Set( float Near, float Far,
+                  int WinW, int WinH,
+                  bool Update ) {
+  Set(Near, Far, false);
+  Set(WinW, WinH, Update);
+}
+
+
+void camera::Set( int WinW, int WinH,
+                  bool Update ) {
+  float ratio = (float)WinW / WinH;
+  float scale = 1;
+  Set(-1.f / 2.f * scale, 1.f / 2.f * scale, -ratio / 2.f * scale, ratio / 2.f * scale, Update);
+}
+
+
+void camera::Set( const vec &Pos, const vec &At, const vec &Up,
+                  bool Update ) {
   Position = Pos;
   LookAt = At;
   this->Up = Up;
@@ -53,7 +93,8 @@ void camera::Set( const vec &Pos, const vec &At, const vec &Up ) {
   Right = (Direction % Up).Normalized();
   this->Up = (Right % Direction).Normalized();
 
-  UpdateMatrices();
+  if (Update)
+    UpdateMatrices();
 }
 
 

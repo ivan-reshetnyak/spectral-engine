@@ -15,7 +15,9 @@ animation::animation( HINSTANCE hInstance ) :
     Render(window_animation::hWnd,
            window_animation::Width,
            window_animation::Height),
-    Camera(0.001f, 500, -1, 1, -1, 1, vec(0.0, 0.0, 5.0), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
+    Camera(0.001f, 500,
+           window_animation::Width, window_animation::Height,
+           vec(0.0, 0.0, 5.0), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
 }
 
 
@@ -60,8 +62,10 @@ void animation::Init() {
 }
 
 
-void animation::Resize() {
+void animation::Resize( int NewWidth, int NewHeight ) {
+  window_animation::Resize(NewWidth, NewHeight);
   Render.Resize();
+  Camera.Set(Width, Height);
 }
 
 

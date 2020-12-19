@@ -27,7 +27,7 @@ public:
   animation & operator<<( unit *Unit );
   animation & operator<<( const std::pair<UINT, window::callback> &Callback );
   void Init() override;
-  void Resize() override;
+  void Resize( int NewWidth, int NewHeight ) override;
   void Paint( HDC hDC ) override;
   void Timer() override;
   void Idle() override;

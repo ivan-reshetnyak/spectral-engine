@@ -51,7 +51,7 @@ public:
    ***/
   virtual void Init();
   virtual void Close();
-  virtual void Resize();
+  virtual void Resize( int NewWidth, int NewHeight );
   virtual void Erase( HDC hDC );
   virtual void Paint( HDC hDC );
   virtual void Activate( bool IsActive );

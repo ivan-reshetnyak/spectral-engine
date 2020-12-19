@@ -143,7 +143,7 @@ LRESULT CALLBACK window::WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
     }
   }
   return DefWindowProc(hWnd, Msg, wParam, lParam);
-} /* End of 'tcg::window::WinFunc' function */
+}
 
 
 void window::DoExit() {
@@ -198,7 +198,7 @@ void window::OnCreate() {
 
 
 void window::OnSize( UINT State, INT Width, INT Height ) {
-  Resize();
+  Resize(Width, Height);
 }
 
 
@@ -247,7 +247,9 @@ void window::Close() {
 }
 
 
-void window::Resize() {
+void window::Resize( int NewWidth, int NewHeight ) {
+  Width = NewWidth;
+  Height = NewHeight;
 }
 
 
