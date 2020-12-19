@@ -43,12 +43,12 @@ public:
 class billboard : public particle::timed {
 public:
   billboard( animation *Anim, float LifeTime, const vec &Start, const vec &Speed ) :
-              timed(Anim->GetTimer(), LifeTime), Position(Start), Speed(Speed), Primitive(Anim), Anim(Anim) {
+              timed(Anim->Timer, LifeTime), Position(Start), Speed(Speed), Primitive(Anim), Anim(Anim) {
       bb_vertex * Vertices = new bb_vertex[1];
     Vertices[0] = bb_vertex(Start, 0.3f);
     auto Shader = shader::Manager.Get("default_particle");
     auto Material = material::Manager.Add("unit_signal_billboard", Shader);
-    Material->SetUniform("Time", &Anim->AnimTimer.Time);
+    Material->SetUniform("Time", &Anim->Timer.Time);
     Material->SetUniform("World", &Anim->World);
     Material->SetUniform("VP", &Anim->Camera.VP);
     Material->SetUniform("CameraPosition", &Anim->Camera.Position);
@@ -80,7 +80,7 @@ private:
 class bb_emitter : public emitter {
 public:
   bb_emitter( animation *Anim, float Period, float LifeTime, const vec &Position, const vec &Speed ) :
-      LastEmission(Anim->AnimTimer.Time), Anim(Anim),
+      LastEmission(Anim->Timer.Time), Anim(Anim),
       Period(Period), LifeTime(LifeTime),
       Position(Position), Speed(Speed) {
   }
@@ -112,7 +112,7 @@ signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim)
 
 
 void signal::Update() {
-  ParticleManager.Update(Anim->GetTimer());
+  ParticleManager.Update(Anim->Timer);
 }
 
 

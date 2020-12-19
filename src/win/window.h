@@ -45,17 +45,9 @@ public:
   virtual void OnKeyDown( UINT Keys );
   virtual void OnButtonUp( INT X, INT Y, UINT Keys );
   virtual void OnMouseWheel( INT X, INT Y, INT Z, UINT Keys );
-
-  /***
-   * Virtual functions for window customization
-   ***/
-  virtual void Activate( bool IsActive );
-  virtual void Timer();
   virtual void Idle();
-
   int GetW();
   int GetH();
-
   void Show( void );
   void Hide( void );
 

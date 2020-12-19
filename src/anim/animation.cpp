@@ -27,8 +27,8 @@ animation::~animation() {
 
 
 void animation::RenderFrame() {
-  AnimTimer.Update();
-  AnimTimer.IncrFrameCount();
+  Timer.Update();
+  Timer.IncrFrameCount();
 
   // TODO: Add input update when it's done
   /*
@@ -68,11 +68,6 @@ void animation::OnSize( unsigned, int NewWidth, int NewHeight ) {
 
 void animation::OnPaint() {
   RenderFrame();
-}
-
-
-const timer & animation::GetTimer() const {
-  return AnimTimer;
 }
 
 

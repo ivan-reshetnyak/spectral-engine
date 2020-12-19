@@ -221,12 +221,10 @@ void window::OnPaint() {
 
 
 void window::OnActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized ) {
-  Activate(IsActive);
 }
 
 
 void window::OnTimer( INT Id ) {
-  Timer();
 }
 
 
@@ -243,14 +241,6 @@ void window::OnButtonUp( INT X, INT Y, UINT Keys ) {
 
 
 void window::OnMouseWheel( INT X, INT Y, INT Z, UINT Keys ) {
-}
-
-
-void window::Activate( bool IsActive ) {
-}
-
-
-void window::Timer() {
 }
 
 

@@ -20,7 +20,7 @@ class animation : public window {
 public:
   camera Camera;
   matrix World;
-  timer AnimTimer;
+  timer Timer;
 
   animation( HINSTANCE hInstance = GetModuleHandle(NULL) );
   ~animation();
@@ -29,8 +29,6 @@ public:
   animation & operator<<( const std::pair<UINT, window::callback> &Callback );
   void OnSize( unsigned, int NewWidth, int NewHeight ) override;
   void OnPaint() override;
-  // void OnTimer( int ID ) override;
-  const timer & GetTimer() const;
 
 private:
   unit_manager UnitManager;
