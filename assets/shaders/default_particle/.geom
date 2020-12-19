@@ -14,16 +14,16 @@ uniform mat4 VP;
 uniform mat4 World;
 
 void main() {    
-  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (+CameraUp - CameraRight) * gs_in[0].Size, 1); 
+  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (+CameraUp - CameraRight) * gs_in[0].Size, 1);
   EmitVertex();
 
-  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (+CameraUp + CameraRight) * gs_in[0].Size, 1); 
+  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (+CameraUp + CameraRight) * gs_in[0].Size, 1);
   EmitVertex();
 
-  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (-CameraUp - CameraRight) * gs_in[0].Size, 1); 
+  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (-CameraUp - CameraRight) * gs_in[0].Size, 1);
   EmitVertex();
 
-  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (-CameraUp + CameraRight) * gs_in[0].Size, 1); 
+  gl_Position = (World * VP) * vec4(gs_in[0].Pos + (-CameraUp + CameraRight) * gs_in[0].Size, 1);
   EmitVertex();
 
 

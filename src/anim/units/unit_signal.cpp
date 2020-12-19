@@ -88,7 +88,8 @@ public:
     if (Timer.GetTime() - LastEmission < Period)
       return;
     LastEmission = (float)Timer.GetTime();
-    Where.push_front(std::shared_ptr<particle_t>(new billboard(Anim, LifeTime, Position, Speed)));
+    vec SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.3f;
+    Where.push_front(std::shared_ptr<particle_t>(new billboard(Anim, LifeTime, Position, SpeedShifted)));
   }
 
 private:
@@ -99,7 +100,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.5, 3.0, vec(0, 0, 0), vec(0, 1, 0)));
+  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.05f, 3.0f, vec(0, 0, 0), vec(0, 1, 0)));
 }
 
 
