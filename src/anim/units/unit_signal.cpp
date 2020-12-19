@@ -41,25 +41,38 @@ public:
   }
 };
 
+
 class billboard : public particle::timed {
 public:
   billboard( animation *Anim, float LifeTime, const vec &Start, const vec &Speed ) :
-              timed(Anim->Timer, LifeTime), Position(Start), Speed(Speed), Primitive(Anim), Anim(Anim) {
+             timed(Anim->Timer, LifeTime), Position(Start), Speed(Speed), Anim(Anim) {
+    if (!material::Manager.Exists("unit_signal_billboard")) {
+      auto Shader = shader::Manager.Get("default_particle");
+      std::shared_ptr<texture> Texture(new tex::png("Texture", 0, "../assets/textures/smoke.png"));
+      Material = material::Manager.Add("unit_signal_billboard", Shader);
+      Material->
+        Add(Texture)->
+        SetUniform("Time", &Anim->Timer.Time)->
+        SetUniform("World", &Anim->World)->SetUniform("VP", &Anim->Camera.VP)->
+        SetUniform("CameraRight", &Anim->Camera.Right)->
+        SetUniform("CameraUp", &Anim->Camera.Up);
+
       bb_vertex * Vertices = new bb_vertex[1];
-    Vertices[0] = bb_vertex(Start, 0.3f);
-    auto Shader = shader::Manager.Get("default_particle");
-    std::shared_ptr<texture> Texture(new tex::png("Texture", 0, "../assets/textures/smoke.png"));
-    auto Material = material::Manager.Add("unit_signal_billboard", Shader);
-    Material->
-      Add(Texture)->
-      SetUniform("Time", &Anim->Timer.Time)->
-      SetUniform("World", &Anim->World)->SetUniform("VP", &Anim->Camera.VP)->
-      SetUniform("CameraPosition", &Anim->Camera.Position)->
-      SetUniform("CameraLookAt", &Anim->Camera.LookAt)->
-      SetUniform("CameraRight", &Anim->Camera.Right)->
-      SetUniform("CameraUp", &Anim->Camera.Up);
-    Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
+      Vertices[0] = bb_vertex(Start, 0.3f);
+      Primitive.Set(Anim);
+      Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
+    }
     Rotation = (float)rand() / RAND_MAX * (float)Pi;
+  }
+
+
+  billboard & operator=( const billboard &&Other ) {
+    timed::operator=(std::move(Other));
+    Anim = Other.Anim;
+    Position = Other.Position;
+    Speed = Other.Speed;
+    Rotation = Other.Rotation;
+    return *this;
   }
 
 
@@ -72,6 +85,8 @@ public:
 
   void Render() override {
     glDepthMask(false);
+    Material->SetUniform("Age", Age);
+    Material->SetUniform("LifeTime", LifeTime);
     Anim->World = matrix::Translation(Position.X, Position.Y, Position.Z) * matrix::RotationZ(Rotation);
     Primitive.Draw();
     Anim->World = matrix();
@@ -79,11 +94,17 @@ public:
   }
 
 private:
+  static std::shared_ptr<material> Material;
+  static prim::points Primitive;
   animation *Anim;
   vec Position, Speed;
   float Rotation;
-  prim::points Primitive;
 };
+
+
+std::shared_ptr<material> billboard::Material;
+prim::points billboard::Primitive;
+
 
 class bb_emitter : public emitter {
 public:
@@ -99,17 +120,29 @@ public:
   }
 
 
-  virtual void Emit( const timer &Timer, std::forward_list<std::shared_ptr<particle_t>> &Where ) {
+  virtual std::shared_ptr<particle_t> Initialize() override {
+    vec SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.1f;
+    return std::shared_ptr<billboard>(new billboard(Anim, LifeTime, Position, SpeedShifted));
+  }
+
+
+  virtual void Initialize( std::shared_ptr<particle_t> ToReuse ) override {
+    std::shared_ptr<billboard> Ptr = std::dynamic_pointer_cast<billboard>(ToReuse);
+    vec SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.1f;
+    *Ptr = std::move(billboard(Anim, LifeTime, Position, SpeedShifted));
+  }
+
+
+  virtual void Update( const timer &Timer ) override {
+    emitter::Update(Timer);
+
     float Passed = Timer.Time - LastEmission;
 
     int ToEmit = (int)(Passed / Period);
     if (ToEmit <= 0)
       return;
-    vec SpeedShifted;
-    for (int i = 0; i < ToEmit; i++) {
-      SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.1f;
-      Where.push_front(std::shared_ptr<particle_t>(new billboard(Anim, LifeTime, Position, SpeedShifted)));
-    }
+    for (int i = 0; i < ToEmit; i++)
+      Emit();
     LastEmission = Timer.Time;
   }
 
@@ -121,7 +154,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.5f, 3.5f, Pos, Speed));
+  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.005f, 2.5f, Pos, Speed));
 }
 
 

@@ -15,7 +15,9 @@ namespace prim {
 
 class points : public primitive {
 public:
+  points() = default;
   points( animation *Anim );
+  points & operator=( const points &&Other );
   points( animation *Anim, std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material );
   ~points();
 

@@ -22,9 +22,11 @@ namespace spectral {
 
 class primitive {
 public:
+  primitive() = default;
   primitive( animation *Anim );
   primitive( animation *Anim, std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material );
   ~primitive();
+  void Set( animation *Anim );
   void Set( std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material );
   void SetMaterial( std::shared_ptr<material> Material );
   void Draw();
@@ -35,8 +37,9 @@ protected:
   std::shared_ptr<material> Material;
   animation *Anim;
 
-  primitive( const primitive &P ) = delete;
+  primitive & operator=( const primitive &&P );
   primitive & operator=( const primitive &P ) = delete;
+  primitive( const primitive &P ) = delete;
   virtual void Render() = 0;
 };
 

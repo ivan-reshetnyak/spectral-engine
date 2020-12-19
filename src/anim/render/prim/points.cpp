@@ -28,6 +28,12 @@ points::~points() {
 }
 
 
+points & points::operator=( const points &&Other ) {
+  primitive::operator=(std::move(Other));
+  return *this;
+}
+
+
 void points::Render() {
   glBindVertexArray(Buffer.GetVertexArray());
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Buffer.GetIndexBuf());

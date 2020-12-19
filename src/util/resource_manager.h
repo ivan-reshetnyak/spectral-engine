@@ -17,7 +17,8 @@ class resource_manager {
 public:
   using ptr = std::shared_ptr<resource>;
 
-  virtual resource * Get( const tag &Tag ) = 0;
+  virtual ptr Get( const tag &Tag ) = 0;
+  virtual bool Exists( const tag &Tag ) = 0;
 
 protected:
   resource_manager() {
@@ -50,6 +51,11 @@ public:
     return Iterator->second;
   }
 
+
+  virtual bool Exists( const std::string &Name ) {
+    return Storage.find(Name) != Storage.end();
+  }
+
 protected:
   std::unordered_map<std::string, std::shared_ptr<resource>> Storage;
 };
@@ -71,12 +77,17 @@ public:
 
 
   virtual resource * Get( const unsigned &Index ) {
-    if (Index >= 0 && Index < Storage.size())
+    if (Exists(Index))
       return Storage[Index];
 
     std::shared_ptr<resource> NewResource = new resource();
     Storage.push_back(NewResource);
     return NewResource;
+  }
+
+
+  virtual bool Exists( const unsigned &Index ) {
+    return Index >= 0 && Index < Storage.size();
   }
 
 protected:

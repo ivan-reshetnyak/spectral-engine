@@ -38,6 +38,20 @@ void primitive::Draw() {
 }
 
 
+primitive & primitive::operator=( const primitive &&P ) {
+  Buffer = std::move(P.Buffer);
+  Geometry = P.Geometry;
+  Material = P.Material;
+  Anim = P.Anim;
+  return *this;
+}
+
+
+void primitive::Set( animation *Anim ) {
+  this->Anim = Anim;
+}
+
+
 void primitive::Set( std::shared_ptr<geometry> Geometry, std::shared_ptr<material> Material ) {
   this->Geometry = Geometry;
   Buffer.Generate(*Geometry);

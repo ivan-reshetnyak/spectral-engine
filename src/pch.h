@@ -13,6 +13,7 @@
  *****/
 #include <algorithm>
 #include <array>
+#include <deque>
 #include <forward_list>
 #include <functional>
 #include <memory>

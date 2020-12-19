@@ -176,7 +176,7 @@ int shader::GetProgram() {
 
 void shader::SetLayout( vertex * Vertices ) {
   auto Layout = Vertices->GetLayout();
-  for (const auto &it : Layout ) {
+  for (const auto &it : Layout) {
     glVertexAttribPointer(it.Index, it.Size, it.Type, it.IsNormalised, it.Stride, it.Pointer);
     glEnableVertexAttribArray(it.Index);
   }

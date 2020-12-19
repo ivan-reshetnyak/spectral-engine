@@ -5,7 +5,6 @@
 
 #pragma once
 
-#include <forward_list>
 #include <memory>
 
 #include "timer.h"
@@ -15,6 +14,9 @@ namespace spectral {
 
 class particle_t {
 public:
+  virtual ~particle_t() {
+  }
+
   virtual bool IsDead() const = 0;
   virtual void Update( const timer &Timer );
   virtual void Render();
@@ -23,8 +25,54 @@ public:
 
 class emitter {
 public:
+  emitter();
+
+
+  virtual ~emitter() {
+    while (AliveHead != nullptr) {
+      entry *ToDelete = AliveHead;
+      AliveHead = AliveHead->Next;
+      delete ToDelete;
+    }
+
+    while (Dead != nullptr) {
+      entry *ToDelete = Dead;
+      Dead = Dead->Next;
+      delete ToDelete;
+    }
+  }
+
+
   virtual bool IsDead() const = 0;
-  virtual void Emit( const timer &Timer, std::forward_list<std::shared_ptr<particle_t>> &Where ) = 0;
+  virtual void Update( const timer &Timer );
+  virtual void Render();
+  virtual std::shared_ptr<particle_t> Initialize() = 0;
+  virtual void Initialize( std::shared_ptr<particle_t> ToReuse ) = 0;
+
+protected:
+  struct entry {
+    std::shared_ptr<particle_t> Particle;
+    entry *Next;
+  };
+  entry *AliveHead, *AliveTail, *Dead;
+
+  void Emit() {
+    entry *ToAdd;
+    if (Dead != nullptr) {
+      ToAdd = Dead;
+      Dead = Dead->Next;
+      Initialize(ToAdd->Particle);
+      ToAdd->Next = nullptr;
+    } else
+      ToAdd = new entry{ Initialize(), nullptr };
+
+    if (AliveTail == nullptr) {
+      AliveHead = AliveTail = ToAdd;
+    } else {
+      AliveTail->Next = ToAdd;
+      AliveTail = ToAdd;
+    }
+  }
 };
 
 
@@ -36,7 +84,6 @@ public:
 
 private:
   std::forward_list<std::shared_ptr<emitter>> Emitters;
-  std::forward_list<std::shared_ptr<particle_t>> Particles;
 };
 
 

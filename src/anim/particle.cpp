@@ -18,20 +18,48 @@ void particle_t::Render() {
 }
 
 
-void particle_manager::Update( const timer &Timer ) {
-  Emitters.remove_if([]( std::shared_ptr<emitter> Emitter ) -> bool { return Emitter->IsDead(); });
-  for (auto &Emitter : Emitters)
-    Emitter->Emit(Timer, Particles);
+emitter::emitter() : AliveHead(nullptr), AliveTail(nullptr), Dead(nullptr) {
+}
 
-  for (auto &Particle : Particles)
-    Particle->Update(Timer);
-  Particles.remove_if([]( std::shared_ptr<particle_t> Particle ) -> bool { return Particle->IsDead(); });
+
+void emitter::Update( const timer &Timer ) {
+  entry *Entry = AliveHead;
+  while (Entry != nullptr) {
+    Entry->Particle->Update(Timer);
+    Entry = Entry->Next;
+  }
+
+  while (AliveHead != nullptr && AliveHead->Particle->IsDead()) {
+    entry *ToDie = AliveHead;
+    AliveHead = AliveHead->Next;
+    ToDie->Next = Dead;
+    Dead = ToDie;
+  }
+
+  if (AliveHead == nullptr)
+    AliveTail = nullptr;
+}
+
+
+void emitter::Render() {
+  entry *Entry = AliveHead;
+  while (Entry != nullptr) {
+    Entry->Particle->Render();
+    Entry = Entry->Next;
+  }
+}
+
+
+void particle_manager::Update( const timer &Timer ) {
+  for (auto &Emitter : Emitters)
+    Emitter->Update(Timer);
+  Emitters.remove_if([]( std::shared_ptr<emitter> Emitter ) -> bool { return Emitter->IsDead(); });
 }
 
 
 void particle_manager::Render() {
-  for (auto &Particle: Particles)
-    Particle->Render();
+  for (auto &Emitter: Emitters)
+    Emitter->Render();
 }
 
 

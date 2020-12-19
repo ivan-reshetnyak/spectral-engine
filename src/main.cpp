@@ -26,9 +26,7 @@ INT WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
     << new units::triangle(&Anim, vec(0, 0.1f, 1.5) * Scale, vec(1, 0.1f, 1.5) * Scale, vec(0, 1.1f, 1.5) * Scale)
     << new units::triangle(&Anim, vec(0, 0.1f, 2.5) * Scale, vec(1, 0.1f, 2.5) * Scale, vec(0, 1.1f, 2.5) * Scale)
     // << new units::triangle(&Anim, vec(0, 1, 0) * Scale, vec(1, -1, 0) * Scale, vec(-1, -1, 0 * Scale))
-    << new units::signal(&Anim, vec(0, 0, 0) * Scale, vec(0, 0.3f, 0) * Scale)
-    << new units::signal(&Anim, vec(0, 0, 2.5) * Scale, vec(0, 0.3f, 0) * Scale)
-    << new units::signal(&Anim, vec(0, 0, -2.5) * Scale, vec(0, 0.3f, 0) * Scale);
+    << new units::signal(&Anim, vec(0, 0, 0) * Scale, vec(0, 0.3f, 0) * Scale);
 
   Anim.Run();
 
