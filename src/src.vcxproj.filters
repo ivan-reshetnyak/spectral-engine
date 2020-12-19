@@ -40,8 +40,11 @@
     <Filter Include="Source Files\Anim\Render\Particles">
       <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Anim\Render\Textures">
+    <Filter Include="Source Files\Anim\Render\Resource\Textures">
       <UniqueIdentifier>{be5b79f4-9603-470a-bc58-61274995c3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Logs">
+      <UniqueIdentifier>{935da222-dd3f-4be9-9e29-a33c4db56821}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +112,10 @@
       <Filter>Source Files\Anim\Render\Resource</Filter>
     </ClCompile>
     <ClCompile Include="anim\render\resource\tex\tex_raw.cpp">
-      <Filter>Source Files\Anim\Render\Textures</Filter>
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\tex\tex_png.cpp">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -195,7 +201,15 @@
       <Filter>Source Files\Anim\Render\Resource</Filter>
     </ClInclude>
     <ClInclude Include="anim\render\resource\tex\tex_raw.h">
-      <Filter>Source Files\Anim\Render\Textures</Filter>
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
     </ClInclude>
+    <ClInclude Include="anim\render\resource\tex\tex_png.h">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\logs\shader.log">
+      <Filter>Resource Files\Logs</Filter>
+    </Text>
   </ItemGroup>
 </Project>

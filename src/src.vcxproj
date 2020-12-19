@@ -187,6 +187,7 @@
     <ClCompile Include="anim\render\resource\material.cpp" />
     <ClCompile Include="anim\render\resource\shader.cpp" />
     <ClCompile Include="anim\render\resource\texture.cpp" />
+    <ClCompile Include="anim\render\resource\tex\tex_png.cpp" />
     <ClCompile Include="anim\render\resource\tex\tex_raw.cpp" />
     <ClCompile Include="anim\render\vertex.cpp" />
     <ClCompile Include="anim\timer.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="anim\render\resource\material.h" />
     <ClInclude Include="anim\render\resource\shader.h" />
     <ClInclude Include="anim\render\resource\texture.h" />
+    <ClInclude Include="anim\render\resource\tex\tex_png.h" />
     <ClInclude Include="anim\render\resource\tex\tex_raw.h" />
     <ClInclude Include="anim\render\vertex.h" />
     <ClInclude Include="anim\timer.h" />
@@ -231,6 +233,9 @@
     <ClInclude Include="util\memhooks.h" />
     <ClInclude Include="util\resource_manager.h" />
     <ClInclude Include="win\window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\logs\shader.log" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

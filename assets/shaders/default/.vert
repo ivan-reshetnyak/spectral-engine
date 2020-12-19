@@ -15,10 +15,10 @@ uniform mat4 VP;
 uniform mat4 World;
 
 void main( void ) {
-  Pos = InPos;
+  Pos = (World * vec4(InPos, 1)).xyz;
   Norm = InNorm;
   Col = InCol;
   Tex = InTex;
 
-  gl_Position = (World * VP) * vec4(Pos, 1); 
+  gl_Position = VP * vec4(Pos, 1); 
 }

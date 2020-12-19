@@ -8,7 +8,7 @@
 #include "pch.h"
 
 #include "../particle.h"
-#include "../render/resource/tex/tex_raw.h"
+#include "../render/resource/tex/tex_png.h"
 #include "unit_signal.h"
 
 namespace spectral {
@@ -48,9 +48,7 @@ public:
       bb_vertex * Vertices = new bb_vertex[1];
     Vertices[0] = bb_vertex(Start, 0.3f);
     auto Shader = shader::Manager.Get("default_particle");
-    std::shared_ptr<texture> Texture(new tex::raw("Texture", 0, 2, 2,
-                                                  std::shared_ptr<float>(new float[4]{1, 0,
-                                                                                      0, 1})));
+    std::shared_ptr<texture> Texture(new tex::png("Texture", 0, "../assets/textures/smoke.png"));
     auto Material = material::Manager.Add("unit_signal_billboard", Shader);
     Material->
       Add(Texture)->
@@ -61,26 +59,29 @@ public:
       SetUniform("CameraRight", &Anim->Camera.Right)->
       SetUniform("CameraUp", &Anim->Camera.Up);
     Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
+    Rotation = (float)rand() / RAND_MAX * (float)Pi;
   }
 
 
   void Update( const timer &Timer ) override {
     timed::Update(Timer);
     Position += Speed * Timer.DeltaTime;
+    Rotation += (float)!Speed * Timer.DeltaTime;
   }
 
 
   void Render() override {
-    glDisable(GL_DEPTH_TEST);
-    Anim->World = matrix::Translation(Position.X, Position.Y, Position.Z);
+    glDepthMask(false);
+    Anim->World = matrix::Translation(Position.X, Position.Y, Position.Z) * matrix::RotationZ(Rotation);
     Primitive.Draw();
     Anim->World = matrix();
-    glEnable(GL_DEPTH_TEST);
+    glDepthMask(true);
   }
 
 private:
   animation *Anim;
   vec Position, Speed;
+  float Rotation;
   prim::points Primitive;
 };
 
@@ -99,11 +100,17 @@ public:
 
 
   virtual void Emit( const timer &Timer, std::forward_list<std::shared_ptr<particle_t>> &Where ) {
-    if (Timer.Time - LastEmission < Period)
+    float Passed = Timer.Time - LastEmission;
+
+    int ToEmit = (int)(Passed / Period);
+    if (ToEmit <= 0)
       return;
+    vec SpeedShifted;
+    for (int i = 0; i < ToEmit; i++) {
+      SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.1f;
+      Where.push_front(std::shared_ptr<particle_t>(new billboard(Anim, LifeTime, Position, SpeedShifted)));
+    }
     LastEmission = Timer.Time;
-    vec SpeedShifted = Speed + vec(rand() / (float)RAND_MAX, rand() / (float)RAND_MAX, rand() / (float)RAND_MAX) * 0.3f;
-    Where.push_front(std::shared_ptr<particle_t>(new billboard(Anim, LifeTime, Position, SpeedShifted)));
   }
 
 private:
@@ -114,7 +121,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.05f, 3.0f, vec(0, 0, 0), vec(0, 0.1f, 0)));
+  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.5f, 3.5f, Pos, Speed));
 }
 
 

@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file.
 - Matrices
 - Unit tests
 - Camera
-- Real 3D
+- Textures
+- Particles
 
 
 ## [0.1.1] - 2020-12-18

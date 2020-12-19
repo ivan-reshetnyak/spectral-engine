@@ -33,7 +33,7 @@ camera::camera( float Near, float Far,
 void camera::UpdateMatrices( void ) {
   View = matrix::View(Position, Direction, Up, Right);
   Projection = matrix::Projection(LeftP, RightP, Top, Bottom, Near, Far);
-  VP = Projection * View;
+  VP = View * Projection;
 }
 
 

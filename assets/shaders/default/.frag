@@ -8,5 +8,5 @@ in vec2 Tex;
 out vec4 OutCol;
 
 void main( void ) {
-  OutCol = Col;
+  OutCol = vec4(Pos, 1);
 }

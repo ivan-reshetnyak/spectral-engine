@@ -28,19 +28,19 @@ void timer::Update() {
 
   /* Update global time */
   GlobalTime =
-    (double)(CurrentTime.QuadPart - StartTime) / TimesPerSecond;
+    (float)(CurrentTime.QuadPart - StartTime) / TimesPerSecond;
   GlobalDeltaTime =
-    (double)(CurrentTime.QuadPart - OldTime) / TimesPerSecond;
+    (float)(CurrentTime.QuadPart - OldTime) / TimesPerSecond;
 
   /* Update FPS */
   if (CurrentTime.QuadPart - LastTime > TimesPerSecond) {
-    FPS = (double)FrameCount / (CurrentTime.QuadPart - LastTime) * TimesPerSecond;
+    FPS = (float)FrameCount / (CurrentTime.QuadPart - LastTime) * TimesPerSecond;
     LastTime = CurrentTime.QuadPart;
     FrameCount = 0;
   }
 
   /* Update local time */
-  Time = (double)(CurrentTime.QuadPart - StartTime - PauseTime) / TimesPerSecond;
+  Time = (float)(CurrentTime.QuadPart - StartTime - PauseTime) / TimesPerSecond;
   if (IsPaused())
     DeltaTime = 0, PauseTime += CurrentTime.QuadPart - OldTime;
   else

@@ -353,10 +353,10 @@ public:
 
 
   static matrix_t View( const vec &Loc, const vec &Dir, const vec &Up, const vec &Right ) {
-    return matrix_t(Right.X, Right.Y, Right.Z, -Loc & Right,
-                       Up.X,    Up.Y,    Up.Z, -Loc & Up,
-                      Dir.X,   Dir.Y,   Dir.Z, -Loc & Dir,
-                          0,       0,       0,          1);
+    return matrix_t(Right.X,      Up.X,      Dir.X, (type)0,
+                    Right.Y,      Up.Y,      Dir.Y, (type)0,
+                    Right.Z,      Up.Z,      Dir.Z, (type)0,
+                -Loc & Right, -Loc & Up, -Loc & Dir, (type)1);
   }
 
 
@@ -367,10 +367,10 @@ public:
       Depth = Far - Near;
 
     return
-      matrix_t((type)2 * Near / Width,                 (type)0,                       (type)0,  (type)0,
-                              (type)0, (type)2 * Near / Height,                       (type)0,  (type)0,
-               (Right + Left) / Width, (Top + Bottom) / Height,  -(Far + Near) / (Far - Near), (type)-1,
-                              (type)0,                 (type)0, (type)2 * Far * Near / -Depth,  (type)0);
+      matrix_t((type)2 * Near / Width,                 (type)0,  (Right + Left) / Width,                       (type)0,
+                              (type)0, (type)2 * Near / Height, (Top + Bottom) / Height,                       (type)0,
+                              (type)0,                 (type)0,   -(Far + Near) / Depth, (type)2 * Far * Near / -Depth,
+                              (type)0,                 (type)0,                (type)-1,                       (type)0);
   }
 
 private:

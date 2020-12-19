@@ -64,8 +64,7 @@ public:
 
 
   TEST_METHOD(TestTransposed) {
-    matrix M1T(M1);
-    Assert::IsTrue(M1T.Transposed() == M2);
+    Assert::IsTrue(M1.Transposed() == M2);
   }
 
 
