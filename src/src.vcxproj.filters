@@ -52,7 +52,7 @@
     <Filter Include="Resource Files\Shaders\default_particle">
       <UniqueIdentifier>{e21dd38d-977b-41ad-b922-c1645d8ab2ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shaders\fireworks">
+    <Filter Include="Resource Files\Shaders\spark">
       <UniqueIdentifier>{133f08b4-567a-497c-83d2-4295530b06d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -126,14 +126,14 @@
     <ClCompile Include="anim\units\unit_fireworks.cpp">
       <Filter>Source Files\Anim\Units</Filter>
     </ClCompile>
-    <ClCompile Include="anim\particles\particle_fireworks.cpp">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
-    </ClCompile>
     <ClCompile Include="anim\particles\particle_timed.cpp">
       <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClCompile>
     <ClCompile Include="anim\world.cpp">
       <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_spark.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,9 +224,6 @@
     <ClInclude Include="anim\units\unit_fireworks.h">
       <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
-    <ClInclude Include="anim\particles\particle_fireworks.h">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
-    </ClInclude>
     <ClInclude Include="anim\particles\particle_timed.h">
       <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClInclude>
@@ -235,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="util\util.h">
       <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\particle_spark.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,14 +252,14 @@
     <None Include="..\assets\shaders\default_particle\.vert">
       <Filter>Resource Files\Shaders\default_particle</Filter>
     </None>
-    <None Include="..\assets\shaders\fireworks\.frag">
-      <Filter>Resource Files\Shaders\fireworks</Filter>
+    <None Include="..\assets\shaders\spark\.frag">
+      <Filter>Resource Files\Shaders\spark</Filter>
     </None>
-    <None Include="..\assets\shaders\fireworks\.geom">
-      <Filter>Resource Files\Shaders\fireworks</Filter>
+    <None Include="..\assets\shaders\spark\.geom">
+      <Filter>Resource Files\Shaders\spark</Filter>
     </None>
-    <None Include="..\assets\shaders\fireworks\.vert">
-      <Filter>Resource Files\Shaders\fireworks</Filter>
+    <None Include="..\assets\shaders\spark\.vert">
+      <Filter>Resource Files\Shaders\spark</Filter>
     </None>
   </ItemGroup>
 </Project>

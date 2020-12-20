@@ -7,7 +7,7 @@
 
 #include "../animation.h"
 #include "../unit.h"
-#include "../particles/particle_fireworks.h"
+#include "../particles/particle_spark.h"
 
 namespace spectral {
 namespace units {

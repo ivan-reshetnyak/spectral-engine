@@ -13,13 +13,13 @@ namespace spectral {
 namespace particle {
 
 
-class fireworks : public timed {
+class spark : public timed {
 public:
-  fireworks( animation *Anim, world *World,
+  spark( animation *Anim, world *World,
              const timed &&Timed,
              const vec &StartPos, const vec &StartVel,
              const color &Color = color(1, 1, 1, 1));
-  fireworks & operator=( const fireworks &&Other );
+  spark & operator=( const spark &&Other );
   virtual void Update( const timer &Timer ) override;
   virtual void Render() override;
 

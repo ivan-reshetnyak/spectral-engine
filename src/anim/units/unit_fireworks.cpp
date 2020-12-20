@@ -5,7 +5,6 @@
 
 #include "pch.h"
 
-#include "../particles/particle_fireworks.h"
 #include "unit_fireworks.h"
 
 namespace spectral {

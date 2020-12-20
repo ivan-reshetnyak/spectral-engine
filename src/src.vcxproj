@@ -177,7 +177,7 @@
     <ClCompile Include="anim\animation.cpp" />
     <ClCompile Include="anim\camera.cpp" />
     <ClCompile Include="anim\particle.cpp" />
-    <ClCompile Include="anim\particles\particle_fireworks.cpp" />
+    <ClCompile Include="anim\particles\particle_spark.cpp" />
     <ClCompile Include="anim\particles\particle_timed.cpp" />
     <ClCompile Include="anim\render\buffer.cpp" />
     <ClCompile Include="anim\render\geometry.cpp" />
@@ -210,7 +210,7 @@
     <ClInclude Include="anim\animation.h" />
     <ClInclude Include="anim\camera.h" />
     <ClInclude Include="anim\particle.h" />
-    <ClInclude Include="anim\particles\particle_fireworks.h" />
+    <ClInclude Include="anim\particles\particle_spark.h" />
     <ClInclude Include="anim\particles\particle_timed.h" />
     <ClInclude Include="anim\render\buffer.h" />
     <ClInclude Include="anim\render\geometry.h" />
@@ -248,9 +248,9 @@
     <None Include="..\assets\shaders\default_particle\.frag" />
     <None Include="..\assets\shaders\default_particle\.geom" />
     <None Include="..\assets\shaders\default_particle\.vert" />
-    <None Include="..\assets\shaders\fireworks\.frag" />
-    <None Include="..\assets\shaders\fireworks\.geom" />
-    <None Include="..\assets\shaders\fireworks\.vert" />
+    <None Include="..\assets\shaders\spark\.frag" />
+    <None Include="..\assets\shaders\spark\.geom" />
+    <None Include="..\assets\shaders\spark\.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

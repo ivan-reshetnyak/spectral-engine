@@ -8,7 +8,7 @@
 #include "../render/vertex.h"
 #include "../render/resource/material.h"
 #include "../render/resource/tex/tex_png.h"
-#include "particle_fireworks.h"
+#include "particle_spark.h"
 
 namespace spectral {
 namespace particle {
@@ -30,22 +30,22 @@ public:
 };
 
 
-std::shared_ptr<material> fireworks::Material;
-prim::points fireworks::Primitive;
-world * fireworks::World = nullptr;
+std::shared_ptr<material> spark::Material;
+prim::points spark::Primitive;
+world * spark::World = nullptr;
 
 
-fireworks::fireworks( animation *Anim, world *World,
+spark::spark( animation *Anim, world *World,
                       const timed &&Timed,
                       const vec &StartPos, const vec &StartVel,
                       const color &Color ) :
     timed(std::move(Timed)), Color(Color), Anim(Anim),
     StartPos(StartPos), StartVel(StartVel) {
-  if (!material::Manager.Exists("particle_fireworks")) {
+  if (!material::Manager.Exists("particle_spark")) {
     this->World = World;
-    Material = material::Manager.Add("particle_fireworks", shader::Manager.Get("fireworks"));
+    Material = material::Manager.Add("particle_spark", shader::Manager.Get("spark"));
     Material->
-      Add(std::shared_ptr<texture>(new tex::png("Texture", 0, "../assets/textures/halo.png")))->
+      Add(std::shared_ptr<texture>(new tex::png("Texture", 0, "../assets/textures/spark.png")))->
       SetUniform("Time", &Anim->Timer.Time)->
       SetUniform("g", World->Gravity)->
       SetUniform("Wind", World->Wind)->
@@ -61,7 +61,7 @@ fireworks::fireworks( animation *Anim, world *World,
 }
 
 
-fireworks & fireworks::operator=( const fireworks &&Other ) {
+spark & spark::operator=( const spark &&Other ) {
   timed::operator=(std::move(Other));
   Anim = Other.Anim;
   Color = Other.Color;
@@ -72,13 +72,13 @@ fireworks & fireworks::operator=( const fireworks &&Other ) {
 }
 
 
-void fireworks::Update( const timer &Timer ) {
+void spark::Update( const timer &Timer ) {
   timed::Update(Timer);
   Rotation = Timer.Time * (float)Pi * 0.1f;
 }
 
 
-void fireworks::Render() {
+void spark::Render() {
   glDepthMask(false);
   Material->SetUniform("Size", 1.0f);
   Material->SetUniform("Color", Color);
@@ -114,17 +114,17 @@ std::shared_ptr<particle_t> fireworks_emitter::Initialize() {
     Speed = vec::random();
   Speed = Speed.Normalized() * random(MinSpeed, MaxSpeed);
 
-  return std::shared_ptr<fireworks>(new fireworks(Anim, World, timed(Anim->Timer, LifeTime), Position, Speed, Color));
+  return std::shared_ptr<spark>(new spark(Anim, World, timed(Anim->Timer, LifeTime), Position, Speed, Color));
 }
 
 
 void fireworks_emitter::Initialize( std::shared_ptr<particle_t> ToReuse ) {
-  std::shared_ptr<fireworks> Ptr = std::dynamic_pointer_cast<fireworks>(ToReuse);
+  std::shared_ptr<spark> Ptr = std::dynamic_pointer_cast<spark>(ToReuse);
   vec Speed(vec::random());
   while (!Speed == 0)
     Speed = vec::random();
   Speed = Speed.Normalized() * random(MinSpeed, MaxSpeed);
-  *Ptr = std::move(fireworks(Anim, World, timed(Anim->Timer, LifeTime), Position, Speed, Color));
+  *Ptr = std::move(spark(Anim, World, timed(Anim->Timer, LifeTime), Position, Speed, Color));
 }
 
 
