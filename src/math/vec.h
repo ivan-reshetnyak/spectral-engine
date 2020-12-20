@@ -7,6 +7,8 @@
 
 #include <cmath>
 
+#include "util/util.h"
+
 namespace spectral {
 
 template<class type>
@@ -210,6 +212,7 @@ public:
     return *this;
   }
 
+
   vec_t Normalized() const {
     type len = X * X + Y * Y + Z * Z;
 
@@ -221,6 +224,11 @@ public:
       return *this;
     }
     return *this;
+  }
+
+
+  static vec_t random() {
+    return vec_t(::spectral::random(-1, 1), ::spectral::random(-1, 1), ::spectral::random(-1, 1));
   }
 };
 

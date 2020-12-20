@@ -7,7 +7,7 @@
 
 #include "pch.h"
 
-#include "timed.h"
+#include "particle_timed.h"
 
 namespace spectral {
 namespace particle {
@@ -15,6 +15,11 @@ namespace particle {
 
 timed::timed( const timer &Timer, float LifeTime ) :
     BirthTime(Timer.Time), LifeTime(LifeTime), Age(0) {
+}
+
+
+timed::timed( const timed &&Other ) :
+    BirthTime(Other.BirthTime), LifeTime(Other.LifeTime), Age(Other.Age) {
 }
 
 

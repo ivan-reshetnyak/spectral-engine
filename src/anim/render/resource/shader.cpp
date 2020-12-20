@@ -169,6 +169,13 @@ void shader::SetUniform( const std::string &Name, vec &Val ) const {
 }
 
 
+void shader::SetUniform( const std::string &Name, color &Val ) const {
+  int loc = glGetUniformLocation(Program, Name.c_str());
+  if (loc != -1)
+    glUniform4f(loc, Val.R, Val.G, Val.B, Val.A);
+}
+
+
 int shader::GetProgram() {
   return Program;
 }

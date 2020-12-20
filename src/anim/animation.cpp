@@ -16,9 +16,9 @@ animation::animation( HINSTANCE hInstance ) :
     Render(window::hWnd,
            window::Width,
            window::Height),
-    Camera(0.5f, 10,
+    Camera(0.5f, 1000,
            window::Width, window::Height,
-           vec(0.0, 1.0, -2.5), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
+           vec(0.0, 1.75, -100), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
 }
 
 

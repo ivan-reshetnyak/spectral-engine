@@ -53,7 +53,7 @@ public:
       Material->
         Add(Texture)->
         SetUniform("Time", &Anim->Timer.Time)->
-        SetUniform("World", &Anim->World)->SetUniform("VP", &Anim->Camera.VP)->
+        SetUniform("World", &Anim->World.Transformation)->SetUniform("VP", &Anim->Camera.VP)->
         SetUniform("CameraRight", &Anim->Camera.Right)->
         SetUniform("CameraUp", &Anim->Camera.Up)->
         SetUniform("CameraDir", &Anim->Camera.Direction);

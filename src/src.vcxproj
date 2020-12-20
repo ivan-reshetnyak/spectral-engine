@@ -177,7 +177,8 @@
     <ClCompile Include="anim\animation.cpp" />
     <ClCompile Include="anim\camera.cpp" />
     <ClCompile Include="anim\particle.cpp" />
-    <ClCompile Include="anim\particles\timed.cpp" />
+    <ClCompile Include="anim\particles\particle_fireworks.cpp" />
+    <ClCompile Include="anim\particles\particle_timed.cpp" />
     <ClCompile Include="anim\render\buffer.cpp" />
     <ClCompile Include="anim\render\geometry.cpp" />
     <ClCompile Include="anim\render\primitive.cpp" />
@@ -192,8 +193,10 @@
     <ClCompile Include="anim\render\vertex.cpp" />
     <ClCompile Include="anim\timer.cpp" />
     <ClCompile Include="anim\unit.cpp" />
+    <ClCompile Include="anim\units\unit_fireworks.cpp" />
     <ClCompile Include="anim\units\unit_signal.cpp" />
     <ClCompile Include="anim\units\unit_triangle.cpp" />
+    <ClCompile Include="anim\world.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -207,7 +210,8 @@
     <ClInclude Include="anim\animation.h" />
     <ClInclude Include="anim\camera.h" />
     <ClInclude Include="anim\particle.h" />
-    <ClInclude Include="anim\particles\timed.h" />
+    <ClInclude Include="anim\particles\particle_fireworks.h" />
+    <ClInclude Include="anim\particles\particle_timed.h" />
     <ClInclude Include="anim\render\buffer.h" />
     <ClInclude Include="anim\render\geometry.h" />
     <ClInclude Include="anim\render\primitive.h" />
@@ -222,8 +226,10 @@
     <ClInclude Include="anim\render\vertex.h" />
     <ClInclude Include="anim\timer.h" />
     <ClInclude Include="anim\unit.h" />
+    <ClInclude Include="anim\units\unit_fireworks.h" />
     <ClInclude Include="anim\units\unit_signal.h" />
     <ClInclude Include="anim\units\unit_triangle.h" />
+    <ClInclude Include="anim\world.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="math\color.h" />
     <ClInclude Include="math\math.h" />
@@ -232,6 +238,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="util\memhooks.h" />
     <ClInclude Include="util\resource_manager.h" />
+    <ClInclude Include="util\util.h" />
     <ClInclude Include="win\window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +248,9 @@
     <None Include="..\assets\shaders\default_particle\.frag" />
     <None Include="..\assets\shaders\default_particle\.geom" />
     <None Include="..\assets\shaders\default_particle\.vert" />
+    <None Include="..\assets\shaders\fireworks\.frag" />
+    <None Include="..\assets\shaders\fireworks\.geom" />
+    <None Include="..\assets\shaders\fireworks\.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
