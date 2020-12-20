@@ -15,18 +15,23 @@ fireworks::fireworks( animation *Anim ) : unit(Anim) {
   Explosion = std::shared_ptr<emitter::fireworks>(
     new emitter::fireworks(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
                            10.f, 15.f, 250, color(1.f, 1.f, 1.f)));
+  Anim->World.Wind = vec::random();
   ParticleManager << Explosion;
   LastExplosion = Anim->Timer.Time;
-  Period = 0.5;
+  Period = 1.5;
 }
 
 
 void fireworks::Update() {
   ParticleManager.Update(Anim->Timer);
-  if (Explosion->IsDead() && Anim->Timer.Time - LastExplosion > Period) {
-    ParticleManager << Explosion;
+  if (Anim->Timer.Time - LastExplosion > Period) {
+    if (Explosion->IsDead())
+      ParticleManager << Explosion;
+    Explosion->Set(color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1)))->
+      Set(vec(random(-20, 20), random(40, 50), random(-5, 5)));
     Explosion->Release();
     LastExplosion = Anim->Timer.Time;
+    Period = random(0.5f, 1.0f);
   }
 }
 

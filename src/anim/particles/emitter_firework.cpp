@@ -54,5 +54,17 @@ bool fireworks::IsDead() const {
 }
 
 
+fireworks * fireworks::Set( const vec &NewPos ) {
+  Position = NewPos;
+  return this;
+}
+
+
+fireworks * fireworks::Set( const color &NewCol ) {
+  Color = NewCol;
+  return this;
+}
+
+
 } // End of 'emitter' namespace
 } // End of 'spectral' namespace
