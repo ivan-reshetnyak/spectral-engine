@@ -177,6 +177,7 @@
     <ClCompile Include="anim\animation.cpp" />
     <ClCompile Include="anim\camera.cpp" />
     <ClCompile Include="anim\particle.cpp" />
+    <ClCompile Include="anim\particles\emitter_firework.cpp" />
     <ClCompile Include="anim\particles\particle_spark.cpp" />
     <ClCompile Include="anim\particles\particle_timed.cpp" />
     <ClCompile Include="anim\render\buffer.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="anim\animation.h" />
     <ClInclude Include="anim\camera.h" />
     <ClInclude Include="anim\particle.h" />
+    <ClInclude Include="anim\particles\emitter_firework.h" />
     <ClInclude Include="anim\particles\particle_spark.h" />
     <ClInclude Include="anim\particles\particle_timed.h" />
     <ClInclude Include="anim\render\buffer.h" />

@@ -135,6 +135,9 @@
     <ClCompile Include="anim\particles\particle_spark.cpp">
       <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClCompile>
+    <ClCompile Include="anim\particles\emitter_firework.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -234,6 +237,9 @@
       <Filter>Source Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="anim\particles\particle_spark.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\emitter_firework.h">
       <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClInclude>
   </ItemGroup>

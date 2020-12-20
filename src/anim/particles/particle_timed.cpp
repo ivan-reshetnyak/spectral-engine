@@ -41,5 +41,5 @@ timed & timed::operator=( const timed &&Other ) {
 }
 
 
-} // End of 'particles' namespace
+} // End of 'particle' namespace
 } // End of 'spectral' namespace

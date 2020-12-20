@@ -25,5 +25,5 @@ protected:
 };
 
 
-} // End of 'particles' namespace
+} // End of 'particle' namespace
 } // End of 'spectral' namespace

@@ -34,26 +34,5 @@ protected:
 };
 
 
-class fireworks_emitter : public emitter_t {
-public:
-  fireworks_emitter( animation *Anim, world *World, float LifeTime,
-                     const vec &Position, float MinSpeed, float MaxSpeed,
-                     int NumOfParticles,
-                     const color &Color = color(1, 1, 1) );
-  void Release();
-  virtual bool IsDead() const override;
-  virtual std::shared_ptr<particle_t> Initialize() override;
-  virtual void Initialize( std::shared_ptr<particle_t> ToReuse ) override;
-
-protected:
-  animation *Anim;
-  world *World;
-  float LifeTime, MinSpeed, MaxSpeed;
-  int NumOfParticles;
-  vec Position;
-  color Color;
-};
-
-
-} // End of 'particles' namespace
+} // End of 'particle' namespace
 } // End of 'spectral' namespace

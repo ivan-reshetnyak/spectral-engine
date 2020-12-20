@@ -92,45 +92,5 @@ void spark::Render() {
 }
 
 
-fireworks_emitter::fireworks_emitter( animation *Anim, world *World, float LifeTime,
-                                      const vec &Position, float MinSpeed, float MaxSpeed,
-                                      int NumOfParticles, const color &Color ) :
-    Anim(Anim), World(World), LifeTime(LifeTime), Position(Position),
-    MinSpeed(MinSpeed), MaxSpeed(MaxSpeed), Color(Color),
-    NumOfParticles(NumOfParticles) {
-  Release();
-}
-
-
-void fireworks_emitter::Release() {
-  for (int i = 0; i < NumOfParticles; ++i)
-    Emit();
-}
-
-
-std::shared_ptr<particle_t> fireworks_emitter::Initialize() {
-  vec Speed(vec::random());
-  while (!Speed == 0)
-    Speed = vec::random();
-  Speed = Speed.Normalized() * random(MinSpeed, MaxSpeed);
-
-  return std::shared_ptr<spark>(new spark(Anim, World, timed(Anim->Timer, LifeTime), Position, Speed, Color));
-}
-
-
-void fireworks_emitter::Initialize( std::shared_ptr<particle_t> ToReuse ) {
-  std::shared_ptr<spark> Ptr = std::dynamic_pointer_cast<spark>(ToReuse);
-  vec Speed(vec::random());
-  while (!Speed == 0)
-    Speed = vec::random();
-  Speed = Speed.Normalized() * random(MinSpeed, MaxSpeed);
-  *Ptr = std::move(spark(Anim, World, timed(Anim->Timer, LifeTime), Position, Speed, Color));
-}
-
-
-bool fireworks_emitter::IsDead() const {
-  return AliveHead == nullptr;
-}
-
-} // End of 'particles' namespace
+} // End of 'particle' namespace
 } // End of 'spectral' namespace

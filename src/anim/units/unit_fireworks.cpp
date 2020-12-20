@@ -12,9 +12,9 @@ namespace units {
 
 
 fireworks::fireworks( animation *Anim ) : unit(Anim) {
-  Explosion = std::shared_ptr<particle::fireworks_emitter>(
-    new particle::fireworks_emitter(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
-                                    10.f, 15.f, 250, color(1.f, 1.f, 1.f)));
+  Explosion = std::shared_ptr<emitter::fireworks>(
+    new emitter::fireworks(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
+                           10.f, 15.f, 250, color(1.f, 1.f, 1.f)));
   ParticleManager << Explosion;
   LastExplosion = Anim->Timer.Time;
   Period = 0.5;
