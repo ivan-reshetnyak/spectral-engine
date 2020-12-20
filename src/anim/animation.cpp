@@ -71,4 +71,26 @@ void animation::OnPaint() {
 }
 
 
+void animation::OnButtonDown( bool IsDoubleClick, int X, int Y, unsigned Keys ) {
+  if (Keys & MK_LBUTTON)
+    Mouse.Press(mouse::button::LEFT);
+  if (Keys & MK_MBUTTON)
+    Mouse.Press(mouse::button::MIDDLE);
+  if (Keys & MK_RBUTTON)
+    Mouse.Press(mouse::button::RIGHT);
+  Mouse.Move(X, Y);
+}
+
+
+void animation::OnButtonUp( int X, int Y, unsigned  Keys ) {
+  if (Keys & MK_LBUTTON)
+    Mouse.Release(mouse::button::LEFT);
+  if (Keys & MK_MBUTTON)
+    Mouse.Release(mouse::button::MIDDLE);
+  if (Keys & MK_RBUTTON)
+    Mouse.Release(mouse::button::RIGHT);
+  Mouse.Move(X, Y);
+}
+
+
 } // End of 'spectral' namespace

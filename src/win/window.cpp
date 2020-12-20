@@ -115,7 +115,7 @@ LRESULT CALLBACK window::WinFunc( HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lPa
       case WM_LBUTTONDOWN:
       case WM_RBUTTONDOWN:
       case WM_MBUTTONDOWN:
-        win->OnButtonDown(FALSE, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (UINT)(SHORT)LOWORD(wParam));
+        win->OnButtonDown(false, (INT)(SHORT)LOWORD(lParam), (INT)(SHORT)HIWORD(lParam), (UINT)(SHORT)LOWORD(wParam));
         return 0;
       case WM_KEYDOWN:
         win->OnKeyDown(wParam);
@@ -227,7 +227,7 @@ void window::OnTimer( INT Id ) {
 }
 
 
-void window::OnButtonDown( BOOL IsDoubleClick, INT X, INT Y, UINT Keys ) {
+void window::OnButtonDown( bool IsDoubleClick, int X, int Y, unsigned Keys ) {
 }
 
 
@@ -235,7 +235,7 @@ void window::OnKeyDown( UINT Keys ) {
 }
 
 
-void window::OnButtonUp( INT X, INT Y, UINT Keys ) {
+void window::OnButtonUp( int X, int Y, unsigned Keys ) {
 }
 
 

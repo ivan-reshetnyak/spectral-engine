@@ -37,9 +37,6 @@
     <Filter Include="Source Files\Anim\Render\Prim">
       <UniqueIdentifier>{6057b3ef-b59e-45d5-a1fe-4032115ffa7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Anim\Render\Particles">
-      <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Anim\Render\Resource\Textures">
       <UniqueIdentifier>{be5b79f4-9603-470a-bc58-61274995c3c2}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,12 @@
     </Filter>
     <Filter Include="Resource Files\Shaders\spark">
       <UniqueIdentifier>{133f08b4-567a-497c-83d2-4295530b06d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Particles">
+      <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Controls">
+      <UniqueIdentifier>{00183b76-de16-486c-93d3-fee886c19c77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -127,16 +130,19 @@
       <Filter>Source Files\Anim\Units</Filter>
     </ClCompile>
     <ClCompile Include="anim\particles\particle_timed.cpp">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
+      <Filter>Source Files\Anim\Particles</Filter>
     </ClCompile>
     <ClCompile Include="anim\world.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
     <ClCompile Include="anim\particles\particle_spark.cpp">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
+      <Filter>Source Files\Anim\Particles</Filter>
     </ClCompile>
     <ClCompile Include="anim\particles\emitter_firework.cpp">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\control\mouse.cpp">
+      <Filter>Source Files\Anim\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,7 +234,7 @@
       <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
     <ClInclude Include="anim\particles\particle_timed.h">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
+      <Filter>Source Files\Anim\Particles</Filter>
     </ClInclude>
     <ClInclude Include="anim\world.h">
       <Filter>Source Files\Anim</Filter>
@@ -237,10 +243,13 @@
       <Filter>Source Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="anim\particles\particle_spark.h">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
+      <Filter>Source Files\Anim\Particles</Filter>
     </ClInclude>
     <ClInclude Include="anim\particles\emitter_firework.h">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\control\mouse.h">
+      <Filter>Source Files\Anim\Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
