@@ -171,31 +171,6 @@ public:
   }
 
 
-  /* TODO: When I add matrices
-  TVec operator*( const TMatr<TYPE> &Matr ) const
-  {
-    TVec ret(X * Matr.A[0][0] + Y * Matr.A[1][0] + Z * Matr.A[2][0] + Matr.A[3][0],
-              X * Matr.A[0][1] + Y * Matr.A[1][1] + Z * Matr.A[2][1] + Matr.A[3][1],
-              X * Matr.A[0][2] + Y * Matr.A[1][2] + Z * Matr.A[2][2] + Matr.A[3][2]);
-    TYPE W = X * Matr.A[0][3] + Y * Matr.A[1][3] + Z * Matr.A[2][3] + Matr.A[3][3];
-    ret /= W;
-    return ret;
-  }
-
-  TVec & operator*=( const TMatr<TYPE> &Matr )
-  {
-    TYPE a, b;
-
-    a = X * Matr.A[0][0] + Y * Matr.A[1][0] + Z * Matr.A[2][0] + Matr.A[3][0];
-    b = X * Matr.A[0][1] + Y * Matr.A[1][1] + Z * Matr.A[2][1] + Matr.A[3][1];
-    Z = X * Matr.A[0][2] + Y * Matr.A[1][2] + Z * Matr.A[2][2] + Matr.A[3][2];
-    X = a;
-    Y = b;
-
-    return *this;
-  }
-  */
-
   vec_t & Normalize() {
     type len = X * X + Y * Y + Z * Z;
 

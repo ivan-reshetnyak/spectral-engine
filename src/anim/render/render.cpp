@@ -56,7 +56,7 @@ render::render( HWND &hWndUsed, int &W, int &H ) :
   glEnable(GL_DEPTH_TEST);
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-  glClearColor(0.3f, 0.5f, 0.7f, 1.f);
+  glClearColor(0.05f, 0.15f, 0.25f, 1.f);
 }
 
 
@@ -69,12 +69,6 @@ render::~render() {
 
 void render::Resize() {
   glViewport(0, 0, Width, Height);
-
-  /* TODO: Update camera
-  Camera.ScreenWidth = Width;
-  Camera.ScreenHeight = Height;
-  Camera.UpdateProjData();
-  */
 }
 
 

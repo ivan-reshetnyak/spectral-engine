@@ -18,16 +18,12 @@ public:
   void StartFrame();
   void EndFrame();
   void CopyFrame();
-  // TODO: void Draw( prim &P ); Do I even need it?
-
 
 private:
   HWND &hWnd;           // Window handle
   HDC hDC;              // Window device context
   HGLRC hRC;            // OpenGL rendering context
   int &Width, &Height;
-  // TODO: camera Camera;
-  // TODO: matr World;
 };
 
 
