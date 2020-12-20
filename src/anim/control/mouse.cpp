@@ -10,19 +10,25 @@
 namespace spectral {
 
 
-mouse::mouse() : Buttons({state::UP, state::UP, state::UP}), Previous({state::UP, state::UP, state::UP}) {
+mouse::mouse( const int &Width, const int &Height ) :
+    Width(Width), Height(Height),
+    Buttons({state::UP, state::UP, state::UP}),
+    Previous({state::UP, state::UP, state::UP}) {
 }
 
 
 void mouse::Update() {
+  for (unsigned i = 0; i < Buttons.size(); ++i) {
+    if (Buttons[i] == state::DOWN && Previous[i] == state::UP)
+      Buttons[i] = state::CLICK;
+    else if (Buttons[i] == state::CLICK)
+      Buttons[i] = state::DOWN;
+  }
   Previous = Buttons;
 }
 
 void mouse::Press( button Button ) {
-  if (Previous[(int)Button] == state::UP)
-    Buttons[(int)Button] = state::CLICK;
-  else
-    Buttons[(int)Button] = state::DOWN;
+  Buttons[(int)Button] = state::DOWN;
 }
 
 
@@ -31,14 +37,23 @@ void mouse::Release( button Button ) {
 }
 
 
-void mouse::Move( int NewX, int NewY ) {
-  X = NewX;
-  Y = NewY;
+void mouse::Move( const point<int> &NewCoords ) {
+  Coords = NewCoords;
 }
 
 
 mouse::state mouse::operator[]( button Button ) const {
   return Buttons[(int)Button];
+}
+
+
+point<int> mouse::GetCoordsAbsolute() const {
+  return Coords;
+}
+
+
+point<float> mouse::GetCoordsRelative() const {
+  return { Coords.X / (float)Width, 1.0f - Coords.Y / (float)Height };
 }
 
 

@@ -7,6 +7,7 @@
 
 #include "../animation.h"
 #include "../unit.h"
+#include "../ui/ui_button.h"
 #include "../particles/emitter_firework.h"
 
 namespace spectral {
@@ -23,6 +24,9 @@ private:
   particle_manager ParticleManager;
   std::shared_ptr<emitter::fireworks> Explosion;
   float LastExplosion, Period;
+  std::shared_ptr<ui::button> LaunchButton;
+
+  void Launch();
 };
 
 

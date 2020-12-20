@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include <array>
+#include "util/point.h"
 
 namespace spectral {
 
@@ -19,16 +19,19 @@ public:
     UP, CLICK, DOWN
   };
 
-  mouse();
+  mouse( const int &Width, const int &Height );
   void Update();
   void Press( button Button );
-  void Move( int NewX, int NewY );
+  void Move( const point<int> &NewCoords );
   void Release( button Button );
   state operator[]( button Button ) const;
+  point<int> GetCoordsAbsolute() const;
+  point<float> GetCoordsRelative() const;
 
 private:
   std::array<state, 3> Buttons, Previous;
-  int X, Y;
+  point<int> Coords;
+  const int &Width, Height;
 };
 
 

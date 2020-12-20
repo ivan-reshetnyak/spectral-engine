@@ -194,6 +194,8 @@
     <ClCompile Include="anim\render\resource\tex\tex_raw.cpp" />
     <ClCompile Include="anim\render\vertex.cpp" />
     <ClCompile Include="anim\timer.cpp" />
+    <ClCompile Include="anim\ui\ui_button.cpp" />
+    <ClCompile Include="anim\ui\ui_element.cpp" />
     <ClCompile Include="anim\unit.cpp" />
     <ClCompile Include="anim\units\unit_fireworks.cpp" />
     <ClCompile Include="anim\units\unit_signal.cpp" />
@@ -229,6 +231,8 @@
     <ClInclude Include="anim\render\resource\tex\tex_raw.h" />
     <ClInclude Include="anim\render\vertex.h" />
     <ClInclude Include="anim\timer.h" />
+    <ClInclude Include="anim\ui\ui_button.h" />
+    <ClInclude Include="anim\ui\ui_element.h" />
     <ClInclude Include="anim\unit.h" />
     <ClInclude Include="anim\units\unit_fireworks.h" />
     <ClInclude Include="anim\units\unit_signal.h" />
@@ -241,6 +245,8 @@
     <ClInclude Include="math\vec.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="util\memhooks.h" />
+    <ClInclude Include="util\point.h" />
+    <ClInclude Include="util\rect.h" />
     <ClInclude Include="util\resource_manager.h" />
     <ClInclude Include="util\util.h" />
     <ClInclude Include="win\window.h" />
@@ -249,6 +255,9 @@
     <Text Include="..\logs\shader.log" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\assets\shaders\button\.frag" />
+    <None Include="..\assets\shaders\button\.geom" />
+    <None Include="..\assets\shaders\button\.vert" />
     <None Include="..\assets\shaders\default_particle\.frag" />
     <None Include="..\assets\shaders\default_particle\.geom" />
     <None Include="..\assets\shaders\default_particle\.vert" />
