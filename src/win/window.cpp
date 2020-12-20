@@ -216,7 +216,6 @@ bool window::OnEraseBackground( HDC hDC ) {
 
 
 void window::OnPaint() {
-  // NOTE: Where is hDC?? paint();
 }
 
 
