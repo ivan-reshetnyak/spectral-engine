@@ -34,7 +34,7 @@ protected:
 };
 
 
-class fireworks_emitter : public emitter {
+class fireworks_emitter : public emitter_t {
 public:
   fireworks_emitter( animation *Anim, world *World, float LifeTime,
                      const vec &Position, float MinSpeed, float MaxSpeed,

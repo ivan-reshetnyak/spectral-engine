@@ -14,9 +14,9 @@ namespace spectral {
 namespace particle {
 
 
-class fw_vertex : public vertex {
+class spark_vertex : public vertex {
 public:
-  fw_vertex() = default;
+  spark_vertex() = default;
 
 
   std::vector<location> GetLayout() override {
@@ -25,7 +25,7 @@ public:
 
 
   int GetSize() override {
-    return sizeof(fw_vertex);
+    return sizeof(spark_vertex);
   }
 };
 
@@ -54,7 +54,7 @@ spark::spark( animation *Anim, world *World,
       SetUniform("CameraRight", &Anim->Camera.Right)->
       SetUniform("CameraUp", &Anim->Camera.Up);
 
-    fw_vertex * Vertices = new fw_vertex[1]{ fw_vertex() };
+    spark_vertex * Vertices = new spark_vertex[1]{ spark_vertex() };
     Primitive.Set(Anim);
     Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
   }

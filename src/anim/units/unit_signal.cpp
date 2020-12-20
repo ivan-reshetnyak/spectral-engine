@@ -107,7 +107,7 @@ std::shared_ptr<material> billboard::Material;
 prim::points billboard::Primitive;
 
 
-class bb_emitter : public emitter {
+class bb_emitter : public emitter_t {
 public:
   bb_emitter( animation *Anim, float Period, float LifeTime, const vec &Position, const vec &Speed ) :
       LastEmission(Anim->Timer.Time), Anim(Anim),
@@ -136,7 +136,7 @@ public:
 
 
   virtual void Update( const timer &Timer ) override {
-    emitter::Update(Timer);
+    emitter_t::Update(Timer);
 
     float Passed = Timer.Time - LastEmission;
 
@@ -156,7 +156,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, .025f, 7.5f, Pos, Speed));
+  ParticleManager << std::shared_ptr<emitter_t>(new bb_emitter(Anim, .025f, 7.5f, Pos, Speed));
 }
 
 

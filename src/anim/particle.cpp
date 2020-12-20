@@ -18,11 +18,11 @@ void particle_t::Render() {
 }
 
 
-emitter::emitter() : AliveHead(nullptr), AliveTail(nullptr), Dead(nullptr) {
+emitter_t::emitter_t() : AliveHead(nullptr), AliveTail(nullptr), Dead(nullptr) {
 }
 
 
-void emitter::Update( const timer &Timer ) {
+void emitter_t::Update( const timer &Timer ) {
   entry *Entry = AliveHead;
   while (Entry != nullptr) {
     Entry->Particle->Update(Timer);
@@ -41,7 +41,7 @@ void emitter::Update( const timer &Timer ) {
 }
 
 
-void emitter::Render() {
+void emitter_t::Render() {
   entry *Entry = AliveHead;
   while (Entry != nullptr) {
     Entry->Particle->Render();
@@ -53,7 +53,7 @@ void emitter::Render() {
 void particle_manager::Update( const timer &Timer ) {
   for (auto &Emitter : Emitters)
     Emitter->Update(Timer);
-  Emitters.remove_if([]( std::shared_ptr<emitter> Emitter ) -> bool { return Emitter->IsDead(); });
+  Emitters.remove_if([]( std::shared_ptr<emitter_t> Emitter ) -> bool { return Emitter->IsDead(); });
 }
 
 
@@ -63,7 +63,7 @@ void particle_manager::Render() {
 }
 
 
-particle_manager & particle_manager::operator<<( std::shared_ptr<emitter> Emitter ) {
+particle_manager & particle_manager::operator<<( std::shared_ptr<emitter_t> Emitter ) {
   Emitters.push_front(Emitter);
   return *this;
 }
