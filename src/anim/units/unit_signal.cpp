@@ -53,16 +53,17 @@ public:
       Material->
         Add(Texture)->
         SetUniform("Time", &Anim->Timer.Time)->
-        SetUniform("World", &Anim->World)->SetUniform("VP", &Anim->Camera.VP)->
+        SetUniform("World", &Anim->World.Transformation)->SetUniform("VP", &Anim->Camera.VP)->
         SetUniform("CameraRight", &Anim->Camera.Right)->
-        SetUniform("CameraUp", &Anim->Camera.Up);
+        SetUniform("CameraUp", &Anim->Camera.Up)->
+        SetUniform("CameraDir", &Anim->Camera.Direction);
 
       bb_vertex * Vertices = new bb_vertex[1];
       Vertices[0] = bb_vertex(Start, 0.3f);
       Primitive.Set(Anim);
       Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
     }
-    Rotation = (float)rand() / RAND_MAX * (float)Pi;
+    Rotation = (float)rand() / RAND_MAX * 2.f * (float)Pi;
   }
 
 
@@ -87,9 +88,9 @@ public:
     glDepthMask(false);
     Material->SetUniform("Age", Age);
     Material->SetUniform("LifeTime", LifeTime);
-    Anim->World = matrix::Translation(Position.X, Position.Y, Position.Z) * matrix::RotationZ(Rotation);
+    Material->SetUniform("Rotation", Rotation);
+    Material->SetUniform("Position", Position);
     Primitive.Draw();
-    Anim->World = matrix();
     glDepthMask(true);
   }
 
@@ -106,12 +107,13 @@ std::shared_ptr<material> billboard::Material;
 prim::points billboard::Primitive;
 
 
-class bb_emitter : public emitter {
+class bb_emitter : public emitter_t {
 public:
   bb_emitter( animation *Anim, float Period, float LifeTime, const vec &Position, const vec &Speed ) :
       LastEmission(Anim->Timer.Time), Anim(Anim),
       Period(Period), LifeTime(LifeTime),
       Position(Position), Speed(Speed) {
+    Emit();
   }
 
 
@@ -134,7 +136,7 @@ public:
 
 
   virtual void Update( const timer &Timer ) override {
-    emitter::Update(Timer);
+    emitter_t::Update(Timer);
 
     float Passed = Timer.Time - LastEmission;
 
@@ -154,7 +156,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.005f, 2.5f, Pos, Speed));
+  ParticleManager << std::shared_ptr<emitter_t>(new bb_emitter(Anim, .025f, 7.5f, Pos, Speed));
 }
 
 

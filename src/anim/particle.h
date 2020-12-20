@@ -23,12 +23,12 @@ public:
 };
 
 
-class emitter {
+class emitter_t {
 public:
-  emitter();
+  emitter_t();
 
 
-  virtual ~emitter() {
+  virtual ~emitter_t() {
     while (AliveHead != nullptr) {
       entry *ToDelete = AliveHead;
       AliveHead = AliveHead->Next;
@@ -80,10 +80,10 @@ class particle_manager {
 public:
   void Update( const timer &Timer );
   void Render();
-  particle_manager & operator<<( std::shared_ptr<emitter> Emitter );
+  particle_manager & operator<<( std::shared_ptr<emitter_t> Emitter );
 
 private:
-  std::forward_list<std::shared_ptr<emitter>> Emitters;
+  std::forward_list<std::shared_ptr<emitter_t>> Emitters;
 };
 
 

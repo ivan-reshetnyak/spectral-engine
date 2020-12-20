@@ -42,6 +42,10 @@ void material::SetUniforms( void ) {
     Shader->SetUniform(i.first, i.second);
   for (auto &i : UnifDynVec)
     Shader->SetUniform(i.first, *i.second);
+  for (auto &i : UnifConstCol)
+    Shader->SetUniform(i.first, i.second);
+  for (auto &i : UnifDynCol)
+    Shader->SetUniform(i.first, *i.second);
 }
 
 
@@ -88,6 +92,18 @@ material * material::SetUniform( const std::string &Name, const vec &Val ) {
 
 material * material::SetUniform( const std::string &Name, vec *Ptr ) {
   UnifDynVec[std::string(Name)] = Ptr;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, const color &Val ) {
+  UnifConstCol[std::string(Name)] = Val;
+  return this;
+}
+
+
+material * material::SetUniform( const std::string &Name, color *Ptr ) {
+  UnifDynCol[std::string(Name)] = Ptr;
   return this;
 }
 

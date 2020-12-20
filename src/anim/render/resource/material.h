@@ -45,6 +45,8 @@ private:
   std::unordered_map<std::string, int *> UnifDynInt;
   std::unordered_map<std::string, vec> UnifConstVec;
   std::unordered_map<std::string, vec *> UnifDynVec;
+  std::unordered_map<std::string, color> UnifConstCol;
+  std::unordered_map<std::string, color *> UnifDynCol;
   std::unordered_map<std::string, matrix> UnifConstMatrix;
   std::unordered_map<std::string, matrix *> UnifDynMatrix;
 
@@ -61,6 +63,8 @@ public:
   material * SetUniform( const std::string &Name, int *Ptr );
   material * SetUniform( const std::string &Name, const vec &Val );
   material * SetUniform( const std::string &Name, vec *Ptr);
+  material * SetUniform( const std::string &Name, const color &Val );
+  material * SetUniform( const std::string &Name, color *Ptr);
   material * SetUniform( const std::string &Name, const matrix &Val );
   material * SetUniform( const std::string &Name, matrix *Ptr);
   material * Add( std::shared_ptr<texture> Texture );

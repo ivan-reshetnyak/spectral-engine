@@ -5,24 +5,24 @@
 
 #pragma once
 
-#include "def.h"
 #include "../animation.h"
-#include "../particles/particle_timed.h"
-#include "../render/prim/points.h"
 #include "../unit.h"
+#include "../particles/emitter_firework.h"
 
 namespace spectral {
 namespace units {
 
 
-class signal : public unit {
+class fireworks : public unit {
 public:
-  signal( animation *Anim, const vec &Pos, const vec &Speed );
+  fireworks( animation *Anim );
   void Update() override;
   void Render() override;
 
 private:
   particle_manager ParticleManager;
+  std::shared_ptr<emitter::fireworks> Explosion;
+  float LastExplosion, Period;
 };
 
 

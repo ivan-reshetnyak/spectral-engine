@@ -8,11 +8,11 @@ out vec4 OutCol;
 
 uniform sampler2D Texture;
 
+uniform vec4 Color;
 uniform float LifeTime;
-uniform float Age;
+uniform float t;
 
 void main( void ) {
   vec4 Tex = texture2D(Texture, fs_in.Tex);
-  vec3 Col = vec3(1, 1, 1) * Tex.rgb;
-  OutCol = vec4(Col, Tex.a * max(0, 1.0 - Age * 2 / LifeTime));
+  OutCol = vec4(Color.rgb * Tex.rgb, Color.a * Tex.a * (1.0 - t / LifeTime));
 }

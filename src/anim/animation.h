@@ -8,10 +8,11 @@
 #include <windows.h>
 
 #include "../win/window.h"
+#include "render/render.h"
 #include "camera.h"
 #include "timer.h"
 #include "unit.h"
-#include "render/render.h"
+#include "world.h"
 
 namespace spectral {
 
@@ -19,7 +20,7 @@ namespace spectral {
 class animation : public window {
 public:
   camera Camera;
-  matrix World;
+  world World;
   timer Timer;
 
   animation( HINSTANCE hInstance = GetModuleHandle(NULL) );

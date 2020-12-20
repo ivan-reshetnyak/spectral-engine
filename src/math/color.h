@@ -111,6 +111,18 @@ public:
     B = NewB;
     A = NewA;
   }
+
+
+  static color_t random() {
+    return color_t(::spectral::random(-1, 1), ::spectral::random(-1, 1),
+                   ::spectral::random(-1, 1), ::spectral::random(-1, 1));
+  }
+
+
+  static color_t random( const type &Alpha ) {
+    return color_t(::spectral::random(-1, 1), ::spectral::random(-1, 1),
+                   ::spectral::random(-1, 1), Alpha);
+  }
 };
 
 

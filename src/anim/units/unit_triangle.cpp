@@ -22,7 +22,7 @@ triangle::triangle( animation *Anim, const vec &V1, const vec &V2, const vec &V3
   auto Shader = shader::Manager.Get("default");
   auto Material = material::Manager.Add("default", Shader);
   Material->SetUniform("Time", &Anim->Timer.Time);
-  Material->SetUniform("World", &Anim->World);
+  Material->SetUniform("World", &Anim->World.Transformation);
   Material->SetUniform("VP", &Anim->Camera.VP);
   Material->SetUniform("View", &Anim->Camera.View);
   Material->SetUniform("Projection", &Anim->Camera.Projection);
@@ -31,9 +31,9 @@ triangle::triangle( animation *Anim, const vec &V1, const vec &V2, const vec &V3
 
 
 void triangle::Render() {
-  Anim->World = matrix::RotationY(Anim->Timer.Time * 45);
+  Anim->World.Transformation = matrix::RotationY(Anim->Timer.Time * 45);
   TrianglePrimitive.Draw();
-  Anim->World = matrix();
+  Anim->World.Transformation = matrix();
 }
 
 

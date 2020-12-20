@@ -46,6 +46,15 @@
     <Filter Include="Resource Files\Logs">
       <UniqueIdentifier>{935da222-dd3f-4be9-9e29-a33c4db56821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{c1d1d1bf-f601-4d38-96e3-42f6a122fde8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\default_particle">
+      <UniqueIdentifier>{e21dd38d-977b-41ad-b922-c1645d8ab2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\spark">
+      <UniqueIdentifier>{133f08b4-567a-497c-83d2-4295530b06d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -96,9 +105,6 @@
     <ClCompile Include="anim\particle.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
-    <ClCompile Include="anim\particles\timed.cpp">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
-    </ClCompile>
     <ClCompile Include="anim\units\unit_triangle.cpp">
       <Filter>Source Files\Anim\Units</Filter>
     </ClCompile>
@@ -116,6 +122,21 @@
     </ClCompile>
     <ClCompile Include="anim\render\resource\tex\tex_png.cpp">
       <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_fireworks.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_timed.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\world.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_spark.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\emitter_firework.cpp">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,9 +206,6 @@
     <ClInclude Include="anim\particle.h">
       <Filter>Source Files\Anim</Filter>
     </ClInclude>
-    <ClInclude Include="anim\particles\timed.h">
-      <Filter>Source Files\Anim\Render\Particles</Filter>
-    </ClInclude>
     <ClInclude Include="anim\units\unit_triangle.h">
       <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
@@ -206,10 +224,48 @@
     <ClInclude Include="anim\render\resource\tex\tex_png.h">
       <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
     </ClInclude>
+    <ClInclude Include="anim\units\unit_fireworks.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\particle_timed.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\world.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="util\util.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\particle_spark.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\emitter_firework.h">
+      <Filter>Source Files\Anim\Render\Particles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\logs\shader.log">
       <Filter>Resource Files\Logs</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\shaders\default_particle\.frag">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\default_particle\.geom">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\default_particle\.vert">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\spark\.frag">
+      <Filter>Resource Files\Shaders\spark</Filter>
+    </None>
+    <None Include="..\assets\shaders\spark\.geom">
+      <Filter>Resource Files\Shaders\spark</Filter>
+    </None>
+    <None Include="..\assets\shaders\spark\.vert">
+      <Filter>Resource Files\Shaders\spark</Filter>
+    </None>
   </ItemGroup>
 </Project>
