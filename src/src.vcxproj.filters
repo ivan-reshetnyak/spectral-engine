@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{179f9e39-36c6-4e51-89f8-4fe3821bc50f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Win">
+      <UniqueIdentifier>{f123f17c-6cb3-4fd0-be6d-64089b9f301f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim">
+      <UniqueIdentifier>{2851425a-dbc2-4109-bd86-97a72e252248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render">
+      <UniqueIdentifier>{ca32bbf0-e6a4-4a5e-86e1-8d6cdf568a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{2d924174-b95d-44b9-af0d-1df1b6ab6cd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Resource">
+      <UniqueIdentifier>{6422d9c3-344a-4704-b220-ab6ef62cd030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Units">
+      <UniqueIdentifier>{ceb0b1e0-541a-43ce-a2bf-eb4c2004a0ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Prim">
+      <UniqueIdentifier>{6057b3ef-b59e-45d5-a1fe-4032115ffa7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Render\Resource\Textures">
+      <UniqueIdentifier>{be5b79f4-9603-470a-bc58-61274995c3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Logs">
+      <UniqueIdentifier>{935da222-dd3f-4be9-9e29-a33c4db56821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{c1d1d1bf-f601-4d38-96e3-42f6a122fde8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\default_particle">
+      <UniqueIdentifier>{e21dd38d-977b-41ad-b922-c1645d8ab2ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\spark">
+      <UniqueIdentifier>{133f08b4-567a-497c-83d2-4295530b06d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Particles">
+      <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\Controls">
+      <UniqueIdentifier>{00183b76-de16-486c-93d3-fee886c19c77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Anim\UI">
+      <UniqueIdentifier>{bfa253f3-74d9-429f-b0fd-ca7588b8cfcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\button">
+      <UniqueIdentifier>{dc8a64e7-c2fc-413d-bf4d-01edecace617}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="win\window.cpp">
+      <Filter>Source Files\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\timer.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\unit.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\animation.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\render.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\primitive.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\shader.cpp">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\material.cpp">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\geometry.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\vertex.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\buffer.cpp">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\prim\trimesh.cpp">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\camera.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particle.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_triangle.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_signal.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\prim\points.cpp">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\texture.cpp">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\tex\tex_raw.cpp">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\render\resource\tex\tex_png.cpp">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_fireworks.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_timed.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\world.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_spark.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\emitter_firework.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\control\mouse.cpp">
+      <Filter>Source Files\Anim\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_element.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_button.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\memhooks.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="win\window.h">
+      <Filter>Source Files\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\timer.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\unit.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\animation.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\render.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\primitive.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="math\vec.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\color.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\shader.h">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\material.h">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="util\resource_manager.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\geometry.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\vertex.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\buffer.h">
+      <Filter>Source Files\Anim\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\prim\trimesh.h">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClInclude>
+    <ClInclude Include="math\matrix.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\camera.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particle.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_triangle.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_signal.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\prim\points.h">
+      <Filter>Source Files\Anim\Render\Prim</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\texture.h">
+      <Filter>Source Files\Anim\Render\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\tex\tex_raw.h">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\render\resource\tex\tex_png.h">
+      <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_fireworks.h">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\particle_timed.h">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\world.h">
+      <Filter>Source Files\Anim</Filter>
+    </ClInclude>
+    <ClInclude Include="util\util.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\particle_spark.h">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\particles\emitter_firework.h">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\control\mouse.h">
+      <Filter>Source Files\Anim\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="util\point.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\rect.h">
+      <Filter>Source Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_element.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_button.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\logs\shader.log">
+      <Filter>Resource Files\Logs</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\shaders\default_particle\.frag">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\default_particle\.geom">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\default_particle\.vert">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\spark\.frag">
+      <Filter>Resource Files\Shaders\spark</Filter>
+    </None>
+    <None Include="..\assets\shaders\spark\.geom">
+      <Filter>Resource Files\Shaders\spark</Filter>
+    </None>
+    <None Include="..\assets\shaders\spark\.vert">
+      <Filter>Resource Files\Shaders\spark</Filter>
+    </None>
+    <None Include="..\assets\shaders\button\.frag">
+      <Filter>Resource Files\Shaders\button</Filter>
+    </None>
+    <None Include="..\assets\shaders\button\.geom">
+      <Filter>Resource Files\Shaders\button</Filter>
+    </None>
+    <None Include="..\assets\shaders\button\.vert">
+      <Filter>Resource Files\Shaders\button</Filter>
+    </None>
+  </ItemGroup>
+</Project>
