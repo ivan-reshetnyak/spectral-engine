@@ -13,12 +13,11 @@ namespace spectral {
 animation::animation( HINSTANCE hInstance ) :
     window(hInstance, "AnimationWindowClass", "Animation window",
            true, 0 /* TODO: Add menu IDR_MENU1 */, true),
-    Render(window::hWnd,
-           window::Width,
-           window::Height),
+    Render(window::hWnd, window::Width, window::Height),
     Camera(0.5f, 1000,
            window::Width, window::Height,
-           vec(0.0, 1.75, -100), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
+           vec(0.0, 1.75, -100), vec(0.0, 0.0, 0.0), vec(0, 1, 0)),
+    Mouse(window::Width, window::Height) {
 }
 
 
@@ -29,13 +28,7 @@ animation::~animation() {
 void animation::RenderFrame() {
   Timer.Update();
   Timer.IncrFrameCount();
-
-  // TODO: Add input update when it's done
-  /*
-  input::Response(IsActive);
-  input::Scroll(window_animation::MouseWheel);
-  */
-
+  Mouse.Update();
   UnitManager.Update();
 
   Render.StartFrame();
@@ -68,6 +61,28 @@ void animation::OnSize( unsigned, int NewWidth, int NewHeight ) {
 
 void animation::OnPaint() {
   RenderFrame();
+}
+
+
+void animation::OnButtonDown( bool IsDoubleClick, int X, int Y, unsigned Keys ) {
+  if (Keys & MK_LBUTTON)
+    Mouse.Press(mouse::button::LEFT);
+  if (Keys & MK_MBUTTON)
+    Mouse.Press(mouse::button::MIDDLE);
+  if (Keys & MK_RBUTTON)
+    Mouse.Press(mouse::button::RIGHT);
+  Mouse.Move(point<int>(X, Y));
+}
+
+
+void animation::OnButtonUp( int X, int Y, unsigned Keys ) {
+  if (!(Keys & MK_LBUTTON))
+    Mouse.Release(mouse::button::LEFT);
+  if (!(Keys & MK_MBUTTON))
+    Mouse.Release(mouse::button::MIDDLE);
+  if (!(Keys & MK_RBUTTON))
+    Mouse.Release(mouse::button::RIGHT);
+  Mouse.Move(point<int>(X, Y));
 }
 
 

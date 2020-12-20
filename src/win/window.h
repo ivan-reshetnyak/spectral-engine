@@ -41,9 +41,9 @@ public:
   virtual void OnPaint();
   virtual void OnActivate( UINT Reason, HWND hWndActDeact, BOOL IsMinimized );
   virtual void OnTimer( INT Id );
-  virtual void OnButtonDown( BOOL IsDoubleClick, INT X, INT Y, UINT Keys );
+  virtual void OnButtonDown( bool IsDoubleClick, int X, int Y, unsigned Keys );
   virtual void OnKeyDown( UINT Keys );
-  virtual void OnButtonUp( INT X, INT Y, UINT Keys );
+  virtual void OnButtonUp( int X, int Y, unsigned Keys );
   virtual void OnMouseWheel( INT X, INT Y, INT Z, UINT Keys );
   virtual void Idle();
   int GetW();
