@@ -46,6 +46,12 @@
     <Filter Include="Resource Files\Logs">
       <UniqueIdentifier>{935da222-dd3f-4be9-9e29-a33c4db56821}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{c1d1d1bf-f601-4d38-96e3-42f6a122fde8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\default_particle">
+      <UniqueIdentifier>{e21dd38d-977b-41ad-b922-c1645d8ab2ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -211,5 +217,16 @@
     <Text Include="..\logs\shader.log">
       <Filter>Resource Files\Logs</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\shaders\default_particle\.frag">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\default_particle\.geom">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
+    <None Include="..\assets\shaders\default_particle\.vert">
+      <Filter>Resource Files\Shaders\default_particle</Filter>
+    </None>
   </ItemGroup>
 </Project>

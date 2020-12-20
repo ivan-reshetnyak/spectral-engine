@@ -237,6 +237,11 @@
   <ItemGroup>
     <Text Include="..\logs\shader.log" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\shaders\default_particle\.frag" />
+    <None Include="..\assets\shaders\default_particle\.geom" />
+    <None Include="..\assets\shaders\default_particle\.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

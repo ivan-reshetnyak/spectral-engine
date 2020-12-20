@@ -55,14 +55,15 @@ public:
         SetUniform("Time", &Anim->Timer.Time)->
         SetUniform("World", &Anim->World)->SetUniform("VP", &Anim->Camera.VP)->
         SetUniform("CameraRight", &Anim->Camera.Right)->
-        SetUniform("CameraUp", &Anim->Camera.Up);
+        SetUniform("CameraUp", &Anim->Camera.Up)->
+        SetUniform("CameraDir", &Anim->Camera.Direction);
 
       bb_vertex * Vertices = new bb_vertex[1];
       Vertices[0] = bb_vertex(Start, 0.3f);
       Primitive.Set(Anim);
       Primitive.Set(std::shared_ptr<geometry>(new geometry(1, Vertices, 1, { 0 })), Material);
     }
-    Rotation = (float)rand() / RAND_MAX * (float)Pi;
+    Rotation = (float)rand() / RAND_MAX * 2.f * (float)Pi;
   }
 
 
@@ -87,9 +88,9 @@ public:
     glDepthMask(false);
     Material->SetUniform("Age", Age);
     Material->SetUniform("LifeTime", LifeTime);
-    Anim->World = matrix::Translation(Position.X, Position.Y, Position.Z) * matrix::RotationZ(Rotation);
+    Material->SetUniform("Rotation", Rotation);
+    Material->SetUniform("Position", Position);
     Primitive.Draw();
-    Anim->World = matrix();
     glDepthMask(true);
   }
 
@@ -112,6 +113,7 @@ public:
       LastEmission(Anim->Timer.Time), Anim(Anim),
       Period(Period), LifeTime(LifeTime),
       Position(Position), Speed(Speed) {
+    Emit();
   }
 
 
@@ -154,7 +156,7 @@ private:
 
 
 signal::signal( animation *Anim, const vec &Pos, const vec &Speed ) : unit(Anim) {
-  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, 0.005f, 2.5f, Pos, Speed));
+  ParticleManager << std::shared_ptr<emitter>(new bb_emitter(Anim, .025f, 7.5f, Pos, Speed));
 }
 
 

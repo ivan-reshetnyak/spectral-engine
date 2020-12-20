@@ -8,11 +8,10 @@ out VS_OUT {
   out float Size;
 } vs_out;
 
-
-uniform float Time;
+uniform vec3 Position;
 
 void main( void ) {
-  vs_out.Pos = InPos;
+  vs_out.Pos = Position;
   vs_out.Size = InSize;
   gl_Position = vec4(vs_out.Pos, 1); 
 }

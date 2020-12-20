@@ -18,7 +18,7 @@ animation::animation( HINSTANCE hInstance ) :
            window::Height),
     Camera(0.5f, 10,
            window::Width, window::Height,
-           vec(0.0, 1.0, -5.0), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
+           vec(0.0, 1.0, -2.5), vec(0.0, 0.0, 0.0), vec(0, 1, 0)) {
 }
 
 
