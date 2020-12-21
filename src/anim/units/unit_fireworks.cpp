@@ -35,14 +35,12 @@ fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
   Period = 1.5;
 
   UI->Add(std::shared_ptr<ui::button>(
-    new ui::button(Anim, ui::clickable(Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f),
-                                                                  point<float>(0.3f, 0.2f) })),
+    new ui::button(Anim, rect<float>({ point<float>(0.0f, 0.0f), point<float>(0.3f, 0.2f) }),
                    GetButtonMaterial("unit_fireworks_button_launch", "../assets/textures/ui/launch.png"),
                    [this](){ Launch(); })));
 
   auto ExitButton = std::shared_ptr<ui::button>(
-    new ui::button(Anim, ui::clickable(Anim->Mouse, rect<float>({ point<float>(0.95f, 0.95f),
-                                                                  point<float>(1.0f, 1.0f) })),
+    new ui::button(Anim, rect<float>({ point<float>(0.95f, 0.95f), point<float>(1.0f, 1.0f) }),
                    GetButtonMaterial("unit_fireworks_button_cross", "../assets/textures/ui/cross.png"),
                    [Anim](){ Anim->DoExit(); }));
   auto ExitButtonHideable = std::shared_ptr<ui::hideable>(new ui::hideable(ExitButton, false));

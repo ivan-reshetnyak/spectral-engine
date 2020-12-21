@@ -9,29 +9,22 @@
 
 #include "../render/resource/material.h"
 #include "../render/prim/points.h"
-#include "ui_banner.h"
-#include "ui_clickable.h"
+#include "ui_bounded.h"
 
 namespace spectral {
 namespace ui {
 
 
-class button : public clickable {
+class banner : public bounded {
 public:
-  using callback = std::function<void ()>;
-
-  button( animation *Anim, const rect<float> &BoundBox,
-          std::shared_ptr<material> Material,
-          const callback &Callback = [](){} );
-  button * Set( const callback &Callback );
-  virtual ~button();
+  banner( animation *Anim, const rect<float> &BoundBox,
+          std::shared_ptr<material> Material );
+  virtual ~banner() = default;
   virtual void Render() override;
 
 protected:
-  callback Callback;
-  banner Banner;
-
-  virtual void OnClick() override;
+  std::shared_ptr<material> Material;
+  prim::points Primitive;
 };
 
 
