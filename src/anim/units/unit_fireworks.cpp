@@ -6,13 +6,24 @@
 #include "pch.h"
 
 #include "../render/resource/tex/tex_png.h"
+#include "../ui/ui_button.h"
 #include "unit_fireworks.h"
 
 namespace spectral {
 namespace units {
 
 
-fireworks::fireworks( animation *Anim ) : unit(Anim) {
+static std::shared_ptr<material> GetLaunchButtonMaterial() {
+  std::shared_ptr<material> Material;
+  if (!material::Manager.Exists("unit_fireworks_button")) {
+    Material = material::Manager.Add("unit_fireworks_button", shader::Manager.Get("button"));
+    Material->Add(std::shared_ptr<texture>(new tex::png("Texture", 0, "../assets/textures/ui/launch.png")));
+  } else
+    Material = material::Manager.Get("unit_fireworks_button");
+  return Material;
+}
+
+fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
   Explosion = std::shared_ptr<emitter::fireworks>(
     new emitter::fireworks(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
                            10.f, 15.f, 250, color(1.f, 1.f, 1.f)));
@@ -21,16 +32,10 @@ fireworks::fireworks( animation *Anim ) : unit(Anim) {
   LastExplosion = Anim->Timer.Time;
   Period = 1.5;
 
-  std::shared_ptr<material> Material;
-  if (!material::Manager.Exists("unit_fireworks_button")) {
-    Material = material::Manager.Add("unit_fireworks_button", shader::Manager.Get("button"));
-    Material->Add(std::shared_ptr<texture>(new tex::png("Texture", 0, "../assets/textures/ui/launch.png")));
-  } else
-    Material = material::Manager.Get("unit_fireworks_button");
-  LaunchButton = std::shared_ptr<ui::button>(
+  UI->Add(std::shared_ptr<ui::button>(
     new ui::button(Anim, ui::clickable(Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f),
                                                                   point<float>(0.3f, 0.2f) })),
-                   [this](){ Launch(); }, Material));
+                   [this](){ Launch(); }, GetLaunchButtonMaterial())));
 }
 
 
@@ -46,7 +51,7 @@ void fireworks::Launch() {
 
 void fireworks::Update() {
   ParticleManager.Update(Anim->Timer);
-  LaunchButton->Update();
+  UI->Update();
   /*
   if (Anim->Timer.Time - LastExplosion > Period) {
     if (Explosion->IsDead())
@@ -75,7 +80,7 @@ void fireworks::Update() {
 
 void fireworks::Render() {
   ParticleManager.Render();
-  LaunchButton->Render();
+  UI->Render();
 }
 
 

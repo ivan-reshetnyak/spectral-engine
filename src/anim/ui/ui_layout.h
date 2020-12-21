@@ -20,7 +20,7 @@ public:
   virtual ~layout() = default;
   virtual void Update();
   virtual void Render();
-  layout * operator<<( std::shared_ptr<element> NewElement );
+  layout * Add( std::shared_ptr<element> NewElement );
 
 protected:
   std::vector<std::shared_ptr<element>> Elements;

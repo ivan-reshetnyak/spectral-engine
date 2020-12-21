@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## [1.3.0] - 2020-12-21
+## [1.3.1] - 2020-12-21
 ### Added:
 - 'ui::layout' ui element
 - 'ui::clickable' ui element

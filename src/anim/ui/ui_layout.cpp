@@ -23,8 +23,9 @@ void layout::Render() {
 }
 
 
-layout * layout::operator<<( std::shared_ptr<element> NewElement ) {
+layout * layout::Add( std::shared_ptr<element> NewElement ) {
   Elements.push_back(NewElement);
+  return this;
 }
 
 
