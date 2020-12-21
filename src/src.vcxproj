@@ -196,6 +196,7 @@
     <ClCompile Include="anim\timer.cpp" />
     <ClCompile Include="anim\ui\ui_button.cpp" />
     <ClCompile Include="anim\ui\ui_element.cpp" />
+    <ClCompile Include="anim\ui\ui_hideable.cpp" />
     <ClCompile Include="anim\unit.cpp" />
     <ClCompile Include="anim\units\unit_fireworks.cpp" />
     <ClCompile Include="anim\units\unit_signal.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="anim\timer.h" />
     <ClInclude Include="anim\ui\ui_button.h" />
     <ClInclude Include="anim\ui\ui_element.h" />
+    <ClInclude Include="anim\ui\ui_hideable.h" />
     <ClInclude Include="anim\unit.h" />
     <ClInclude Include="anim\units\unit_fireworks.h" />
     <ClInclude Include="anim\units\unit_signal.h" />

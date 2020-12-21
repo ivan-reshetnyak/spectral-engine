@@ -156,6 +156,9 @@
     <ClCompile Include="anim\ui\ui_button.cpp">
       <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
+    <ClCompile Include="anim\ui\ui_hideable.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -273,6 +276,9 @@
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
     <ClInclude Include="anim\ui\ui_button.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_hideable.h">
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
   </ItemGroup>
