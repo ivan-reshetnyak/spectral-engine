@@ -6,24 +6,19 @@
 #pragma once
 
 #include "util/rect.h"
-#include "../control/mouse.h"
-#include "ui_bounded.h"
+#include "ui_element.h"
 
 namespace spectral {
 namespace ui {
 
 
-class clickable : public bounded {
+class bounded : public element {
 public:
-  clickable( const mouse &Mouse, const rect<float> &BoundBox );
-  virtual ~clickable();
-  virtual void Update();
-  virtual void Render();
+  bounded( const rect<float> &BoundBox );
+  virtual ~bounded() = default;
 
 protected:
-  const mouse &Mouse;
-
-  virtual void OnClick();
+  rect<float> BoundBox;
 };
 
 

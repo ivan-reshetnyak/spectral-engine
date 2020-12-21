@@ -12,7 +12,7 @@ namespace ui {
 
 
 clickable::clickable( const mouse &Mouse, const rect<float> &BoundBox ) :
-    BoundBox(BoundBox), Mouse(Mouse) {
+    bounded(BoundBox), Mouse(Mouse) {
 }
 
 

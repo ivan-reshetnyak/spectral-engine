@@ -2,11 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 
-## [1.3.1] - 2020-12-21
+## [1.4.0] - 2020-12-21
 ### Added:
-- 'ui::layout' ui element
+- 'ui::bounded' ui element
 - 'ui::clickable' ui element
 - 'ui::hideable' ui element
+- 'ui::layout' ui element
 
 ### Changed:
 - Remove all logic from ui::element, move it to ui::clickable

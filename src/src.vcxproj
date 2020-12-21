@@ -194,6 +194,7 @@
     <ClCompile Include="anim\render\resource\tex\tex_raw.cpp" />
     <ClCompile Include="anim\render\vertex.cpp" />
     <ClCompile Include="anim\timer.cpp" />
+    <ClCompile Include="anim\ui\ui_bounded.cpp" />
     <ClCompile Include="anim\ui\ui_button.cpp" />
     <ClCompile Include="anim\ui\ui_clickable.cpp" />
     <ClCompile Include="anim\ui\ui_element.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="anim\render\resource\tex\tex_raw.h" />
     <ClInclude Include="anim\render\vertex.h" />
     <ClInclude Include="anim\timer.h" />
+    <ClInclude Include="anim\ui\ui_bounded.h" />
     <ClInclude Include="anim\ui\ui_button.h" />
     <ClInclude Include="anim\ui\ui_clickable.h" />
     <ClInclude Include="anim\ui\ui_element.h" />
