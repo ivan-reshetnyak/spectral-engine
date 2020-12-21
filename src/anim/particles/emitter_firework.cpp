@@ -14,15 +14,15 @@ namespace emitter {
 
 fireworks::fireworks( animation *Anim, world *World, float LifeTime,
                       const vec &Position, float MinSpeed, float MaxSpeed,
-                      int NumOfParticles, const color &Color ) :
+                      int BurstSize, const color &Color ) :
     Anim(Anim), World(World), LifeTime(LifeTime), Position(Position),
     MinSpeed(MinSpeed), MaxSpeed(MaxSpeed), Color(Color),
-    NumOfParticles(NumOfParticles) {
+    BurstSize(BurstSize) {
 }
 
 
 void fireworks::Release() {
-  for (int i = 0; i < NumOfParticles; ++i)
+  for (int i = 0; i < BurstSize; ++i)
     Emit();
 }
 

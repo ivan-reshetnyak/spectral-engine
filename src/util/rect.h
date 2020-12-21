@@ -41,6 +41,16 @@ public:
   }
 
 
+  type Width() const {
+    return Vertices[1].X - Vertices[0].X;
+  }
+
+
+  type Height() const {
+    return Vertices[1].Y - Vertices[0].Y;
+  }
+
+
 protected:
   std::array<point<type>, 2> Vertices;
 };

@@ -8,6 +8,8 @@
 #include "../render/vertex.h"
 #include "ui_banner.h"
 
+#include "util/memhooks.h"
+
 namespace spectral {
 namespace ui {
 

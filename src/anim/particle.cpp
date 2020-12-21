@@ -57,9 +57,11 @@ void emitter_t::Emit() {
 
 
 void emitter_t::Update( const timer &Timer ) {
+  NumOfParticles = 0;
   entry *Entry = AliveHead;
   while (Entry != nullptr) {
     Entry->Particle->Update(Timer);
+    ++NumOfParticles;
     Entry = Entry->Next;
   }
 

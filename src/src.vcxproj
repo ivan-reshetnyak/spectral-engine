@@ -203,6 +203,7 @@
     <ClCompile Include="anim\ui\ui_layout.cpp" />
     <ClCompile Include="anim\unit.cpp" />
     <ClCompile Include="anim\units\unit_fireworks.cpp" />
+    <ClCompile Include="anim\units\unit_nums.cpp" />
     <ClCompile Include="anim\units\unit_signal.cpp" />
     <ClCompile Include="anim\units\unit_triangle.cpp" />
     <ClCompile Include="anim\world.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="anim\ui\ui_layout.h" />
     <ClInclude Include="anim\unit.h" />
     <ClInclude Include="anim\units\unit_fireworks.h" />
+    <ClInclude Include="anim\units\unit_nums.h" />
     <ClInclude Include="anim\units\unit_signal.h" />
     <ClInclude Include="anim\units\unit_triangle.h" />
     <ClInclude Include="anim\world.h" />
@@ -265,12 +267,15 @@
     <Text Include="..\logs\shader.log" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assets\shaders\button\.frag" />
-    <None Include="..\assets\shaders\button\.geom" />
-    <None Include="..\assets\shaders\button\.vert" />
+    <None Include="..\assets\shaders\billboard\.frag" />
+    <None Include="..\assets\shaders\billboard\.geom" />
+    <None Include="..\assets\shaders\billboard\.vert" />
     <None Include="..\assets\shaders\default_particle\.frag" />
     <None Include="..\assets\shaders\default_particle\.geom" />
     <None Include="..\assets\shaders\default_particle\.vert" />
+    <None Include="..\assets\shaders\nums\.frag" />
+    <None Include="..\assets\shaders\nums\.geom" />
+    <None Include="..\assets\shaders\nums\.vert" />
     <None Include="..\assets\shaders\spark\.frag" />
     <None Include="..\assets\shaders\spark\.geom" />
     <None Include="..\assets\shaders\spark\.vert" />

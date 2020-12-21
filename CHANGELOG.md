@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 
-## [1.6.1] - 2020-12-21
+## [1.6.2] - 2020-12-21
 ### Added:
 - 'ui::banner' ui element
 - 'ui::bounded' ui element

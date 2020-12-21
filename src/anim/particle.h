@@ -25,6 +25,8 @@ public:
 
 class emitter_t {
 public:
+  int NumOfParticles;
+
   emitter_t();
   virtual ~emitter_t();
   virtual bool IsDead() const = 0;

@@ -30,9 +30,10 @@ protected:
   animation *Anim;
   world *World;
   float LifeTime, MinSpeed, MaxSpeed;
-  int NumOfParticles;
   vec Position;
   color Color;
+
+  int BurstSize;
 };
 
 

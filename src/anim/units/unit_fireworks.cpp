@@ -23,7 +23,7 @@ color fireworks::PickColor() const {
 static std::shared_ptr<material> GetMaterial( const std::string &MaterialName, const std::string &TexturePath ) {
   std::shared_ptr<material> Material;
   if (!material::Manager.Exists(MaterialName)) {
-    Material = material::Manager.Add(MaterialName, shader::Manager.Get("button"));
+    Material = material::Manager.Add(MaterialName, shader::Manager.Get("billboard"));
     Material->Add(std::shared_ptr<texture>(new tex::png("Texture", 0, TexturePath)));
   } else
     Material = material::Manager.Get(MaterialName);
@@ -36,7 +36,10 @@ fireworks::fireworks( animation *Anim ) :
   Explosion = std::make_shared<emitter::fireworks>(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
                                                    10.f, 15.f, 250, color(1.f, 1.f, 1.f));
   Anim->World.Wind = vec::random();
-  // ParticleManager << Explosion;
+  *Anim
+    << (FPS = new units::nums(Anim, 0, rect<float>({ point<float>(-1.f, 0.95f), point<float>(-.95f, 1.f) })))
+    << (ParticleNum = new units::nums(Anim, 0, rect<float>({ point<float>(-1.f, 0.9f), point<float>(-.9f, 0.95f) })));
+
   Period = 1.5;
   LastExplosion = Anim->Timer.Time - Period;
 
@@ -117,6 +120,8 @@ void fireworks::Update() {
     LastExplosion = Anim->Timer.Time;
     Period = random(.5f, 1.f);
   }
+  FPS->Update((int)Anim->Timer.FPS);
+  ParticleNum->Update((int)Explosion->NumOfParticles);
   ParticleManager.Update(Anim->Timer);
   UI->Update();
 }
