@@ -5,26 +5,25 @@
 
 #pragma once
 
-#include "util/rect.h"
-#include "../control/mouse.h"
+#include <memory>
+#include <vector>
+
 #include "ui_element.h"
 
 namespace spectral {
 namespace ui {
 
 
-class clickable : public element {
+class layout : public element {
 public:
-  clickable( const mouse &Mouse, const rect<float> &BoundBox );
-  virtual ~clickable();
+  layout() = default;
+  virtual ~layout() = default;
   virtual void Update();
   virtual void Render();
+  layout * operator<<( std::shared_ptr<element> NewElement );
 
 protected:
-  rect<float> BoundBox;
-  const mouse &Mouse;
-
-  virtual void OnClick();
+  std::vector<std::shared_ptr<element>> Elements;
 };
 
 

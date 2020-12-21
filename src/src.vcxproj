@@ -198,6 +198,7 @@
     <ClCompile Include="anim\ui\ui_clickable.cpp" />
     <ClCompile Include="anim\ui\ui_element.cpp" />
     <ClCompile Include="anim\ui\ui_hideable.cpp" />
+    <ClCompile Include="anim\ui\ui_layout.cpp" />
     <ClCompile Include="anim\unit.cpp" />
     <ClCompile Include="anim\units\unit_fireworks.cpp" />
     <ClCompile Include="anim\units\unit_signal.cpp" />
@@ -237,6 +238,7 @@
     <ClInclude Include="anim\ui\ui_clickable.h" />
     <ClInclude Include="anim\ui\ui_element.h" />
     <ClInclude Include="anim\ui\ui_hideable.h" />
+    <ClInclude Include="anim\ui\ui_layout.h" />
     <ClInclude Include="anim\unit.h" />
     <ClInclude Include="anim\units\unit_fireworks.h" />
     <ClInclude Include="anim\units\unit_signal.h" />

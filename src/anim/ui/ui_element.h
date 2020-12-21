@@ -5,9 +5,6 @@
 
 #pragma once
 
-#include "util/rect.h"
-#include "../control/mouse.h"
-
 namespace spectral {
 namespace ui {
 
