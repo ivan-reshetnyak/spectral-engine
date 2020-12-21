@@ -9,18 +9,18 @@
 
 #include "../render/resource/material.h"
 #include "../render/prim/points.h"
-#include "ui_element.h"
+#include "ui_clickable.h"
 
 namespace spectral {
 namespace ui {
 
 
-class button : public element {
+class button : public clickable {
 public:
   using callback = std::function<void ()>;
 
   button( animation *Anim,
-          const element &Base, const callback &Callback,
+          const clickable &Base, const callback &Callback,
           std::shared_ptr<material> Material );
   virtual ~button();
   virtual void Render() override;

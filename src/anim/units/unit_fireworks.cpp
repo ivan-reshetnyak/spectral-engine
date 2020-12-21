@@ -28,8 +28,8 @@ fireworks::fireworks( animation *Anim ) : unit(Anim) {
   } else
     Material = material::Manager.Get("unit_fireworks_button");
   LaunchButton = std::shared_ptr<ui::button>(
-    new ui::button(Anim, ui::element(Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f),
-                                                                point<float>(0.3f, 0.2f) })),
+    new ui::button(Anim, ui::clickable(Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f),
+                                                                  point<float>(0.3f, 0.2f) })),
                    [this](){ Launch(); }, Material));
 }
 

@@ -14,16 +14,10 @@ namespace ui {
 
 class element {
 public:
-  element( const mouse &Mouse, const rect<float> &BoundBox );
-  virtual ~element();
+  element() = default;
+  virtual ~element() = default;
   virtual void Update();
   virtual void Render();
-
-protected:
-  rect<float> BoundBox;
-  const mouse &Mouse;
-
-  virtual void OnClick();
 };
 
 

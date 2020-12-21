@@ -3,7 +3,7 @@
  *    Reshetnyak Ivan
  ***************************************************************/
 
-#include "pch.h"
+#pragma once
 
 #include "ui_element.h"
 
@@ -11,12 +11,19 @@ namespace spectral {
 namespace ui {
 
 
-void element::Update() {
-}
+class clickable : public element {
+public:
+  clickable( const mouse &Mouse, const rect<float> &BoundBox );
+  virtual ~clickable();
+  virtual void Update();
+  virtual void Render();
 
+protected:
+  rect<float> BoundBox;
+  const mouse &Mouse;
 
-void element::Render() {
-}
+  virtual void OnClick();
+};
 
 
 } // End of 'ui' namespace
