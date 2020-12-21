@@ -48,6 +48,7 @@ button::button( animation *Anim, const rect<float> &BoundBox,
 
 button * button::Set( const callback &NewCallback ) {
   Callback = NewCallback;
+  return this;
 }
 
 
