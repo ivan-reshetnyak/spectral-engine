@@ -22,6 +22,40 @@ emitter_t::emitter_t() : AliveHead(nullptr), AliveTail(nullptr), Dead(nullptr) {
 }
 
 
+emitter_t::~emitter_t() {
+  while (AliveHead != nullptr) {
+    entry *ToDelete = AliveHead;
+    AliveHead = AliveHead->Next;
+    delete ToDelete;
+  }
+
+  while (Dead != nullptr) {
+    entry *ToDelete = Dead;
+    Dead = Dead->Next;
+    delete ToDelete;
+  }
+}
+
+
+void emitter_t::Emit() {
+  entry *ToAdd;
+  if (Dead != nullptr) {
+    ToAdd = Dead;
+    Dead = Dead->Next;
+    Initialize(ToAdd->Particle);
+    ToAdd->Next = nullptr;
+  } else
+    ToAdd = new entry{ Initialize(), nullptr };
+
+  if (AliveTail == nullptr) {
+    AliveHead = AliveTail = ToAdd;
+  } else {
+    AliveTail->Next = ToAdd;
+    AliveTail = ToAdd;
+  }
+}
+
+
 void emitter_t::Update( const timer &Timer ) {
   entry *Entry = AliveHead;
   while (Entry != nullptr) {

@@ -18,7 +18,6 @@ fireworks::fireworks( animation *Anim, world *World, float LifeTime,
     Anim(Anim), World(World), LifeTime(LifeTime), Position(Position),
     MinSpeed(MinSpeed), MaxSpeed(MaxSpeed), Color(Color),
     NumOfParticles(NumOfParticles) {
-  Release();
 }
 
 

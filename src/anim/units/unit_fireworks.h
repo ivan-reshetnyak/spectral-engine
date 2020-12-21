@@ -25,8 +25,11 @@ private:
   std::shared_ptr<emitter::fireworks> Explosion;
   float LastExplosion, Period;
   std::shared_ptr<ui::layout> UI;
+  std::pair<color, color> ColorRange;
 
-  void Launch();
+  vec ProjectMouse() const;
+  void Launch( const vec &Position );
+  color PickColor() const;
 };
 
 

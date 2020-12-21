@@ -15,6 +15,11 @@ namespace spectral {
 namespace units {
 
 
+color fireworks::PickColor() const {
+  return color::random(ColorRange.first, ColorRange.second);
+}
+
+
 static std::shared_ptr<material> GetMaterial( const std::string &MaterialName, const std::string &TexturePath ) {
   std::shared_ptr<material> Material;
   if (!material::Manager.Exists(MaterialName)) {
@@ -26,18 +31,32 @@ static std::shared_ptr<material> GetMaterial( const std::string &MaterialName, c
 }
 
 
-fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
-  Explosion = std::shared_ptr<emitter::fireworks>(
-    new emitter::fireworks(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
-                           10.f, 15.f, 250, color(1.f, 1.f, 1.f)));
+fireworks::fireworks( animation *Anim ) :
+    unit(Anim), UI(new ui::layout), ColorRange({ color(.5f, .8f, .5f), color(.7f, 1.f, .7f) }) {
+  Explosion = std::make_shared<emitter::fireworks>(Anim, &Anim->World, 2.5f, vec(0, 50, 0),
+                                                   10.f, 15.f, 250, color(1.f, 1.f, 1.f));
   Anim->World.Wind = vec::random();
-  ParticleManager << Explosion;
-  LastExplosion = Anim->Timer.Time;
+  // ParticleManager << Explosion;
   Period = 1.5;
+  LastExplosion = Anim->Timer.Time - Period;
 
-  UI->Add(std::make_shared<ui::button>(
-    Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f), point<float>(1.0f, 1.0f) }),
-    [this](){ Launch(); }));
+  UI->
+    Add(std::make_shared<ui::button>(
+      Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f), point<float>(1.0f, 1.0f) }),
+      [this](){ Launch(ProjectMouse()); }))->
+    Add(std::make_shared<ui::clickable_banner>(
+      Anim, rect<float>({ point<float>(0.f, 0.f), point<float>(.3f, .1f) }),
+      GetMaterial("unit_fireworks_button_red", "../assets/textures/ui/red.png"),
+      [this](){ this->ColorRange = { color(.8f, .5f, .5f), color(1.f, .7f, .7f) }; }))->
+    Add(std::make_shared<ui::clickable_banner>(
+      Anim, rect<float>({ point<float>(0.f, .1f), point<float>(.3f, .2f) }),
+      GetMaterial("unit_fireworks_button_green", "../assets/textures/ui/green.png"),
+      [this](){ this->ColorRange = { color(.5f, .8f, .5f), color(.7f, 1.f, .7f) }; }))->
+    Add(std::make_shared<ui::clickable_banner>(
+      Anim, rect<float>({ point<float>(0.f, .2f), point<float>(.3f, .3f) }),
+      GetMaterial("unit_fireworks_button_blue", "../assets/textures/ui/blue.png"),
+      [this](){ this->ColorRange = { color(.5f, .5f, .8f), color(.7f, .7f, 1.f) }; }));
+
 
   auto ExitButton = std::make_shared<ui::clickable_banner>(
     Anim, rect<float>({ point<float>(0.95f, 0.95f), point<float>(1.0f, 1.0f) }),
@@ -74,50 +93,32 @@ fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
 }
 
 
-void fireworks::Launch() {
-  if (Explosion->IsDead())
-      ParticleManager << Explosion;
-
-  color Color = color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1));
+vec fireworks::ProjectMouse() const {
   point<float> MouseCoords = Anim->Mouse.GetCoordsRelative();
   MouseCoords.X = -1.f + MouseCoords.X * 2.f;
   MouseCoords.Y = -1.f + MouseCoords.Y * 2.f;
-  vec
-    Ray = Anim->Camera.GetRay(MouseCoords),
-    Position = Anim->Camera.Position + Ray * (-Anim->Camera.Position.Z / Ray.Z);  // (L + R * t).Z = 0 => t = -L.Z / R.Z
-  Explosion->Set(Color)->
-    Set(Position);
-  Explosion->Release();
-  LastExplosion = Anim->Timer.Time;
-  Period = random(0.5f, 1.0f);
+  vec Ray = Anim->Camera.GetRay(MouseCoords);
+  return Anim->Camera.Position + Ray * (-Anim->Camera.Position.Z / Ray.Z);  // (L + R * t).Z = 0 => t = -L.Z / R.Z
 }
 
+
+void fireworks::Launch( const vec &Position ) {
+  if (Explosion->IsDead())
+    ParticleManager << Explosion;
+
+  Explosion->Set(PickColor())->Set(Position);
+  Explosion->Release();
+}
+
+
 void fireworks::Update() {
+  if (Anim->Timer.Time - LastExplosion > Period) {
+    Launch(vec(random(-20, 20), random(40, 50), random(-5, 5)));
+    LastExplosion = Anim->Timer.Time;
+    Period = random(.5f, 1.f);
+  }
   ParticleManager.Update(Anim->Timer);
   UI->Update();
-  /*
-  if (Anim->Timer.Time - LastExplosion > Period) {
-    if (Explosion->IsDead())
-      ParticleManager << Explosion;
-    Explosion->Set(color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1)))->
-      Set(vec(random(-20, 20), random(40, 50), random(-5, 5)));
-    Explosion->Release();
-    LastExplosion = Anim->Timer.Time;
-    Period = random(0.5f, 1.0f);
-  }
-  */
-
-  /*
-  if (Anim->Mouse[mouse::clickable_banner::LEFT] == mouse::state::CLICK) {
-    if (Explosion->IsDead())
-      ParticleManager << Explosion;
-    Explosion->Set(color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1)))->
-      Set(vec(random(-20, 20), random(40, 50), random(-5, 5)));
-    Explosion->Release();
-    LastExplosion = Anim->Timer.Time;
-    Period = random(0.5f, 1.0f);
-  }
-  */
 }
 
 
