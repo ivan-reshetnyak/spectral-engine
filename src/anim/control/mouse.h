@@ -31,7 +31,7 @@ public:
 private:
   std::array<state, 3> Buttons, Previous;
   point<int> Coords;
-  const int &Width, Height;
+  const int &Width, &Height;
 };
 
 

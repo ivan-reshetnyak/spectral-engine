@@ -2,19 +2,31 @@
 All notable changes to this project will be documented in this file.
 
 
-## [1.6.2] - 2020-12-21
+## [1.6.3] - 2020-12-21
 ### Added:
-- 'ui::banner' ui element
-- 'ui::bounded' ui element
-- 'ui::clickable' ui element
-- 'ui::clickable_banner' ui element
-- 'ui::hideable' ui element
-- 'ui::layout' ui element
+- New and reworked UI elements:
+  - 'ui::banner'
+  - 'ui::bounded'
+  - 'ui::clickable'
+  - 'ui::clickable_banner'
+  - 'ui::hideable'
+  - 'ui::layout'
+- Numbers rendering (kinda hack ATM, needs reworking with proper font bitmaps):
+- GNU GPL v3.0 license
 
 ### Changed:
-- Remove all logic from ui::element, move it to ui::clickable
-
+- 'units::fireworks' demo unit:
+  - Add exit button with confirmation
+  - Add color selector
+  - Add on-click firework spawn
 
 
 ## [1.0.0] - 2020-12-20
 ### RELEASED
+### Added:
+- Window creation
+- OpenGL initialization
+- Shader support
+- Texture loading
+- Particle system
+- UI
