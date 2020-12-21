@@ -7,7 +7,7 @@
 
 #include "../render/resource/tex/tex_png.h"
 #include "../ui/ui_banner.h"
-#include "../ui/ui_button.h"
+#include "../ui/ui_clickable_banner.h"
 #include "../ui/ui_hideable.h"
 #include "unit_fireworks.h"
 
@@ -36,11 +36,10 @@ fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
   Period = 1.5;
 
   UI->Add(std::make_shared<ui::button>(
-    Anim, rect<float>({ point<float>(0.0f, 0.0f), point<float>(0.3f, 0.2f) }),
-    GetMaterial("unit_fireworks_button_launch", "../assets/textures/ui/launch.png"),
+    Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f), point<float>(1.0f, 1.0f) }),
     [this](){ Launch(); }));
 
-  auto ExitButton = std::make_shared<ui::button>(
+  auto ExitButton = std::make_shared<ui::clickable_banner>(
     Anim, rect<float>({ point<float>(0.95f, 0.95f), point<float>(1.0f, 1.0f) }),
     GetMaterial("unit_fireworks_button_cross", "../assets/textures/ui/cross.png"));
   auto ExitButtonHideable = std::make_shared<ui::hideable>(ExitButton, false);
@@ -49,11 +48,11 @@ fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
   auto ExitMessageBackground = std::make_shared<ui::banner>(
     Anim, rect<float>({ point<float>(0.7f, 0.7f), point<float>(1.0f, 1.0f) }),
     GetMaterial("unit_fireworks_button_exit_msg_bck", "../assets/textures/ui/exit.png"));
-  auto ExitMessageAccept = std::make_shared<ui::button>(
+  auto ExitMessageAccept = std::make_shared<ui::clickable_banner>(
     Anim, rect<float>({ point<float>(0.75f, 0.75f), point<float>(0.8f, 0.8f) }),
     GetMaterial("unit_fireworks_button_ok", "../assets/textures/ui/ok.png"),
     [Anim](){ Anim->DoExit(); });
-  auto ExitMessageCancel = std::make_shared<ui::button>(
+  auto ExitMessageCancel = std::make_shared<ui::clickable_banner>(
     Anim, rect<float>({ point<float>(0.90f, 0.75f), point<float>(0.95f, 0.8f) }),
     GetMaterial("unit_fireworks_button_cross", "../assets/textures/ui/cross.png"));
   auto ExitMessageLayout = std::make_shared<ui::layout>();
@@ -78,11 +77,19 @@ fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
 void fireworks::Launch() {
   if (Explosion->IsDead())
       ParticleManager << Explosion;
-    Explosion->Set(color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1)))->
-      Set(vec(random(-20, 20), random(40, 50), random(-5, 5)));
-    Explosion->Release();
-    LastExplosion = Anim->Timer.Time;
-    Period = random(0.5f, 1.0f);
+
+  color Color = color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1));
+  point<float> MouseCoords = Anim->Mouse.GetCoordsRelative();
+  MouseCoords.X = -1.f + MouseCoords.X * 2.f;
+  MouseCoords.Y = -1.f + MouseCoords.Y * 2.f;
+  vec
+    Ray = Anim->Camera.GetRay(MouseCoords),
+    Position = Anim->Camera.Position + Ray * (-Anim->Camera.Position.Z / Ray.Z);  // (L + R * t).Z = 0 => t = -L.Z / R.Z
+  Explosion->Set(Color)->
+    Set(Position);
+  Explosion->Release();
+  LastExplosion = Anim->Timer.Time;
+  Period = random(0.5f, 1.0f);
 }
 
 void fireworks::Update() {
@@ -101,7 +108,7 @@ void fireworks::Update() {
   */
 
   /*
-  if (Anim->Mouse[mouse::button::LEFT] == mouse::state::CLICK) {
+  if (Anim->Mouse[mouse::clickable_banner::LEFT] == mouse::state::CLICK) {
     if (Explosion->IsDead())
       ParticleManager << Explosion;
     Explosion->Set(color(random(0.7f, 1), random(0.7f, 1), random(0.7f, 1)))->

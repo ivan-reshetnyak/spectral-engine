@@ -34,5 +34,21 @@ void clickable::OnClick() {
 }
 
 
+button::button( const mouse &Mouse, const rect<float> &BoundBox, const callback &Callback ) :
+    clickable(Mouse, BoundBox), Callback(Callback) {
+}
+
+
+button * button::Set( const callback &NewCallback ) {
+  Callback = NewCallback;
+  return this;
+}
+
+
+void button::OnClick() {
+  Callback();
+}
+
+
 } // End of 'ui' namespace
 } // End of 'spectral' namespace

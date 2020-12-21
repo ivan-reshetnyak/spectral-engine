@@ -27,5 +27,21 @@ protected:
 };
 
 
+class button : public clickable {
+public:
+  using callback = std::function<void ()>;
+
+  button( const mouse &Mouse, const rect<float> &BoundBox,
+          const callback &Callback = [](){} );
+  button * Set( const callback &Callback );
+  virtual ~button() = default;
+
+protected:
+  callback Callback;
+
+  virtual void OnClick() override;
+};
+
+
 } // End of 'ui' namespace
 } // End of 'spectral' namespace

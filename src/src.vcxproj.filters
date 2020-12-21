@@ -153,9 +153,6 @@
     <ClCompile Include="anim\ui\ui_element.cpp">
       <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
-    <ClCompile Include="anim\ui\ui_button.cpp">
-      <Filter>Source Files\Anim\UI</Filter>
-    </ClCompile>
     <ClCompile Include="anim\ui\ui_hideable.cpp">
       <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
@@ -169,6 +166,9 @@
       <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
     <ClCompile Include="anim\ui\ui_banner.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_clickable_banner.cpp">
       <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -287,9 +287,6 @@
     <ClInclude Include="anim\ui\ui_element.h">
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
-    <ClInclude Include="anim\ui\ui_button.h">
-      <Filter>Source Files\Anim\UI</Filter>
-    </ClInclude>
     <ClInclude Include="anim\ui\ui_hideable.h">
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
@@ -303,6 +300,9 @@
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
     <ClInclude Include="anim\ui\ui_banner.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_clickable_banner.h">
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
   </ItemGroup>

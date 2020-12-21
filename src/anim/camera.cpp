@@ -114,4 +114,8 @@ void camera::Move( const vec &Shift ) {
 }
 
 
+vec camera::GetRay( const point<float> &ScreenCoords ) const {
+  return -Direction + Right * ScreenCoords.X * RightP / Top + Up * ScreenCoords.Y;
+}
+
 } // End of 'spectral' namespace
