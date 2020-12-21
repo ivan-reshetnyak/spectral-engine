@@ -24,6 +24,7 @@ geometry::geometry( int NumOfV, vertex * Vertices, int NumOfI, int *Indices ) :
 
 geometry::~geometry( void ) {
   delete[] Vertices;
+  delete[] Indices;
 }
 
 

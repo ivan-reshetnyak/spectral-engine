@@ -123,6 +123,11 @@ public:
     return color_t(::spectral::random(-1, 1), ::spectral::random(-1, 1),
                    ::spectral::random(-1, 1), Alpha);
   }
+
+  static color_t random( const color_t &Left, const color_t &Right ) {
+    return color_t(::spectral::random(Left.R, Right.R), ::spectral::random(Left.G, Right.G),
+                   ::spectral::random(Left.B, Right.B), ::spectral::random(Left.A, Right.A));
+  }
 };
 
 

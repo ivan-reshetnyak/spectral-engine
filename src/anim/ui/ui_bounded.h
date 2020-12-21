@@ -5,16 +5,20 @@
 
 #pragma once
 
+#include "util/rect.h"
+#include "ui_element.h"
+
 namespace spectral {
 namespace ui {
 
 
-class element {
+class bounded : public element {
 public:
-  element() = default;
-  virtual ~element() = default;
-  virtual void Update();
-  virtual void Render();
+  bounded( const rect<float> &BoundBox );
+  virtual ~bounded() = default;
+
+protected:
+  rect<float> BoundBox;
 };
 
 

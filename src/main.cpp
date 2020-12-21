@@ -4,10 +4,10 @@
  ***************************************************************/
 
 #include "pch.h"
+#include "util/memhooks.h"
 
 #include <windows.h>
 
-#include "util/memhooks.h"
 #include "anim/animation.h"
 #include "anim/units/unit_fireworks.h"
 #include "anim/units/unit_triangle.h"
