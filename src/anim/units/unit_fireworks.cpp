@@ -7,21 +7,23 @@
 
 #include "../render/resource/tex/tex_png.h"
 #include "../ui/ui_button.h"
+#include "../ui/ui_hideable.h"
 #include "unit_fireworks.h"
 
 namespace spectral {
 namespace units {
 
 
-static std::shared_ptr<material> GetLaunchButtonMaterial() {
+static std::shared_ptr<material> GetButtonMaterial( const std::string &MaterialName, const std::string &TexturePath ) {
   std::shared_ptr<material> Material;
-  if (!material::Manager.Exists("unit_fireworks_button")) {
-    Material = material::Manager.Add("unit_fireworks_button", shader::Manager.Get("button"));
-    Material->Add(std::shared_ptr<texture>(new tex::png("Texture", 0, "../assets/textures/ui/launch.png")));
+  if (!material::Manager.Exists(MaterialName)) {
+    Material = material::Manager.Add(MaterialName, shader::Manager.Get("button"));
+    Material->Add(std::shared_ptr<texture>(new tex::png("Texture", 0, TexturePath)));
   } else
-    Material = material::Manager.Get("unit_fireworks_button");
+    Material = material::Manager.Get(MaterialName);
   return Material;
 }
+
 
 fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
   Explosion = std::shared_ptr<emitter::fireworks>(
@@ -35,7 +37,17 @@ fireworks::fireworks( animation *Anim ) : unit(Anim), UI(new ui::layout) {
   UI->Add(std::shared_ptr<ui::button>(
     new ui::button(Anim, ui::clickable(Anim->Mouse, rect<float>({ point<float>(0.0f, 0.0f),
                                                                   point<float>(0.3f, 0.2f) })),
-                   [this](){ Launch(); }, GetLaunchButtonMaterial())));
+                   GetButtonMaterial("unit_fireworks_button_launch", "../assets/textures/ui/launch.png"),
+                   [this](){ Launch(); })));
+
+  auto ExitButton = std::shared_ptr<ui::button>(
+    new ui::button(Anim, ui::clickable(Anim->Mouse, rect<float>({ point<float>(0.95f, 0.95f),
+                                                                  point<float>(1.0f, 1.0f) })),
+                   GetButtonMaterial("unit_fireworks_button_cross", "../assets/textures/ui/cross.png"),
+                   [Anim](){ Anim->DoExit(); }));
+  auto ExitButtonHideable = std::shared_ptr<ui::hideable>(new ui::hideable(ExitButton, false));
+
+  UI->Add(ExitButtonHideable);
 }
 
 

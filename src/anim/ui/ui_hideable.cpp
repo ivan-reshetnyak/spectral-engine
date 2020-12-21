@@ -11,8 +11,8 @@ namespace spectral {
 namespace ui {
 
 
-hideable::hideable( const element &Element, std::shared_ptr<element> Base, bool Hidden ) :
-    element(Element), Base(Base), Hidden(Hidden) {
+hideable::hideable( std::shared_ptr<element> Base, bool Hidden ) :
+    Base(Base), Hidden(Hidden) {
 }
 
 

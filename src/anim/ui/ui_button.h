@@ -20,8 +20,9 @@ public:
   using callback = std::function<void ()>;
 
   button( animation *Anim,
-          const clickable &Base, const callback &Callback,
-          std::shared_ptr<material> Material );
+          const clickable &Base, std::shared_ptr<material> Material,
+          const callback &Callback = [](){} );
+  button * Set( const callback &Callback );
   virtual ~button();
   virtual void Render() override;
 

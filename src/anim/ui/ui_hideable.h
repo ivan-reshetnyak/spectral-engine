@@ -13,7 +13,7 @@ namespace ui {
 
 class hideable : public element {
 public:
-  hideable( const element &Element, std::shared_ptr<element> Base, bool Hidden = false );
+  hideable( std::shared_ptr<element> Base, bool Hidden = false );
   virtual ~hideable() = default;
   virtual void Update() override;
   virtual void Render() override;

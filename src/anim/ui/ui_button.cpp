@@ -40,14 +40,19 @@ public:
 
 
 button::button( animation *Anim, const clickable &Base,
-                const callback &Callback,
-                std::shared_ptr<material> Material ) :
+                std::shared_ptr<material> Material,
+                const callback &Callback ) :
     clickable(Base), Callback(Callback), Material(Material) {
   Primitive.Set(Anim);
   Primitive.Set(std::shared_ptr<geometry>(
     new geometry(1, new button_vertex[1]{ button_vertex(BoundBox[0] * 2.f + point<float>(-1.f, -1.f),
                                                         BoundBox[1] * 2.f + point<float>(-1.f, -1.f)) },
                  1, { 0 })), Material);
+}
+
+
+button * button::Set( const callback &NewCallback ) {
+  Callback = NewCallback;
 }
 
 
