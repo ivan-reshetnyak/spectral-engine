@@ -6,6 +6,7 @@
 #pragma once
 
 #include "def.h"
+#include "util/point.h"
 
 namespace spectral {
 
@@ -47,6 +48,7 @@ public:
             bool Update = true );
   void Set( mode NewMode );
   void Move( const vec &Shift );
+  vec GetRay( const point<float> &ScreenCoords ) const;
 };
 
 

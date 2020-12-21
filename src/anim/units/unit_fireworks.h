@@ -7,8 +7,9 @@
 
 #include "../animation.h"
 #include "../unit.h"
-#include "../ui/ui_button.h"
+#include "../ui/ui_layout.h"
 #include "../particles/emitter_firework.h"
+#include "unit_nums.h"
 
 namespace spectral {
 namespace units {
@@ -24,9 +25,13 @@ private:
   particle_manager ParticleManager;
   std::shared_ptr<emitter::fireworks> Explosion;
   float LastExplosion, Period;
-  std::shared_ptr<ui::button> LaunchButton;
+  std::shared_ptr<ui::layout> UI;
+  std::pair<color, color> ColorRange;
+  units::nums *FPS, *ParticleNum;
 
-  void Launch();
+  vec ProjectMouse() const;
+  void Launch( const vec &Position );
+  color PickColor() const;
 };
 
 

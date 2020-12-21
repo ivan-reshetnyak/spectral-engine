@@ -3,19 +3,16 @@
  *    Reshetnyak Ivan
  ***************************************************************/
 
-#pragma once
+#include "pch.h"
+
+#include "ui_bounded.h"
 
 namespace spectral {
 namespace ui {
 
 
-class element {
-public:
-  element() = default;
-  virtual ~element() = default;
-  virtual void Update();
-  virtual void Render();
-};
+bounded::bounded( const rect<float> &BoundBox ) : BoundBox(BoundBox) {
+}
 
 
 } // End of 'ui' namespace

@@ -5,17 +5,27 @@
 
 #include "pch.h"
 
-#include "ui_element.h"
+#include "ui_layout.h"
 
 namespace spectral {
 namespace ui {
 
 
-void element::Update() {
+void layout::Update() {
+  for (auto &Element : Elements)
+    Element->Update();
 }
 
 
-void element::Render() {
+void layout::Render() {
+  for (auto &Element : Elements)
+    Element->Render();
+}
+
+
+layout * layout::Add( std::shared_ptr<element> NewElement ) {
+  Elements.push_back(NewElement);
+  return this;
 }
 
 

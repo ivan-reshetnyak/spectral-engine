@@ -61,8 +61,11 @@
     <Filter Include="Source Files\Anim\UI">
       <UniqueIdentifier>{bfa253f3-74d9-429f-b0fd-ca7588b8cfcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shaders\button">
+    <Filter Include="Resource Files\Shaders\billboard">
       <UniqueIdentifier>{dc8a64e7-c2fc-413d-bf4d-01edecace617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\nums">
+      <UniqueIdentifier>{2cea6c75-8f91-4ebd-a3c4-210cfac38638}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +136,45 @@
       <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
     </ClCompile>
     <ClCompile Include="anim\units\unit_fireworks.cpp">
+      <Filter>Source Files\Anim\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_timed.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\world.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_spark.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\emitter_firework.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\control\mouse.cpp">
+      <Filter>Source Files\Anim\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_element.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_hideable.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_clickable.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_layout.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_bounded.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_banner.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_clickable_banner.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\units\unit_nums.cpp">
       <Filter>Source Files\Anim\Units</Filter>
     </ClCompile>
     <ClCompile Include="anim\particles\particle_timed.cpp">
@@ -272,8 +314,26 @@
     <ClInclude Include="anim\ui\ui_element.h">
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
-    <ClInclude Include="anim\ui\ui_button.h">
+    <ClInclude Include="anim\ui\ui_hideable.h">
       <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_clickable.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_layout.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_bounded.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_banner.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\ui\ui_clickable_banner.h">
+      <Filter>Source Files\Anim\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="anim\units\unit_nums.h">
+      <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -300,14 +360,23 @@
     <None Include="..\assets\shaders\spark\.vert">
       <Filter>Resource Files\Shaders\spark</Filter>
     </None>
-    <None Include="..\assets\shaders\button\.frag">
-      <Filter>Resource Files\Shaders\button</Filter>
+    <None Include="..\assets\shaders\billboard\.frag">
+      <Filter>Resource Files\Shaders\billboard</Filter>
     </None>
-    <None Include="..\assets\shaders\button\.geom">
-      <Filter>Resource Files\Shaders\button</Filter>
+    <None Include="..\assets\shaders\billboard\.geom">
+      <Filter>Resource Files\Shaders\billboard</Filter>
     </None>
-    <None Include="..\assets\shaders\button\.vert">
-      <Filter>Resource Files\Shaders\button</Filter>
+    <None Include="..\assets\shaders\billboard\.vert">
+      <Filter>Resource Files\Shaders\billboard</Filter>
+    </None>
+    <None Include="..\assets\shaders\nums\.frag">
+      <Filter>Resource Files\Shaders\nums</Filter>
+    </None>
+    <None Include="..\assets\shaders\nums\.geom">
+      <Filter>Resource Files\Shaders\nums</Filter>
+    </None>
+    <None Include="..\assets\shaders\nums\.vert">
+      <Filter>Resource Files\Shaders\nums</Filter>
     </None>
   </ItemGroup>
 </Project>

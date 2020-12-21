@@ -25,24 +25,10 @@ public:
 
 class emitter_t {
 public:
+  int NumOfParticles;
+
   emitter_t();
-
-
-  virtual ~emitter_t() {
-    while (AliveHead != nullptr) {
-      entry *ToDelete = AliveHead;
-      AliveHead = AliveHead->Next;
-      delete ToDelete;
-    }
-
-    while (Dead != nullptr) {
-      entry *ToDelete = Dead;
-      Dead = Dead->Next;
-      delete ToDelete;
-    }
-  }
-
-
+  virtual ~emitter_t();
   virtual bool IsDead() const = 0;
   virtual void Update( const timer &Timer );
   virtual void Render();
@@ -56,23 +42,7 @@ protected:
   };
   entry *AliveHead, *AliveTail, *Dead;
 
-  void Emit() {
-    entry *ToAdd;
-    if (Dead != nullptr) {
-      ToAdd = Dead;
-      Dead = Dead->Next;
-      Initialize(ToAdd->Particle);
-      ToAdd->Next = nullptr;
-    } else
-      ToAdd = new entry{ Initialize(), nullptr };
-
-    if (AliveTail == nullptr) {
-      AliveHead = AliveTail = ToAdd;
-    } else {
-      AliveTail->Next = ToAdd;
-      AliveTail = ToAdd;
-    }
-  }
+  void Emit();
 };
 
 

@@ -12,8 +12,8 @@ namespace spectral {
 
 
 void buffer::Generate( const geometry &Geometry ) {
-  if (VertexArray != 0)
-    return;
+  // if (VertexArray != 0)
+  //   return;
 
   /* Vertex buffer */
   glGenBuffers(1, &Vert);                            // Generate free buffer name
