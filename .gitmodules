@@ -1,3 +1,6 @@
 [submodule "include/memhooks"]
 	path = include/memhooks
 	url = git@gist.github.com:8933ed540a238d078be4195e3371bcd2.git
+[submodule "include/glew"]
+	path = include/glew
+	url = git@github.com:ivan-reshetnyak/glew-headers.git

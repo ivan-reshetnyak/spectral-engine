@@ -9,7 +9,7 @@
 
 #include <windows.h>
 
-#include "gl/glew.h"
+#include "glew/glew.h"
 
 #include "def.h"
 #include "../animation.h"

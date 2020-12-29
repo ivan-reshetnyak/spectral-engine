@@ -8,10 +8,9 @@
 #ifndef GLEW_STATIC
 #  define GLEW_STATIC
 #endif /* GLEW_STATIC */
-#include <gl/glew.h>
+#include "glew/glew.h"
 
 #pragma comment(lib, "opengl32")
-// #pragma comment(lib, "glu32")
 #pragma comment(lib, "glew32s")
 
 #include "render.h"

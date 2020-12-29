@@ -7,7 +7,7 @@
 
 #include "pch.h"
 
-#include "gl/glew.h"
+#include "glew/glew.h"
 
 #include "points.h"
 

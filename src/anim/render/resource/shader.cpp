@@ -9,7 +9,7 @@
 
 #include <array>
 
-#include "gl/glew.h"
+#include "glew/glew.h"
 
 #include "def.h"
 #include "../vertex.h"
