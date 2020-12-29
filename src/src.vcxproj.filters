@@ -31,26 +31,11 @@
     <Filter Include="Source Files\Anim\Render\Resource">
       <UniqueIdentifier>{6422d9c3-344a-4704-b220-ab6ef62cd030}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Anim\Units">
-      <UniqueIdentifier>{ceb0b1e0-541a-43ce-a2bf-eb4c2004a0ee}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Anim\Render\Prim">
       <UniqueIdentifier>{6057b3ef-b59e-45d5-a1fe-4032115ffa7a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Anim\Render\Resource\Textures">
       <UniqueIdentifier>{be5b79f4-9603-470a-bc58-61274995c3c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Logs">
-      <UniqueIdentifier>{935da222-dd3f-4be9-9e29-a33c4db56821}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders">
-      <UniqueIdentifier>{c1d1d1bf-f601-4d38-96e3-42f6a122fde8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\default_particle">
-      <UniqueIdentifier>{e21dd38d-977b-41ad-b922-c1645d8ab2ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\spark">
-      <UniqueIdentifier>{133f08b4-567a-497c-83d2-4295530b06d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Anim\Particles">
       <UniqueIdentifier>{0ed1118f-80bc-4dfb-8a52-3f18c89d9b18}</UniqueIdentifier>
@@ -61,17 +46,8 @@
     <Filter Include="Source Files\Anim\UI">
       <UniqueIdentifier>{bfa253f3-74d9-429f-b0fd-ca7588b8cfcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Shaders\billboard">
-      <UniqueIdentifier>{dc8a64e7-c2fc-413d-bf4d-01edecace617}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Shaders\nums">
-      <UniqueIdentifier>{2cea6c75-8f91-4ebd-a3c4-210cfac38638}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
@@ -117,12 +93,6 @@
     <ClCompile Include="anim\particle.cpp">
       <Filter>Source Files\Anim</Filter>
     </ClCompile>
-    <ClCompile Include="anim\units\unit_triangle.cpp">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClCompile>
-    <ClCompile Include="anim\units\unit_signal.cpp">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClCompile>
     <ClCompile Include="anim\render\prim\points.cpp">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClCompile>
@@ -134,9 +104,6 @@
     </ClCompile>
     <ClCompile Include="anim\render\resource\tex\tex_png.cpp">
       <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
-    </ClCompile>
-    <ClCompile Include="anim\units\unit_fireworks.cpp">
-      <Filter>Source Files\Anim\Units</Filter>
     </ClCompile>
     <ClCompile Include="anim\particles\particle_timed.cpp">
       <Filter>Source Files\Anim\Particles</Filter>
@@ -174,8 +141,23 @@
     <ClCompile Include="anim\ui\ui_clickable_banner.cpp">
       <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
-    <ClCompile Include="anim\units\unit_nums.cpp">
-      <Filter>Source Files\Anim\Units</Filter>
+    <ClCompile Include="anim\particles\particle_timed.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\world.cpp">
+      <Filter>Source Files\Anim</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\particle_spark.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\particles\emitter_firework.cpp">
+      <Filter>Source Files\Anim\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\control\mouse.cpp">
+      <Filter>Source Files\Anim\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="anim\ui\ui_element.cpp">
+      <Filter>Source Files\Anim\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,12 +227,6 @@
     <ClInclude Include="anim\particle.h">
       <Filter>Source Files\Anim</Filter>
     </ClInclude>
-    <ClInclude Include="anim\units\unit_triangle.h">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClInclude>
-    <ClInclude Include="anim\units\unit_signal.h">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClInclude>
     <ClInclude Include="anim\render\prim\points.h">
       <Filter>Source Files\Anim\Render\Prim</Filter>
     </ClInclude>
@@ -262,9 +238,6 @@
     </ClInclude>
     <ClInclude Include="anim\render\resource\tex\tex_png.h">
       <Filter>Source Files\Anim\Render\Resource\Textures</Filter>
-    </ClInclude>
-    <ClInclude Include="anim\units\unit_fireworks.h">
-      <Filter>Source Files\Anim\Units</Filter>
     </ClInclude>
     <ClInclude Include="anim\particles\particle_timed.h">
       <Filter>Source Files\Anim\Particles</Filter>
@@ -311,51 +284,5 @@
     <ClInclude Include="anim\ui\ui_clickable_banner.h">
       <Filter>Source Files\Anim\UI</Filter>
     </ClInclude>
-    <ClInclude Include="anim\units\unit_nums.h">
-      <Filter>Source Files\Anim\Units</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\logs\shader.log">
-      <Filter>Resource Files\Logs</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\assets\shaders\default_particle\.frag">
-      <Filter>Resource Files\Shaders\default_particle</Filter>
-    </None>
-    <None Include="..\assets\shaders\default_particle\.geom">
-      <Filter>Resource Files\Shaders\default_particle</Filter>
-    </None>
-    <None Include="..\assets\shaders\default_particle\.vert">
-      <Filter>Resource Files\Shaders\default_particle</Filter>
-    </None>
-    <None Include="..\assets\shaders\spark\.frag">
-      <Filter>Resource Files\Shaders\spark</Filter>
-    </None>
-    <None Include="..\assets\shaders\spark\.geom">
-      <Filter>Resource Files\Shaders\spark</Filter>
-    </None>
-    <None Include="..\assets\shaders\spark\.vert">
-      <Filter>Resource Files\Shaders\spark</Filter>
-    </None>
-    <None Include="..\assets\shaders\billboard\.frag">
-      <Filter>Resource Files\Shaders\billboard</Filter>
-    </None>
-    <None Include="..\assets\shaders\billboard\.geom">
-      <Filter>Resource Files\Shaders\billboard</Filter>
-    </None>
-    <None Include="..\assets\shaders\billboard\.vert">
-      <Filter>Resource Files\Shaders\billboard</Filter>
-    </None>
-    <None Include="..\assets\shaders\nums\.frag">
-      <Filter>Resource Files\Shaders\nums</Filter>
-    </None>
-    <None Include="..\assets\shaders\nums\.geom">
-      <Filter>Resource Files\Shaders\nums</Filter>
-    </None>
-    <None Include="..\assets\shaders\nums\.vert">
-      <Filter>Resource Files\Shaders\nums</Filter>
-    </None>
   </ItemGroup>
 </Project>

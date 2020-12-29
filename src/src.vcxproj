@@ -26,26 +26,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -202,12 +202,7 @@
     <ClCompile Include="anim\ui\ui_hideable.cpp" />
     <ClCompile Include="anim\ui\ui_layout.cpp" />
     <ClCompile Include="anim\unit.cpp" />
-    <ClCompile Include="anim\units\unit_fireworks.cpp" />
-    <ClCompile Include="anim\units\unit_nums.cpp" />
-    <ClCompile Include="anim\units\unit_signal.cpp" />
-    <ClCompile Include="anim\units\unit_triangle.cpp" />
     <ClCompile Include="anim\world.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -245,10 +240,6 @@
     <ClInclude Include="anim\ui\ui_hideable.h" />
     <ClInclude Include="anim\ui\ui_layout.h" />
     <ClInclude Include="anim\unit.h" />
-    <ClInclude Include="anim\units\unit_fireworks.h" />
-    <ClInclude Include="anim\units\unit_nums.h" />
-    <ClInclude Include="anim\units\unit_signal.h" />
-    <ClInclude Include="anim\units\unit_triangle.h" />
     <ClInclude Include="anim\world.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="math\color.h" />
@@ -262,23 +253,6 @@
     <ClInclude Include="util\resource_manager.h" />
     <ClInclude Include="util\util.h" />
     <ClInclude Include="win\window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\logs\shader.log" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\assets\shaders\billboard\.frag" />
-    <None Include="..\assets\shaders\billboard\.geom" />
-    <None Include="..\assets\shaders\billboard\.vert" />
-    <None Include="..\assets\shaders\default_particle\.frag" />
-    <None Include="..\assets\shaders\default_particle\.geom" />
-    <None Include="..\assets\shaders\default_particle\.vert" />
-    <None Include="..\assets\shaders\nums\.frag" />
-    <None Include="..\assets\shaders\nums\.geom" />
-    <None Include="..\assets\shaders\nums\.vert" />
-    <None Include="..\assets\shaders\spark\.frag" />
-    <None Include="..\assets\shaders\spark\.geom" />
-    <None Include="..\assets\shaders\spark\.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

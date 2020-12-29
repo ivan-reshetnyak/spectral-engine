@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 
+## [2.0.0] - 2020-12-29
+### Changed:
+- Change build target to static library
+
+### Removed:
+- All unit files
+- All assets
+
+
 ## [1.6.3] - 2020-12-21
 ### Added:
 - New and reworked UI elements:
