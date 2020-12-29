@@ -2,9 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
-## [2.0.0] - 2020-12-29
+## [2.0.1] - 2020-12-29
 ### Changed:
 - Change build target to static library
+- Include memhooks as submodule
 
 ### Removed:
 - All unit files

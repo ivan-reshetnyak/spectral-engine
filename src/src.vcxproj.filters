@@ -164,9 +164,6 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util\memhooks.h">
-      <Filter>Source Files\Util</Filter>
-    </ClInclude>
     <ClInclude Include="win\window.h">
       <Filter>Source Files\Win</Filter>
     </ClInclude>
