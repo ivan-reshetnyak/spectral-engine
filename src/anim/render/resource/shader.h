@@ -8,8 +8,8 @@
 #include <string>
 #include <unordered_map>
 
-#include "def.h"
-#include "util/resource_manager.h"
+#include "../../../def.h"
+#include "../../../util/resource_manager.h"
 #include "../vertex.h"
 
 namespace spectral {

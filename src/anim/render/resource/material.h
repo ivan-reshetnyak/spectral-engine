@@ -10,9 +10,9 @@
 #include <unordered_map>
 #include <vector>
 
-#include "def.h"
-#include "anim/animation.h"
-#include "util/resource_manager.h"
+#include "../../../def.h"
+#include "../../../anim/animation.h"
+#include "../../../util/resource_manager.h"
 #include "shader.h"
 #include "texture.h"
 

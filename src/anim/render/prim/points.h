@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "def.h"
-#include "anim/animation.h"
+#include "../../../def.h"
+#include "../../../anim/animation.h"
 #include "../primitive.h"
 
 namespace spectral {

@@ -6,7 +6,7 @@
 
 #include "pch.h"
 
-#include "def.h"
+#include "../../def.h"
 #include "primitive.h"
 #include "resource/shader.h"
 
