@@ -2,11 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 
-## [2.0.3] - 2020-12-29
+## [2.0.5] - 2020-12-29
 ### Changed:
 - Change build target to static library
 - Include memhooks as submodule
 - Include GLEW as submodule
+- Include libpng as submodule
+- Change all includes to be relative
 
 ### Removed:
 - All unit files

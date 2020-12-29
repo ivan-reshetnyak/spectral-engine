@@ -7,7 +7,7 @@
 
 #include <array>
 
-#include "util/point.h"
+#include "../../util/point.h"
 
 namespace spectral {
 

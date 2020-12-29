@@ -11,7 +11,7 @@
 
 #include "glew/glew.h"
 
-#include "def.h"
+#include "../../def.h"
 #include "../animation.h"
 #include "buffer.h"
 #include "geometry.h"

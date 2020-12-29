@@ -7,7 +7,7 @@
 
 #include "glew/glew.h"
 
-#include "util/resource_manager.h"
+#include "../../util/resource_manager.h"
 #include "geometry.h"
 #include "vertex.h"
 

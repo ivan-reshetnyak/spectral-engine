@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "def.h"
+#include "../../def.h"
 #include "../particle.h"
 
 namespace spectral {

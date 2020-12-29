@@ -4,3 +4,6 @@
 [submodule "include/glew"]
 	path = include/glew
 	url = git@github.com:ivan-reshetnyak/glew-headers.git
+[submodule "include/libpng"]
+	path = include/libpng
+	url = git@github.com:ivan-reshetnyak/libpng.git

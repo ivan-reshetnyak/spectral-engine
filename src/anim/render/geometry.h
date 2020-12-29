@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "util/resource_manager.h"
+#include "../../util/resource_manager.h"
 #include "vertex.h"
 
 namespace spectral {

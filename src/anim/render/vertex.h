@@ -7,7 +7,7 @@
 
 #include <vector>
 
-#include "def.h"
+#include "../../def.h"
 
 namespace spectral {
 

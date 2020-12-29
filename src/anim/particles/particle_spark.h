@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "def.h"
+#include "../../def.h"
 #include "../render/prim/points.h"
 #include "particle_timed.h"
 

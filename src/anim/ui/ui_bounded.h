@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "util/rect.h"
+#include "../../util/rect.h"
 #include "ui_element.h"
 
 namespace spectral {

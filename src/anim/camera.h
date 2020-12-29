@@ -5,8 +5,8 @@
 
 #pragma once
 
-#include "def.h"
-#include "util/point.h"
+#include "../def.h"
+#include "../util/point.h"
 
 namespace spectral {
 
